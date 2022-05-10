@@ -10,33 +10,107 @@ based on:
 """
 import numpy as np
 from scipy import spatial
-from collections import Counter
+#from collections import Counter
+
+""" AUXILIARY FUNCTIONS """
+
+""" For Distances: """
+
+def check_same_size(seq1, seq2):
+    size1 = len(seq1)
+    size2 = len(seq2)
+    
+    if size1 != size2:
+        if size1 > size2:
+            seq1 = seq1[:size2]
+        else:
+            seq2 = seq2[:size1]
+    
+    return seq1, seq2
+
+""" For Carvalho's SIAM: """ 
+
+def create_vector_table(datapoints_1, datapoints_2):
+    vector_table = np.empty(
+        (len(datapoints_1), len(datapoints_2), len(datapoints_1[0])))
+
+    for i, vec_1 in enumerate(datapoints_1):
+        for j, vec_2 in enumerate(datapoints_2):
+            vector_table[i][j] = vec_1 - vec_2
+
+    return vector_table
+
+
+def MTP(vector_table, trans_vector):
+    return np.count_nonzero(np.all(vector_table == trans_vector, axis=2))
+
+
+""" For Local Alignment: """
+
+def pitch_rater(seq1, seq2, variances):
+    """ subsitution score for local alignment"""
+    if seq1 == seq2:
+        return 1.0
+    else:
+        return -1.0
+
+def pitch_difference(seq1, seq2, variances):
+    """ subsitution score for local alignment: 
+    returns the difference between pitches in two sequences"""
+    return 2.0 - abs(seq1-seq2)
+
+""" For Implication-Realization Structure Alignment (IRSA): """
+
+def label_diff(seq1, seq2) :
+    """ called by ir_alignment """
+    if seq1['IR_structure'] == seq2['IR_structure']: 
+        return 0.0
+    elif seq1['IR_structure'].strip('[]') == seq2['IR_structure'].strip('[]'): 
+        return 0.801
+    else: 
+        return 1.0
+
+
 
 def cardinality_score(seq1, seq2):
     """ calculates the cardinality score between two sequences """
-    rset = set([(r['onset'],r['pitch']) for r in seq1])
-    qset = set([(q['onset'],q['pitch']) for q in seq2])
+    """ Pitch sequence and onset """
+    rset = set(seq1)
+    qset = set(seq2)
     cSc = len(rset.intersection(qset))
     return cSc
 
 def city_block_distance(seq1, seq2):
     """ calculates the city-block distance between two sequences"""
+    """" Only uses pitch sequence """
+    
+    seq1, seq2 = check_same_size(seq1, seq2)
+    
     dif = spatial.distance.cityblock(seq1, seq2)
     return dif/float(len(seq1))
 
 def correlation(seq1, seq2):
     """ calculates the correlation distance between two sequences """
-    # returns 1 - correlation coefficient
+    """ Paper says it uses both pitch sequence and onset """
+    seq1, seq2 = check_same_size(seq1, seq2)
+    
+    # Correlation with both the pitch sequence and onset
     cor = spatial.distance.correlation(seq1, seq2)
+    
     return cor
 
 def euclidean_distance(seq1, seq2):
     """ calculates the euclidean distance between two sequences """
+    
+    seq1, seq2 = check_same_size(seq1, seq2)
+    
     sim = spatial.distance.euclidean(seq1, seq2)
     return sim/float(len(seq1))
 
 def hamming_distance(seq1, seq2): 
     """ calculates the hamming distance between two sequences """
+    seq1, seq2 = check_same_size(seq1, seq2)
+    
     mm = spatial.distance.hamming(seq1, seq2)
     return mm
 
@@ -53,88 +127,88 @@ def multi_dimensional(seq1, seq2, variances):
 #seq1, seq2: array of symbols (dictionaries)
 #gap_score: float
 #sim_score: function that takes two symbols and returns float
-def local_alignment(seq1, seq2, insert_score, delete_score, sim_score, 
-    return_positions, variances=[]):
+def local_alignment(seq_1, seq_2, insert_score=-0.5, delete_score=-0.5, sim_score=pitch_rater, variances=[]):
     """ local alignment takes two sequences (the query comes first), 
     the insertion and deletion sore,
     and a function which defines match / mismatch
     returns the index where the match starts in the sequence, 
     and the normalized score of the match
     """
-    #initialize dynamic programming matrix
-    d = np.zeros([len(seq1)+1, len(seq2)+1])
-    #initialize backtrace matrix
-    b = np.zeros([len(seq1)+1, len(seq2)+1])
+    """
+    Local Alignent Algorithm (Janssen/Kranenburg/Volk)
+    based on https://github.com/BeritJanssen/MelodicOccurrences/blob/master/similarity.py
+    """
+    
+    if len(seq_1) > len(seq_2):
+        temp_seq = seq_1
+        seq_1 = seq_2
+        seq_2 = temp_seq
+
+    # initialize dynamic programming matrix
+    dyn_matrix = np.zeros([len(seq_1) + 1, len(seq_2) + 1])
+    # initialize backtrace matrix
+    back_matrix = np.zeros([len(seq_1) + 1, len(seq_2) + 1])
+
     max_score = 0.0
-    #fill dynamic programming matrix
-    for i in range(1, len(seq1) + 1):
-        # query sequence, rows of dynamic programming matrix
-        for j in range(1, len(seq2) + 1):
-            # matched in longer sequence, columns of dynamic programming matrix
-            from_left = d[i,j-1] + delete_score
-            from_top = d[i-1,j] + insert_score
-            diag = d[i-1,j-1] + sim_score(seq1[i-1], seq2[j-1], variances)
-            d[i,j] = max(from_top, from_left, diag, 0.0)
-            if d[i,j] > max_score:
-                max_score = d[i,j]
+
+    for i, ev_1 in enumerate(seq_1):
+        for j, ev_2 in enumerate(seq_2):
+            from_left = dyn_matrix[i + 1, j] + delete_score
+            from_top = dyn_matrix[i, j - 1] + insert_score
+
+            diag = dyn_matrix[i, j] + sim_score(ev_1[0:], ev_2[0:], variances)
+            dyn_matrix[i + 1, j + 1] = max(from_top, from_left, diag, 0.0)
+
+            if dyn_matrix[i + 1, j + 1] > max_score:
+                max_score = dyn_matrix[i + 1, j + 1]
             # store where the current entry came from in the backtrace matrix
-            if d[i,j] == from_left:
+            if dyn_matrix[i + 1, j + 1] == from_left:
                 # deletion from longer sequence
                 backtrace = 0
-            elif d[i,j] == from_top:
+            elif dyn_matrix[i + 1, j + 1] == from_top:
                 # insertion into longer sequence
                 backtrace = 1
-            elif d[i,j] == diag:
+            elif dyn_matrix[i + 1, j + 1] == diag:
                 # substitution
                 backtrace = 2
             else:
                 backtrace = -1
-            b[i,j] = backtrace
-    m,n = np.where(d == max_score)
-    # convert from numpy array to integer
-    similarity = max_score/float(len(seq1))
-    if not return_positions:
-        return [int(n[0]), 0, similarity]
-    # store the length of the match as well to return 
-    #(match length can be shorter than query length)
-    match_list = []
-    # do not return more than 5 matches
-    if m.size>4:
-        num_matches = 5
-    else:
-        num_matches = m.size
-    for i in range(num_matches):
-        row = int(m[i])
-        column = int(n[i])
-        match_length = 0
-        while d[row,column] > 0 :
-            if b[row,column] == 0:
-                # deletion from longer sequence, move left
-                column -= 1
-                match_length += 1
-            elif b[row,column] == 1:
-                # insertion into longer sequence, move up
-                row -= 1
-            elif b[row,column] == 2:
-                # substitution, move diagonally
-                row -= 1
-                column -= 1
-                match_length += 1
-            else :
-                print(d, b, row, column)
-        match_list.append([column, match_length, similarity])
-    return match_list
+            back_matrix[i + 1, j + 1] = backtrace
 
-def siam(melody_list,segment_list,music_representation,
+    return max_score / float(min(len(seq_1), len(seq_2)))
+
+#def ir_alignment(seq1, seq2, variances=[]): 
+#    """ substitution score for IR structure alignment """
+#    subsScore = .587*label_diff(seq1, seq2) + .095*abs((seq1['end_index'] - 
+#        seq1['start_index']) - (seq2['end_index'] - seq2['start_index']))
+#    + .343*abs(seq1['direction'] - seq2['direction'])
+#    + .112*abs(seq1['overlap'] - seq2['overlap'])
+#    return 1.0 - subsScore
+
+""" SIAM as coded by Nádia Carvalho: """
+
+def SIAM(seq_1, seq_2):
+    """
+    Structure induction algorithms's pattern matching algorithm
+    """
+    seq_1 = np.array(seq_1)
+    seq_2 = np.array(seq_2)
+    vector_table = create_vector_table(seq_1, seq_2)
+    return max([MTP(vector_table, T) for T in vector_table[::]]) / len(seq_1)
+
+
+""" SIAM as coded by Berit Janssen:
+    
+def SIAM(melody_list,segment_list,music_representation,
  return_positions,scaling): 
-    """ this function takes melodies and segments belonging 
+     this function takes melodies and segments belonging 
     to the same tune family, 
 	represented as lists of dictionaries,
 	and finds occurrences using SIAM
 	in the specified music representation (specified by music_representation)
     Optionally, the positions of the occurrences can be returned, if applicable,
     scaled by a scaling factor.
-	"""
+	
     result_list = []
     for seg in segment_list :
         start_onset = seg['symbols'][0]['onset']
@@ -179,34 +253,4 @@ def siam(melody_list,segment_list,music_representation,
              'query_length': len(seg_points),
              'matches': {'siam': match_results}})
     return result_list
-
-""" Auxiliary Functions """
-
-def pitch_rater(seq1, seq2, variances):
-    """ subsitution score for local alignment"""
-    if seq1 == seq2:
-        return 1.0
-    else:
-        return -1.0
-
-def pitch_difference(seq1, seq2, variances):
-    """ subsitution score for local alignment: 
-    returns the difference between pitches in two sequences"""
-    return 2.0 - abs(seq1-seq2)
-
-def label_diff(seq1, seq2) :
-    """ called by ir_alignment """
-    if seq1['IR_structure'] == seq2['IR_structure']: 
-        return 0.0
-    elif seq1['IR_structure'].strip('[]') == seq2['IR_structure'].strip('[]'): 
-        return 0.801
-    else: 
-        return 1.0
-
-def ir_alignment(seq1, seq2, variances): 
-    """ substitution score for IR structure alignment """
-    subsScore = .587*label_diff(seq1, seq2) + .095*abs((seq1['end_index'] - 
-        seq1['start_index']) - (seq2['end_index'] - seq2['start_index']))
-    + .343*abs(seq1['direction'] - seq2['direction'])
-    + .112*abs(seq1['overlap'] - seq2['overlap'])
-    return 1.0 - subsScore
+"""

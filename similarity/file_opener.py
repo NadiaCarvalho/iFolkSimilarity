@@ -26,6 +26,7 @@ def loadFeatures(filePath):
     return songFeatures
 
 def similar(seq1, seq2, elements, algorithm):
+    
     if "PITCH" in elements:
         if "DUR" in elements:
             if "MIDI" in elements:
@@ -108,7 +109,7 @@ for seq1 in songs:
         #show_results([card, corr, cityBlock, euclidean, hamming, la, siam])
         
         
-        print("Inner Cycle %d", j)
+        print("Inner Cycle {}".format(j))
         j+=1
         
     break

@@ -4,7 +4,7 @@ Created on Mon May  2 18:53:41 2022
 
 @author: Daniel Diogo
 """
-import ast
+
 import json
 import similarity_metrics as sim
 # 2604 is the file with the "" before and after each song feature array
@@ -27,33 +27,57 @@ def loadFeatures(filePath):
 
 def similar(seq1, seq2, elements, algorithm):
     
-    if "PITCH" in elements:
-        if "DUR" in elements:
-            if "MIDI" in elements:
-                seq1aux = [[seq1['midipitch'][i], seq1['duration'][i]] for i in range(len(seq1['midipitch']))]
-                seq2aux = [[seq2['midipitch'][j], seq2['duration'][j]] for j in range(len(seq2['midipitch']))]
-            else:
-                seq1aux = [[seq1['pitch'][i], seq1['duration'][i]] for i in range(len(seq1['pitch']))]
-                seq2aux = [[seq2['pitch'][j], seq2['duration'][j]] for j in range(len(seq2['pitch']))]
-        if "ONSET" in elements:
-            if "MIDI" in elements:
-                seq1aux = [[seq1['midipitch'][i], seq1['onsettick'][i]] for i in range(len(seq1['midipitch']))]
-                seq2aux = [[seq2['midipitch'][j], seq2['onsettick'][j]] for j in range(len(seq2['midipitch']))]
-            else:
-                seq1aux = [[seq1['pitch'][i], seq1['onsettick'][i]] for i in range(len(seq1['pitch']))]
-                seq2aux = [[seq2['pitch'][j], seq2['onsettick'][j]] for j in range(len(seq2['pitch']))]
-        
-        else:
-            if "MIDI" in elements:
-                seq1aux = seq1['midipitch']
-                seq2aux = seq2['midipitch']
-            else:
-                seq1aux = seq1['pitch']
-                seq2aux = seq2['pitch']
+    size1 = len(seq1['pitch'])
+    seq1aux = []
 
+    size2 = len(seq2['pitch'])
+    seq2aux = []
+    
+    if "PITCH" in elements:
+            for i in range(size1):
+                seq1aux.append([])
+                
+                if ("MIDI" or "ALL") in elements:
+                    seq1aux[i].append(seq1['midipitch'][i])
+                else:
+                    seq1aux[i].append(seq1['pitch'][i])
+                
+                if ("DUR" or "ALL") in elements:
+                    seq1aux[i].append(seq1['duration'][i])
+                
+                if ("ONSET" or "ALL") in elements:
+                    seq1aux[i].append(seq1['onsettick'][i])
+                
+                if ("IMAWEIGTH" or "ALL") in elements:
+                    seq1aux[i].append(seq1['imaweight'][i])
+                    
+                if ("BEAT" or "ALL") in elements:
+                    seq1aux[i].append(seq1['beat'][i])
+            
+            for j in range(size2):
+                seq2aux.append([])
+                
+                if "MIDI" in elements:
+                    seq2aux[j].append(seq2['midipitch'][j])
+                else:
+                    seq2aux[j].append(seq2['pitch'][j])
+                
+                if "DUR" in elements:
+                    seq2aux[j].append(seq2['duration'][j])
+                
+                if "ONSET" in elements:
+                    seq2aux[j].append(seq2['onsettick'][j])
+                
+                if "IMAW" in elements:
+                    seq2aux[j].append(seq2['imaweight'][j])
+                    
+                if "BEAT" in elements:
+                    seq2aux[j].append(seq2['beat'][j])
+                
     else:
         print("Function not called properly!")
-    
+            
+        
     return algorithm(seq1aux, seq2aux)
 
 def show_results(results):
@@ -91,10 +115,10 @@ for seq1 in songs:
         
         simValues[seq2Id] = {}
         
-        simValues[seq2Id]['SIAM'] = similar(seq1, seq2, "MIDIPITCH ONSET", sim.SIAM)
+        simValues[seq2Id]['SIAM'] = similar(seq1, seq2, "MIDIPITCH DUR ONSET BEAT IMAW", sim.SIAM)
         simValues[seq2Id]['Local Alignment'] = similar(seq1, seq2, "PITCH", sim.local_alignment)
         
-        simValues[seq2Id]['City BLock'] = similar(seq1, seq2, "MIDIPITCH", sim.city_block_distance)
+        simValues[seq2Id]['City Block'] = similar(seq1, seq2, "MIDIPITCH", sim.city_block_distance)
         simValues[seq2Id]['Euclidean'] = similar(seq1, seq2, "MIDIPITCH", sim.euclidean_distance)
         simValues[seq2Id]['Hamming'] = similar(seq1, seq2, "MIDIPITCH", sim.hamming_distance)
         

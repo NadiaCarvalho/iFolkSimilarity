@@ -10,6 +10,7 @@ ws(k)={2, 11, 17, 16, 19, 7}
 """
 
 from TIVlib import TIV as tiv
+from scipy import spatial
 from collections import Counter
 import json
 
@@ -25,9 +26,73 @@ def loadFeatures(filePath):
     
     return songFeatures
 
-""" MAIN STARTS HERE """
-#             C C+  D D+  E  F F+  G G+  A A+  B
+def sortByDist(pitchDist):
+    return pitchDist['Dist']
 
+def sortByIndex(pitchDist):
+    return pitchDist['Index']
+
+def getBeatReduction(song, thresh):
+    """
+    thresh: threshold above which notes are taken into account (0.25, 0.5, 1)
+    """
+    indexes = []
+    songLength = len(song['features']['beatstrength'])
+    for i in range(songLength):
+        bs = song['features']['beatstrength'][i]
+        if bs > thresh:
+            indexes.append(i)
+    return indexes
+
+def reductSong(song, indexes):
+    songLength = len(song['features']['midipitch'])
+    
+    for i in range(songLength):
+        if i not in indexes:
+            for feature in song['features']:
+                song['features'][feature].pop(i)
+    
+    return song
+    
+    
+def getTivReduction(midiPitches, dist, level):
+    """
+    midiPitches: pitches to calculate the distance
+    level: level of reduction wanted in percentage (25, 50 or 75)
+    dist: method to use as distance measuring (euclidian or cosine)
+    """
+    auxHist = Counter(midiPitches)
+    pitchClasses = [0] * 12
+    
+    for pitch in auxHist:
+        index = pitch % 12
+        pitchClasses[index] += auxHist[pitch]
+    
+    songTIV = tiv.from_pcp(pitchClasses)
+    
+    distArray = []
+    
+    songLength = len(midiPitches)
+    
+    for i in range(songLength):
+        
+        pitch = midiPitches[i]
+        
+        aux = [0] * 12
+        aux[pitch % 12] += 1
+        aux = tiv.from_pcp(aux)
+        
+        calcDist = dist(songTIV.vector, aux.vector)
+        distArray.append({"Index": i, "Pitch": pitch, "Dist": calcDist})
+    
+    distArray.sort(key=sortByDist)
+    portion = round(songLength * (level/100))
+    
+    reducted = distArray[:portion]
+    
+    return reducted
+    
+""" MAIN STARTS HERE """
 
 notes = {
     'C': 0,
@@ -43,14 +108,21 @@ notes = {
 
 songs = loadFeatures(jsonPath)
 pitchClasses = {}
+tivInfo = {}
 
 for song in songs:
-    auxHist = Counter(song['features']['pitch'])
-    songId = song['name'][67:]
-    pitchClasses[songId] = [0] * 12
-    for pitch in auxHist:
-        index = 0
-        for char in pitch:
-            if char in notes:
-                index += notes[char]
-        pitchClasses[songId][index] += auxHist[pitch]
+    songID = song['name'][67:]
+    tivInfo[songID] = {}
+    
+    portion = 25
+    
+    while portion < 100:
+        tivInfo[songID][portion] = {}
+        tivInfo[songID][portion]['Euclidean'] = getTivReduction(song['features']['midipitch'], spatial.distance.euclidean, portion)
+        tivInfo[songID][portion]['Cosine'] = getTivReduction(song['features']['midipitch'], spatial.distance.cosine, portion)
+    
+        portion += 25
+    
+    
+        
+    

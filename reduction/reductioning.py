@@ -14,7 +14,7 @@ from scipy import spatial
 from collections import Counter
 import json
 
-jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2305.json'
+jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
 
 def loadFeatures(filePath):
     songFeatures = []
@@ -27,38 +27,42 @@ def loadFeatures(filePath):
     return songFeatures
 
 def sortByDist(pitchDist):
-    return pitchDist['Dist']
+    return pitchDist[1]
 
 def sortByIndex(pitchDist):
-    return pitchDist['Index']
+    return pitchDist[0]
+
+# Beat Reduction Functions
+
+def getBeatArray(song):
+    
+    beatArray = []
+    songLength = len(song['features']['beatstrength'])
+    
+    for i in range(songLength):
+        beatArray.append((i, song['features']['beatstrength'][i]))
+    
+    return beatArray
 
 def getBeatReduction(song, thresh):
     """
     thresh: threshold above which notes are taken into account (0.25, 0.5, 1)
     """
-    indexes = []
-    songLength = len(song['features']['beatstrength'])
-    for i in range(songLength):
-        bs = song['features']['beatstrength'][i]
-        if bs > thresh:
-            indexes.append({"Index": i, "Pitch": song['features']['midipitch'][i], "Beat Strength": bs})
-    return indexes
+    beatsAbove = []
+    beatArray = getBeatArray(song)
+    
+    for beat in beatArray:
+        if beat[1] > thresh:
+            beatsAbove.append(beat)
+     
+    return beatsAbove
+    
 
-def reductSong(song, indexes):
-    songLength = len(song['features']['midipitch'])
+# TIV Reduction Functions
     
-    for i in range(songLength):
-        if i not in indexes:
-            for feature in song['features']:
-                song['features'][feature].pop(i)
-    
-    return song
-    
-    
-def getTivReduction(midiPitches, dist, level):
+def getDist(midiPitches, dist):
     """
     midiPitches: pitches to calculate the distance
-    level: level of reduction wanted in percentage (25, 50 or 75)
     dist: method to use as distance measuring (euclidian or cosine)
     """
     auxHist = Counter(midiPitches)
@@ -83,15 +87,58 @@ def getTivReduction(midiPitches, dist, level):
         aux = tiv.from_pcp(aux)
         
         calcDist = dist(songTIV.vector, aux.vector)
-        distArray.append({"Index": i, "Pitch": pitch, "Dist": calcDist})
+        distArray.append((i,calcDist))
+    
+    return distArray
+
+def getTivReduction(midiPitches, dist, level):
+    """
+    level: level of reduction wanted (0.25, 0.50 or 0.75)
+    """
+    
+    distArray = getDist(midiPitches, dist) 
+    songLength = len(distArray)
     
     distArray.sort(key=sortByDist)
-    portion = round(songLength * (level/100))
+    portion = round(songLength * level)
     
     reducted = distArray[:portion]
     
     return reducted
+
+# Total Weighted Reduction Functions
+
+def getWeightedArray(tonal, beat, tonalWeight):
     
+    beatWeight = 1 - tonalWeight
+    distArray = [tone[1] for tone in tonal]
+    maxDist = max(distArray)
+    if maxDist == 0:
+        maxDist = 1
+    weighted = []
+    
+    for i in range(len(tonal)):
+        
+        tonalAux = 1 - (tonal[i][1]/maxDist)    
+        
+        weightedValue = tonalWeight * tonalAux + beatWeight * beat[i][1]
+        weighted.append((i, weightedValue))
+    
+    return weighted
+    
+def getTotalReduction(tonal, beat, tonalWeight, level):
+    
+    totalArray = getWeightedArray(tonal, beat, tonalWeight)
+    
+    songLength = len(totalArray)
+    
+    totalArray.sort(key=sortByDist)
+    portion = round(songLength * level)
+    
+    reducted = totalArray[:portion]
+    
+    return reducted
+
 """ MAIN STARTS HERE """
 
 songs = loadFeatures(jsonPath)
@@ -105,24 +152,52 @@ for song in songs:
         if beat == None:
             noMeasure.append(song)
             break
-
+        
 for song in songs:
     songID = song['name'][67:]
     reducted[songID] = {}
     
+    
+    print(songs.index(song))
+    
     portion = 25
     
-    while portion < 100:
-        reducted[songID]['TIV'] = {}
-        reducted[songID]['TIV'][portion] = {}
-        reducted[songID]['TIV'][portion]['Euclidean'] = getTivReduction(song['features']['midipitch'], spatial.distance.euclidean, portion)
-        reducted[songID]['TIV'][portion]['Cosine'] = getTivReduction(song['features']['midipitch'], spatial.distance.cosine, portion)
-        
-        reducted[songID]['Metric'] = {}
-        reducted[songID]['Metric'][portion/100] = getBeatReduction(song, portion/100)
-        
-        portion += 25
+    reducted[songID]['TIV'] = {}
+    reducted[songID]['TIV']['Euclidean'] = {}
+    reducted[songID]['TIV']['Cosine'] = {}
     
-   
+    reducted[songID]['Metric'] = {}
+    
+    reducted[songID]['Both'] = {}
+    reducted[songID]['Both']['Euclidean'] = {}
+    reducted[songID]['Both']['Cosine'] = {}    
+    
+    auxToneEuc = getDist(song['features']['midipitch'], spatial.distance.euclidean)
+    auxToneCos = getDist(song['features']['midipitch'], spatial.distance.cosine)
+    auxBeat = getBeatArray(song)
+    
+    for portion in range(25,100,25):
         
+        portion = portion/100
+        
+        reducted[songID]['TIV']['Euclidean'][portion] = getTivReduction(song['features']['midipitch'], spatial.distance.euclidean, portion)
+        reducted[songID]['TIV']['Cosine'][portion] = getTivReduction(song['features']['midipitch'], spatial.distance.cosine, portion)
+        
+        reducted[songID]['Metric'][portion] = getBeatReduction(song, portion)
+        
+        reducted[songID]['Both']['Euclidean'][str(portion) + '% Tone'] = {}
+        reducted[songID]['Both']['Cosine'][str(portion) + '% Tone'] = {}
+        
+        for subPortion in range(25,100,25):
+            
+            subPortion = subPortion/100
+            
+            reducted[songID]['Both']['Cosine'][str(portion) + '% Tone'][subPortion] = getTotalReduction(auxToneCos, auxBeat, portion, subPortion)
+            reducted[songID]['Both']['Euclidean'][str(portion) + '% Tone'][subPortion] = getTotalReduction(auxToneEuc, auxBeat, portion, subPortion)
+   
+
+json_string = json.dumps(reducted)
+
+with open('reductedSongs.json', 'a', encoding='utf8') as outfile:
+    outfile.write(json_string)
     

@@ -179,6 +179,31 @@ def mei_to_mtc(path, filename):
     
     #s.show()
     
+    # Time Signature
+    
+    if s.timeSignature == None:
+        if '/' in meta['time_signature']:    
+            s.timeSignature = meter.TimeSignature(meta['time_signature'])
+        else:
+            if meta['meter'] == 'Binary':
+                meta['time_signature'] = '4/4'
+                s.timeSignature = meter.TimeSignature('4/4')
+            if meta['meter'] == 'Ternary':
+                meta['time_signature'] = '3/4'
+                s.timeSignature = meter.TimeSignature('3/4')
+            else:
+                bsArray = []
+                for n in s.notes:
+                        for nPhrase in meta['phrases']:
+                            if meta['phrases'][nPhrase]['start'] != None:
+                                if n.id == meta['phrases'][nPhrase]['start'][1:]:
+                                    bs = 1
+                                else:
+                                    bs = 0
+                            else:
+                                bs = 0
+                        bsArray.append(bs)
+            
     # Tonic and mode calculations
     
     
@@ -322,12 +347,12 @@ def mei_to_mtc(path, filename):
     except NoMeterError:
         print(path, "has no time signature")
         timesignature = [None]*len(sd)
-        beat_str, beat_fraction_str = [None]*len(sd) , [None]*len(sd)
-        beat_float = [None]*len(sd)
+        beat_str, beat_fraction_str = bsArray, bsArray
+        beat_float = bsArray
         mc = [None]*len(sd)
-        beatstrength = [None]*len(sd)
-        beatinsong, beatinphrase, beatfraction = [None]*len(sd), [None]*len(sd), [None]*len(sd)
-        beatinphrase_end = [None]*len(sd)
+        beatstrength = bsArray
+        beatinsong, beatinphrase, beatfraction = bsArray, bsArray, bsArray
+        beatinphrase_end = bsArray
     
     metadata_string = []
     #print(metadata_string)

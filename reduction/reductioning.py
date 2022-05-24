@@ -14,7 +14,7 @@ from scipy import spatial
 from collections import Counter
 import json
 
-jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk0505.json'
+jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2305.json'
 
 def loadFeatures(filePath):
     songFeatures = []
@@ -41,7 +41,7 @@ def getBeatReduction(song, thresh):
     for i in range(songLength):
         bs = song['features']['beatstrength'][i]
         if bs > thresh:
-            indexes.append(i)
+            indexes.append({"Index": i, "Pitch": song['features']['midipitch'][i], "Beat Strength": bs})
     return indexes
 
 def reductSong(song, indexes):
@@ -94,35 +94,35 @@ def getTivReduction(midiPitches, dist, level):
     
 """ MAIN STARTS HERE """
 
-notes = {
-    'C': 0,
-    'D': 2,
-    'E': 4,
-    'F': 5,
-    'G': 7,
-    'A': 9,
-    'B': 11,
-    '+': 1,
-    '-': -1
-    }
-
 songs = loadFeatures(jsonPath)
 pitchClasses = {}
-tivInfo = {}
+reducted = {}
+
+# Debugging
+noMeasure = []
+for song in songs:
+    for beat in song['features']['beatstrength']:
+        if beat == None:
+            noMeasure.append(song)
+            break
 
 for song in songs:
     songID = song['name'][67:]
-    tivInfo[songID] = {}
+    reducted[songID] = {}
     
     portion = 25
     
     while portion < 100:
-        tivInfo[songID][portion] = {}
-        tivInfo[songID][portion]['Euclidean'] = getTivReduction(song['features']['midipitch'], spatial.distance.euclidean, portion)
-        tivInfo[songID][portion]['Cosine'] = getTivReduction(song['features']['midipitch'], spatial.distance.cosine, portion)
-    
+        reducted[songID]['TIV'] = {}
+        reducted[songID]['TIV'][portion] = {}
+        reducted[songID]['TIV'][portion]['Euclidean'] = getTivReduction(song['features']['midipitch'], spatial.distance.euclidean, portion)
+        reducted[songID]['TIV'][portion]['Cosine'] = getTivReduction(song['features']['midipitch'], spatial.distance.cosine, portion)
+        
+        reducted[songID]['Metric'] = {}
+        reducted[songID]['Metric'][portion/100] = getBeatReduction(song, portion/100)
+        
         portion += 25
     
-    
+   
         
     

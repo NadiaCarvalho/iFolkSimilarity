@@ -163,7 +163,7 @@ def get_tunefamily(file_name):
     return "No Tune Family"
 """
 
-def mei_to_mtc(path, filename):
+def mei_to_mtc(path, filename, score=False):
 
     #Correct Path Checking
     
@@ -356,7 +356,7 @@ def mei_to_mtc(path, filename):
     
     metadata_string = []
     #print(metadata_string)
-    return meta | {"type" : song_type,
+    return1 = meta | {"type" : song_type,
                    'freemeter' : not hasmeter(s),
                    'features': {    'scaledegree': sd,
                                     'scaledegreespecifier' : sdspec,
@@ -412,5 +412,9 @@ def mei_to_mtc(path, filename):
                                     'lbdm_rrest': lbdm_rrest,
                                     'lbdm_boundarystrength': lbdm_boundarystrength
         }}
+    if score == True:
+        return s
+    else:
+        return return1
             
     

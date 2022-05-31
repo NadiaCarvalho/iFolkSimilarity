@@ -198,6 +198,6 @@ for song in songs:
 
 json_string = json.dumps(reducted)
 
-with open('reductedSongs.json', 'a', encoding='utf8') as outfile:
+with open('reductedSongs.json', 'w', encoding='utf8') as outfile:
     outfile.write(json_string)
     

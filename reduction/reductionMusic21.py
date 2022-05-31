@@ -13,7 +13,7 @@ import json_generator as jsonGen
 from music21 import *
 
 reducPath = 'reductedSongs.json'
-mei_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Datasets/I-Folk'
+json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
 
 def loadReductedSongs(filePath):
     songReductions = {}
@@ -25,27 +25,99 @@ def loadReductedSongs(filePath):
     
     return songReductions
 
+def loadSongs(filePath):
+    songFeatures = []
+    f = open(filePath, "r")
+    fileLines = f.readlines()
+
+    for line in fileLines:
+        songFeatures.append(json.loads(line))
+    
+    return songFeatures
+
+def reductByIndex(thisSong, indexes):
+    
+    
+    
+    return m21
+
+
 """ MAIN STARTS HERE """
 
 reductedSongs = loadReductedSongs(reducPath)
+iFolkSongs = loadSongs(json_path)
+m21reduc = {}
 
-f_path = []
-i = 0
+for i in range(len(iFolkSongs)):
+    
+    thisSong = iFolkSongs[i]
+    songID = iFolkSongs[0]['name'][67:]
+    m21reduc[songID] = {}
+    
+    for cat in reductedSongs[songID]:
+        m21reduc[name][cat] = {}
+        
+        if (cat == 'Both') or (cat == 'TIV'):
+            for distType in reductedSongs[songID][cat]:
+                m21reduc[songID][cat][distType] = {}
+                if cat == 'Both':
+                    for toneWeight in reductedSongs[songID][cat][distType]:
+                        m21reduc[songID][cat][distType][toneWeight] = {}
+                        
+                        for portion in reductedSongs[songID][cat][distType][toneWeight]:
+                            m21reduc[songID][cat][distType][toneWeight][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][toneWeight][portion])
+                            m21reduc[songID][cat][distType][toneWeight][portion].show()
+    
+                if cat == 'TIV':
+                    for portion in reductedSongs[songID][cat][distType]:
+                        m21reduc[songID][cat][distType][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
+        else:
+           for portion in reductedSongs[songID][cat]:
+               m21reduc[songID][cat][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
 
-for (dirpath, dirnames, filenames) in walk(mei_path):
-    for f in filenames:
+"""
+OLD FUNCTION
+
+def reductByIndex(m21Stream, indexList):
+    
+    lastKeep = -1
+    eAux = list(m21Stream.elements)
+    keepNote = None
+    
+    for i in range(len(m21Stream.notes)):
         
-        print("File %d out of %d" %(i+1, len(filenames)))
-        f_path.append(dirpath + '/' + f)
-        
-        if i < len(filenames): 
-            s, meta, xml = jsonGen.parseMelody(f_path[i])
+            keep = False
+    
+            for tup in indexList:
+                if i == tup[0]:
+                    keep = True
+                    keepNote = m21Stream.notes[i]
+                    lastKeep = i
+                    break
             
-            for r in reductedSongs:
-                if f[:17] == r:
-                    for j in range(len(s.notes)):
-                        
-                        
+            if keep == False:
                 
-            
-        i += 1
+                delNote = m21Stream.notes[i]
+                
+                if keepNote != None:
+                    
+                    for k in range(len(eAux)):    
+                        if keepNote.id == eAux[k].id:
+                            #eAux[k].duration.quarterLength += delNote.duration.quarterLength
+                            break
+                        
+                for j in range(len(eAux)):
+                    if delNote.id == eAux[j].id:
+                        
+                        if keepNote != None:    
+                            eAux.pop(j)
+                            break
+                        
+                        else:
+                            #eAux[j] = note.Rest(quarterLength=delNote.duration.quarterLength)
+                            break
+    
+    m21Stream.elements = tuple(eAux)                
+    
+    return m21Stream
+"""

@@ -39,25 +39,34 @@ def reductByIndex(thisSong, indexes):
     
     s = stream.Stream()
     p = stream.Part()
-    ts = meter.TimeSignature(thisSong['time_signature'])
-    
-    m21Stream.append(ts)
+    m = stream.Measure(number=0)
+    mNumber = 0
     
     indexes = [tup[0] for tup in indexes]
     feat = thisSong['features']
-    
+
     for i in range(len(feat['duration'])):
         
-        if i in indexes:
-            auxNote = note.Note(feat['pitch'][i])
-            auxNote.duration.quarterLength = feat['duration'][i]
-
-        else:
-            auxNote = note.Rest(feat['duration'][i])
+        if feat['beatstrength'][i] == 1:
+            
+            if m.elements:
+                p.append(m)
+            
+            mNumber += 1
+            m = stream.Measure(number=mNumber)
+            m.timeSignature = meter.TimeSignature(feat['timesignature'][i]) 
         
-        m21Stream.append(auxNote)
-    
-    return m21Stream
+        if i in indexes:
+            newElement = note.Note(feat['pitch'][i])
+            newElement.duration.quarterLength = feat['duration'][i]
+        else:
+            newElement = note.Rest(feat['duration'][i])
+        
+        m.append(newElement)
+        
+    s.append(p)
+        
+    return s
 
 
 """ MAIN STARTS HERE """

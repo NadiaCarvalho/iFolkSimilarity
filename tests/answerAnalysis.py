@@ -6,8 +6,8 @@ Created on Tue May 24 22:23:05 2022
 """
 
 import csv
-import numpy as np
-
+import pingouin as pg
+import pandas as pd
 class TestSet:
     def __init__(self, nRaters, diffMetric=False):
         self.diffMetric = diffMetric
@@ -17,12 +17,7 @@ class TestSet:
         self.motivos = [[] for x in range(nRaters)]
         self.glb = [[] for x in range(nRaters)]
         
-        self.matrixes = {}
-        self.p = {}
-        self.P = {}
-        self.Pline = {}
-        self.Pe = {}
-        self.k = {}
+        self.icc = {}
         
     def insert(self, rater, valor, tag):
         if tag == "contorno":
@@ -33,79 +28,57 @@ class TestSet:
             self.motivos[rater].append(valor)
         if tag == "global":
             self.glb[rater].append(valor)
-    
-    def fillMat(self, rates, nSubjects, nCategories):
-        occurMat = np.zeros((int(nSubjects), int(nCategories)))
         
-        for rater in rates:
-            for index in range(nSubjects):
-                cat = int((float(rater[index]) / 0.05))
-                occurMat[index, cat] += 1
-                
-        return occurMat
-    
-    def fleissKappa(self, nRaters, tag):
-        values = [[] for x in range(nRaters)]
-        nCategories = (2/0.05) + 1
-            
+    def makeDataFrame(self, tag):
+        auxDict = {}
+        auxDict['exam'] = []
+        auxDict['judge'] = []
+        auxDict['rating'] = []
+        
         if tag == "contorno":
-            nSubjects = len(self.contorno[0])
-            for rater in range(nRaters):
-                values[rater] = self.contorno[rater]
-        
+            for rater in range(len(self.contorno)):
+                for i in range(len(self.contorno[rater])):
+                    auxDict['exam'].append(i+1)
+                    auxDict['judge'].append(rater+1)
+                    auxDict['rating'].append(self.contorno[rater][i])
+                    
         if tag == "ritmo":
-            nSubjects = len(self.ritmo[0])    
-            if self.diffMetric == True:
-                nCategories = (1/0.05) + 1
-            for rater in range(nRaters):
-                values[rater] = self.ritmo[rater]
-        
+            for rater in range(len(self.ritmo)):
+                for i in range(len(self.ritmo[rater])):
+                    auxDict['exam'].append(i+1)
+                    auxDict['judge'].append(rater+1)
+                    auxDict['rating'].append(self.ritmo[rater][i])
+                    
         if tag == "motivos":
-            nSubjects = len(self.motivos[0])
-            for rater in range(nRaters):
-                values[rater] = self.motivos[rater]
-        
+            for rater in range(len(self.motivos)):
+                for i in range(len(self.motivos[rater])):
+                    auxDict['exam'].append(i+1)
+                    auxDict['judge'].append(rater+1)
+                    auxDict['rating'].append(self.motivos[rater][i])
+                    
         if tag == "global":
-            nSubjects = len(self.glb[0])
-            for rater in range(nRaters):
-                values[rater] = self.glb[rater]
+            for rater in range(len(self.glb)):
+                for i in range(len(self.glb[rater])):
+                    auxDict['exam'].append(i+1)
+                    auxDict['judge'].append(rater+1)
+                    auxDict['rating'].append(self.glb[rater][i])
+            
+        df = pd.DataFrame(auxDict)
+        icc = pg.intraclass_corr(data=df, targets='exam', raters='judge', ratings='rating')
+        icc.set_index('Type')
         
-        mat = self.fillMat(values, nSubjects, nCategories)
+        return icc
         
-        self.matrixes[tag] = mat
+    def makeAllDataFrames(self):
+    
+        self.icc['contorno'] = self.makeDataFrame("contorno")
+        self.icc['ritmo'] = self.makeDataFrame("ritmo")
+        self.icc['motivos'] = self.makeDataFrame("motivos")
+        self.icc['global'] = self.makeDataFrame("global")
         
-        p = []
-        P = []
-        
-        for j in range(int(nCategories)): 
-            p.append((1/(nRaters*nSubjects))*sum(mat[:,j])) 
-        
-        for i in range(nSubjects):
-            P.append((1/(nRaters*(nRaters-1))) * (sum(mat[i,:]**2) - nRaters))
-        
-        self.p[tag] = p
-        self.P[tag] = P
-        
-        Pline = (1/nSubjects) * sum(P)
-        Pe = sum(e**2 for e in p)
-        
-        self.Pline[tag] = Pline
-        self.Pe[tag] = Pe
-        
-        k = (Pline-Pe)/(1-Pe)
-        
-        self.k[tag] = k
-
-    def allFleiss(self, nRaters):
-        self.fleissKappa(nRaters, 'motivos')
-        self.fleissKappa(nRaters, 'contorno')
-        self.fleissKappa(nRaters, 'ritmo')
-        self.fleissKappa(nRaters, 'global')
-        
-
 rows = []
 
-with open('answers.csv', newline='') as csvfile:
+with open('answersGilbertoNadia.csv', newline='') as csvfile:
      spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
      for row in spamreader:
          rows.append(row)
@@ -166,10 +139,9 @@ for i in range(len(rows[0])):
         if "Global" in rows[0][i]:
             for j in range(len(rows)-1):
                 bin_ter.insert(j, rows[j+1][i], 'global')
-                
-binario.allFleiss(2)
-ternario.allFleiss(2)
-bin_ter.allFleiss(2)
-        
+
+binario.makeAllDataFrames()
+ternario.makeAllDataFrames()
+bin_ter.makeAllDataFrames()
     
     

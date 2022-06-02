@@ -37,9 +37,27 @@ def loadSongs(filePath):
 
 def reductByIndex(thisSong, indexes):
     
+    s = stream.Stream()
+    p = stream.Part()
+    ts = meter.TimeSignature(thisSong['time_signature'])
     
+    m21Stream.append(ts)
     
-    return m21
+    indexes = [tup[0] for tup in indexes]
+    feat = thisSong['features']
+    
+    for i in range(len(feat['duration'])):
+        
+        if i in indexes:
+            auxNote = note.Note(feat['pitch'][i])
+            auxNote.duration.quarterLength = feat['duration'][i]
+
+        else:
+            auxNote = note.Rest(feat['duration'][i])
+        
+        m21Stream.append(auxNote)
+    
+    return m21Stream
 
 
 """ MAIN STARTS HERE """
@@ -51,29 +69,43 @@ m21reduc = {}
 for i in range(len(iFolkSongs)):
     
     thisSong = iFolkSongs[i]
-    songID = iFolkSongs[0]['name'][67:]
+    songID = iFolkSongs[i]['name'][67:]
     m21reduc[songID] = {}
     
-    for cat in reductedSongs[songID]:
-        m21reduc[name][cat] = {}
-        
-        if (cat == 'Both') or (cat == 'TIV'):
-            for distType in reductedSongs[songID][cat]:
-                m21reduc[songID][cat][distType] = {}
-                if cat == 'Both':
-                    for toneWeight in reductedSongs[songID][cat][distType]:
-                        m21reduc[songID][cat][distType][toneWeight] = {}
-                        
-                        for portion in reductedSongs[songID][cat][distType][toneWeight]:
-                            m21reduc[songID][cat][distType][toneWeight][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][toneWeight][portion])
-                            m21reduc[songID][cat][distType][toneWeight][portion].show()
+    showThis = False
     
-                if cat == 'TIV':
-                    for portion in reductedSongs[songID][cat][distType]:
-                        m21reduc[songID][cat][distType][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
-        else:
-           for portion in reductedSongs[songID][cat]:
-               m21reduc[songID][cat][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
+    if 'PT' == songID[0:2]:
+        if "Barca" in thisSong['title']:
+            showThis = True
+        
+        for cat in reductedSongs[songID]:
+            m21reduc[songID][cat] = {}
+            
+            if (cat == 'Both') or (cat == 'TIV'):
+                for distType in reductedSongs[songID][cat]:
+                    m21reduc[songID][cat][distType] = {}
+                    
+                    if cat == 'Both':
+                            
+                        for portion in reductedSongs[songID][cat][distType]:
+                            m21reduc[songID][cat][distType][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
+                            if showThis == True:
+                                m21reduc[songID][cat][distType][portion].show()
+    
+                    if cat == 'TIV':
+                        for portion in reductedSongs[songID][cat][distType]:
+                            m21reduc[songID][cat][distType][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
+                            if showThis == True:
+                                m21reduc[songID][cat][distType][portion].show()
+    
+            else:
+               for portion in reductedSongs[songID][cat]:
+                   m21reduc[songID][cat][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
+                   if showThis == True:
+                       m21reduc[songID][cat][distType][portion].show()
+
+            
+            
 
 """
 OLD FUNCTION

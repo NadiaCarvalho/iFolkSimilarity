@@ -7,10 +7,9 @@ Created on Wed May 25 18:08:11 2022
 import sys
 sys.path.append('C:/Users/User/Documents/Faculdade/5_Ano/2_Semestre/Python_Workstation/iFolkSimilarity/parsing')
 
-from os import walk
 import json
-import json_generator as jsonGen
 from music21 import *
+import m21StreamToDS as kranen
 
 reducPath = 'reductedSongs.json'
 json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
@@ -81,11 +80,19 @@ for i in range(len(iFolkSongs)):
     songID = iFolkSongs[i]['name'][67:]
     m21reduc[songID] = {}
     
+    meta = {}
+    
+    for label in thisSong:
+        if label == 'features':
+            break
+        else:
+            meta[label] = thisSong[label]
+    
     showThis = False
     
     if 'PT' == songID[0:2]:
-        if "Barca" in thisSong['title']:
-            showThis = True
+       # if "Barca" in thisSong['title']:
+       #     showThis = False
         
         for cat in reductedSongs[songID]:
             m21reduc[songID][cat] = {}
@@ -94,71 +101,32 @@ for i in range(len(iFolkSongs)):
                 for distType in reductedSongs[songID][cat]:
                     m21reduc[songID][cat][distType] = {}
                     
-                    if cat == 'Both':
+                    if cat == 'All':
                             
                         for portion in reductedSongs[songID][cat][distType]:
-                            m21reduc[songID][cat][distType][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
+                            auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
+                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta)
+                            
                             if showThis == True:
                                 m21reduc[songID][cat][distType][portion].show()
     
                     if cat == 'TIV':
                         for portion in reductedSongs[songID][cat][distType]:
-                            m21reduc[songID][cat][distType][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
+                            auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
+                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta)
+                            
                             if showThis == True:
                                 m21reduc[songID][cat][distType][portion].show()
     
             else:
                for portion in reductedSongs[songID][cat]:
-                   m21reduc[songID][cat][portion] = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
+                   auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
+                   m21reduc[songID][cat][portion] = kranen.m21StreamToDS(auxStream, meta)
+                   
                    if showThis == True:
                        m21reduc[songID][cat][distType][portion].show()
 
-            
-            
+json_string = json.dumps(m21reduc)
 
-"""
-OLD FUNCTION
-
-def reductByIndex(m21Stream, indexList):
-    
-    lastKeep = -1
-    eAux = list(m21Stream.elements)
-    keepNote = None
-    
-    for i in range(len(m21Stream.notes)):
-        
-            keep = False
-    
-            for tup in indexList:
-                if i == tup[0]:
-                    keep = True
-                    keepNote = m21Stream.notes[i]
-                    lastKeep = i
-                    break
-            
-            if keep == False:
-                
-                delNote = m21Stream.notes[i]
-                
-                if keepNote != None:
-                    
-                    for k in range(len(eAux)):    
-                        if keepNote.id == eAux[k].id:
-                            #eAux[k].duration.quarterLength += delNote.duration.quarterLength
-                            break
-                        
-                for j in range(len(eAux)):
-                    if delNote.id == eAux[j].id:
-                        
-                        if keepNote != None:    
-                            eAux.pop(j)
-                            break
-                        
-                        else:
-                            #eAux[j] = note.Rest(quarterLength=delNote.duration.quarterLength)
-                            break
-    
-    m21Stream.elements = tuple(eAux)                
-    
-    return m21Stream
-"""
+with open('reductedSongsDataStructure.json', 'w', encoding='utf8') as outfile:
+    outfile.write(json_string)

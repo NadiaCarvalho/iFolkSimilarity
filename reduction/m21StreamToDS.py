@@ -1,24 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar 15 16:04:37 2022
+Created on Fri Jun  3 18:17:58 2022
 
 @author: Daniel Diogo
 """
 
+from music21 import *
 from song_features import *
-from music21 import * 
-import mei_parsing as mei
-
-"""
-Methods to use from mei_parsing.py:
-    musicXMLfromMEI(song, id)
-    midiFromMEI(song, score)
-    mei_to_string(mei)
-    parseSongMetadata(song)
-
-"""
-
-# Pre-processing functions
 
 def padSplittedBars(s):
     # Alternative made by Daniel
@@ -162,21 +150,7 @@ def get_tunefamily(file_name):
     return "No Tune Family"
 """
 
-def mei_to_mtc(path, filename, score=False):
-
-    #Correct Path Checking
-    
-    try:
-        s, meta, xml = parseMelody(path)
-    except ParseError:
-        print(path, "does not exist")
-        return None
-    
-    f = open('bugging' + '.xml', "w")
-    f.write(xml)
-    f.close()
-    
-    #s.show()
+def m21StreamToDS(s, meta):
     
     # Time Signature
     
@@ -415,5 +389,3 @@ def mei_to_mtc(path, filename, score=False):
         return s
     else:
         return return1
-            
-    

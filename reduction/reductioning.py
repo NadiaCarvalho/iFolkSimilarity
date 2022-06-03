@@ -12,7 +12,6 @@ ws(k)={2, 11, 17, 16, 19, 7}
 from TIVlib import TIV as tiv
 from scipy import spatial
 from collections import Counter
-import json
 
 jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
 

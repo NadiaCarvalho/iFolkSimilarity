@@ -346,11 +346,11 @@ def m21TOBeat_float(s):
 
 #Onset Tick: differs from github (without JSON calling)
 
-def gcd_list(list):
-    return reduce(gcd, list)
+def gcd_list(l):
+    return reduce(gcd, l)
 
-def lcm_list(list):
-    return reduce(lcm, list)
+def lcm_list(l):
+    return reduce(lcm, l)
 
 def fraction_gcd(duration_list):
     num_dur = []
@@ -358,7 +358,7 @@ def fraction_gcd(duration_list):
     for dur in duration_list:
         num_dur.append(Fraction(dur).numerator)
         den_dur.append(Fraction(dur).denominator)
-    
+    print(duration_list)
     return Fraction(gcd_list(num_dur), lcm_list(den_dur))
 
 def m21TOOnsetTick(duration_list):

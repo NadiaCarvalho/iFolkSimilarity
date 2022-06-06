@@ -215,7 +215,7 @@ def m21StreamToDS(s, meta):
     duration_fullname = m21TODuration_fullname(s)
     duration_frac = m21TODuration_frac(s)
     durationcontour = getDurationcontour(duration_frac)
-    
+    print(duration_frac)
     onsettick = m21TOOnsetTick(duration_frac)
     ima = imaWeight(onsettick)
     ic = getIMAcontour(ima)

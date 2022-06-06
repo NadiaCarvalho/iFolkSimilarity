@@ -12,7 +12,7 @@ from music21 import *
 import json_generator2 as kranen
 
 reducPath = 'reductedSongs.json'
-json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
+json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk0606.json'
 
 def loadReductedSongs(filePath):
     songReductions = {}
@@ -63,7 +63,9 @@ def reductByIndex(thisSong, indexes):
             newElement = note.Rest(feat['duration'][i])
         
         m.append(newElement)
-        
+    
+    s.show()    
+    
     return s.flat
 
 
@@ -78,6 +80,7 @@ for i in range(len(iFolkSongs)):
     thisSong = iFolkSongs[i]
     songID = iFolkSongs[i]['name'][67:]
     m21reduc[songID] = {}
+    print(songID)
     
     meta = {}
     

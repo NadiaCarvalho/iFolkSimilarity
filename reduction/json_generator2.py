@@ -215,7 +215,6 @@ def m21StreamToDS(s, meta):
     duration_fullname = m21TODuration_fullname(s)
     duration_frac = m21TODuration_frac(s)
     durationcontour = getDurationcontour(duration_frac)
-    print(duration_frac)
     onsettick = m21TOOnsetTick(duration_frac)
     ima = imaWeight(onsettick)
     ic = getIMAcontour(ima)
@@ -236,6 +235,10 @@ def m21StreamToDS(s, meta):
     ior = getIOR(ior_frac)
     
     gpr2a_Frankland = getFranklandGPR2a(restduration_frac)
+    
+    print(duration)
+    print(restduration_frac)
+    
     gpr2b_Frankland = getFranklandGPR2b(duration, restduration_frac) #or use IOI and no rest check!!!
     gpr3a_Frankland = getFranklandGPR3a(midipitch)
     gpr3d_Frankland = getFranklandGPR3d(ioi)

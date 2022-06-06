@@ -36,7 +36,8 @@ def loadSongs(filePath):
 
 def reductByIndex(thisSong, indexes):
     
-    print(thisSong['name'][67:])
+    #Debugging
+    #print(thisSong['name'][67:])
     
     s = stream.Stream()
     s.timeSignature = meter.TimeSignature(thisSong['time_signature'])
@@ -64,7 +65,8 @@ def reductByIndex(thisSong, indexes):
         
         m.append(newElement)
     
-    s.show()    
+    #Debugging
+    #s.show()    
     
     return s.flat
 
@@ -80,7 +82,6 @@ for i in range(len(iFolkSongs)):
     thisSong = iFolkSongs[i]
     songID = iFolkSongs[i]['name'][67:]
     m21reduc[songID] = {}
-    print(songID)
     
     meta = {}
     
@@ -99,13 +100,18 @@ for i in range(len(iFolkSongs)):
         for cat in reductedSongs[songID]:
             m21reduc[songID][cat] = {}
             
-            if (cat == 'Both') or (cat == 'TIV'):
+            if (cat == 'All') or (cat == 'TIV'):
                 for distType in reductedSongs[songID][cat]:
                     m21reduc[songID][cat][distType] = {}
                     
                     if cat == 'All':
                             
                         for portion in reductedSongs[songID][cat][distType]:
+                            print(songID)
+                            print(cat)
+                            print(distType)
+                            print(portion)
+                            print()
                             auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
                             m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta)
                             
@@ -114,6 +120,11 @@ for i in range(len(iFolkSongs)):
     
                     if cat == 'TIV':
                         for portion in reductedSongs[songID][cat][distType]:
+                            print(songID)
+                            print(cat)
+                            print(distType)
+                            print(portion)
+                            print()
                             auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
                             m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta)
                             
@@ -122,6 +133,10 @@ for i in range(len(iFolkSongs)):
     
             else:
                for portion in reductedSongs[songID][cat]:
+                   print(songID)
+                   print(cat)
+                   print(portion)
+                   print()
                    auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
                    m21reduc[songID][cat][portion] = kranen.m21StreamToDS(auxStream, meta)
                    

@@ -12,6 +12,7 @@ ws(k)={2, 11, 17, 16, 19, 7}
 from TIVlib import TIV as tiv
 from scipy import spatial
 from collections import Counter
+import json
 
 jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
 
@@ -67,7 +68,7 @@ def getBeatReduction(song, thresh):
     beatArray = getBeatArray(song)
     
     for beat in beatArray:
-        if beat[1] > thresh:
+        if beat[1] >= thresh:
             beatsAbove.append(beat)
      
     return beatsAbove
@@ -201,7 +202,7 @@ for song in songs:
     reducted[songID] = {}
     
     
-    print(songs.index(song))
+    print(songs.index(song)+1)
     
     portion = 25
     

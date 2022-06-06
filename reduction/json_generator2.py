@@ -97,60 +97,9 @@ def checkChords(s, metadata):
 
     return s
 
-# New parse melody method using co-poem's methods:
-
-def parseMelody(path):
-    metadata = mei.parseSongMetadata(path)
-    #print(metadata['phrases'])
-    if metadata['title'] == '':
-        metadata['title'] = metadata['alt_title']
-    
-    musicXML = mei.musicXMLFromMEI(path, metadata)    
-    # Debugging
-    #musicXML[3].show()
-    
-    # If there are various instruments it is needed only the first one
-    s = instrument.partitionByInstrument(musicXML[3])
-    
-    
-    # If there are various voices for the same instrument takes the upper voice
-    # Solving of the "Stream == None" type of Error
-    # TO DO: SOLVE THIS
-    if s == None:    
-        s = musicXML[3]
-        s = noStreamErrorSolver(s)
-        #s.show()
-    #s.show()  
-    #add padding to partial measure caused by repeat bar in middle of measure
-    s = padSplittedBars(s)
-    
-    s = s.flat
-    
-    s = checkChords(s, metadata)
-    
-    s_noties = s.stripTies()
-    
-    #melody = s_noties.flat
-    melody = removeGrace(s)
-    
-    #melody.show()
-    
-    return melody, metadata, musicXML[0]
-
-"""
-def get_tunefamily(file_name):
-    j=0
-    k=0
-    for char in file_name:
-        if (char ==  "-"):
-            j+=1
-        if j == 4:
-            return file_name[8:k]
-        k+=1
-    return "No Tune Family"
-"""
-
 def m21StreamToDS(s, meta):
+    
+    filename = meta['name'][67:]
     
     # Time Signature
     
@@ -385,7 +334,4 @@ def m21StreamToDS(s, meta):
                                     'lbdm_rrest': lbdm_rrest,
                                     'lbdm_boundarystrength': lbdm_boundarystrength
         }}
-    if score == True:
-        return s
-    else:
-        return return1
+    return return1

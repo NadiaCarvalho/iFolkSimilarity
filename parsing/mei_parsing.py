@@ -352,6 +352,15 @@ def musicXMLFromMEI(song, identification):
 
         non_prep_lyrics = score.lyrics(recurse=True, ignoreBarlines=False)
         lyrics = prepareLyrics(non_prep_lyrics)
+        
+        fmeasure = list(score.recurse().getElementsByClass(music21.stream.Measure))[0]
+        qt = fmeasure.barDuration.quarterLength - fmeasure.duration.quarterLength
+        if qt > 0.0:
+            if fmeasure.hasVoices():
+                fmeasure.voices[0].insertAndShift(0, music21.note.Rest(quarterLength=qt))
+            else:
+                fmeasure.insertAndShift(0, music21.note.Rest(quarterLength=qt))
+            fmeasure.padAsAnacrusis(useInitialRests=True)
 
         GEX = music21.musicxml.m21ToXml.GeneralObjectExporter(score)
         mxScore = GEX.parse()

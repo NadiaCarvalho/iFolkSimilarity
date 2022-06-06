@@ -132,9 +132,9 @@ for seq1 in songs:
         seq2 = seq2['features']
         
         simValues[seq2Id] = {}
-        
+        # Só usar umas 5 features no ALL (ver nos papers)
         simValues[seq2Id]['SIAM'] = similar(seq1, seq2, "ALL", sim.SIAM)
-        simValues[seq2Id]['Local Alignment'] = similar(seq1, seq2, "PITCH", sim.local_alignment)
+        simValues[seq2Id]['Local Alignment'] = similar(seq1, seq2, "ALL", sim.local_alignment)
         
         simValues[seq2Id]['City Block'] = similar(seq1, seq2, "MIDIPITCH", sim.city_block_distance)
         simValues[seq2Id]['Euclidean'] = similar(seq1, seq2, "MIDIPITCH", sim.euclidean_distance)
@@ -143,6 +143,7 @@ for seq1 in songs:
         simValues[seq2Id]['Correlation'] = similar(seq1, seq2, "DUR MIDIPITCH", sim.correlation)
         simValues[seq2Id]['Cardinality'] = similar(seq1, seq2, "DUR MIDIPITCH", sim.cardinality_score)
         
+        # PITCHxCosine
         
         #irsa = similar(seq1, seq2, "PITCH", sim.ir_alignment)
         #distanceTuples = sim.match_distance_tuples(seq1, seq2, dist_func)

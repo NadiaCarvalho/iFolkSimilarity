@@ -9,7 +9,7 @@ sys.path.append('C:/Users/User/Documents/Faculdade/5_Ano/2_Semestre/Python_Works
 
 import json
 from music21 import *
-import m21StreamToDS as kranen
+import json_generator2 as kranen
 
 reducPath = 'reductedSongs.json'
 json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
@@ -36,8 +36,10 @@ def loadSongs(filePath):
 
 def reductByIndex(thisSong, indexes):
     
+    print(thisSong['name'][67:])
+    
     s = stream.Stream()
-    p = stream.Part()
+    s.timeSignature = meter.TimeSignature(thisSong['time_signature'])
     m = stream.Measure(number=0)
     mNumber = 0
     
@@ -49,11 +51,10 @@ def reductByIndex(thisSong, indexes):
         if feat['beatstrength'][i] == 1:
             
             if m.elements:
-                p.append(m)
+                s.append(m)
             
             mNumber += 1
-            m = stream.Measure(number=mNumber)
-            m.timeSignature = meter.TimeSignature(feat['timesignature'][i]) 
+            m = stream.Measure(number=mNumber) 
         
         if i in indexes:
             newElement = note.Note(feat['pitch'][i])
@@ -63,9 +64,7 @@ def reductByIndex(thisSong, indexes):
         
         m.append(newElement)
         
-    s.append(p)
-        
-    return s
+    return s.flat
 
 
 """ MAIN STARTS HERE """

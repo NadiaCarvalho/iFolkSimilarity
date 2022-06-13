@@ -19,7 +19,7 @@ def m21TOLyrics(s):
 
 #   Path to the MEI files and variable setup
 auxPitch = pitch.Pitch('C')
-mei_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Datasets/Tests'
+mei_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Datasets/I-Folk'
 f_path = []
 i=0
 n_files = 5

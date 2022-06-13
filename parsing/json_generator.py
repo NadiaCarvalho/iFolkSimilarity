@@ -202,7 +202,7 @@ def mei_to_mtc(path, filename, score=False):
     f.write(xml)
     f.close()
     
-    s.show()
+    #s.show()
     
     # Time Signature
     

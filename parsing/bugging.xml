@@ -2,18 +2,15 @@
 <!DOCTYPE score-partwise  PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="3.1">
   <work>
-    <work-title>No Title</work-title>
+    <work-title>Lá Vem A Nau Catrineta</work-title>
   </work>
-  <movement-title>No Title</movement-title>
+  <movement-title>Lá Vem A Nau Catrineta</movement-title>
   <identification>
     <creator type="composer">Anonymous</creator>
     <encoding>
       <encoding-date>2022-06-13</encoding-date>
       <software>music21 v.7.1.0</software>
     </encoding>
-    <miscellaneous>
-      <miscellaneous-field name="date">1980/--/--</miscellaneous-field>
-    </miscellaneous>
   </identification>
   <defaults>
     <scaling>
@@ -25,11 +22,11 @@
     <score-part id="1">
       <part-name>Voice</part-name>
       <part-abbreviation>V</part-abbreviation>
-      <score-instrument id="Ia8d3edea3331ae361b19d27f68b32557">
+      <score-instrument id="I56d467adbb2d18103fa5879321c7e6db">
         <instrument-name>Voice</instrument-name>
         <instrument-abbreviation>V</instrument-abbreviation>
       </score-instrument>
-      <midi-instrument id="Ia8d3edea3331ae361b19d27f68b32557">
+      <midi-instrument id="I56d467adbb2d18103fa5879321c7e6db">
         <midi-channel>1</midi-channel>
         <midi-program>54</midi-program>
       </midi-instrument>
@@ -37,16 +34,16 @@
   </part-list>
   <!--=========================== Part 1 ===========================-->
   <part id="1">
-    <!--========================= Measure 0 ==========================-->
-    <measure number="0">
+    <!--========================= Measure 1 ==========================-->
+    <measure number="1">
       <attributes>
         <divisions>10080</divisions>
         <key>
-          <fifths>0</fifths>
+          <fifths>1</fifths>
           <mode>major</mode>
         </key>
         <time>
-          <beats>3</beats>
+          <beats>4</beats>
           <beat-type>4</beat-type>
         </time>
         <clef>
@@ -54,409 +51,275 @@
           <line>2</line>
         </clef>
       </attributes>
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e90">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 1 ==========================-->
-    <measure number="1">
-      <note id="d1e106">
+      <note id="d1e101">
         <pitch>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>20160</duration>
-        <type>half</type>
+        <duration>5040</duration>
+        <type>eighth</type>
       </note>
-      <note id="d1e120">
+      <note id="d1e115">
         <pitch>
-          <step>A</step>
+          <step>B</step>
           <octave>4</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
+      <note id="d1e129">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+      </note>
+      <note id="d1e143">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">begin</beam>
+        <notations>
+          <slur number="1" type="start" />
+        </notations>
+      </note>
+      <note id="d1e161">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">continue</beam>
+        <notations>
+          <slur number="1" type="stop" />
+        </notations>
+      </note>
+      <note id="d1e179">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">continue</beam>
+      </note>
+      <note id="d1e195">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">end</beam>
+      </note>
     </measure>
     <!--========================= Measure 2 ==========================-->
     <measure number="2">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e145">
+      <note id="d1e213">
         <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
-      </note>
-      <note id="d1e170">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e193">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e216">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e243">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
-        <notations>
-          <tuplet number="1" type="stop" />
-        </notations>
-      </note>
-      <note id="d1e268">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
+          <step>B</step>
           <octave>4</octave>
         </pitch>
         <duration>20160</duration>
         <type>half</type>
-        <accidental>sharp</accidental>
       </note>
-      <note id="d1e284">
+      <note id="d1e227">
         <pitch>
-          <step>G</step>
+          <step>A</step>
           <octave>4</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
+      <note id="d1e241">
+        <rest />
+        <duration>10080</duration>
+        <type>quarter</type>
+      </note>
     </measure>
     <!--========================= Measure 3 ==========================-->
     <measure number="3">
-      <attributes>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e309">
+      <note id="d1e251">
         <pitch>
-          <step>A</step>
-          <octave>4</octave>
+          <step>D</step>
+          <octave>5</octave>
         </pitch>
-        <duration>20160</duration>
-        <type>half</type>
+        <duration>5040</duration>
+        <type>eighth</type>
       </note>
-      <note id="d1e323">
+      <note id="d1e265">
         <pitch>
-          <step>G</step>
-          <octave>4</octave>
+          <step>D</step>
+          <octave>5</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
+      <note id="d1e279">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+      </note>
+      <note id="d1e293">
+        <pitch>
+          <step>D</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">begin</beam>
+        <notations>
+          <slur number="2" type="start" />
+        </notations>
+      </note>
+      <note id="d1e311">
+        <pitch>
+          <step>C</step>
+          <octave>5</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">continue</beam>
+        <notations>
+          <slur number="2" type="stop" />
+        </notations>
+      </note>
+      <note id="d1e329">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">continue</beam>
+      </note>
+      <note id="d1e345">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">end</beam>
+      </note>
     </measure>
     <!--========================= Measure 4 ==========================-->
     <measure number="4">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e348">
+      <note id="d1e363">
         <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
-      </note>
-      <note id="d1e377">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e400">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e425">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e448">
-        <pitch>
-          <step>D</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
-        <notations>
-          <tuplet number="1" type="stop" />
-        </notations>
-      </note>
-      <note id="d1e477">
-        <pitch>
-          <step>E</step>
+          <step>A</step>
           <octave>4</octave>
         </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <notations>
+          <slur number="3" type="start" />
+        </notations>
       </note>
-      <note id="d1e491">
+      <note id="d1e379">
         <pitch>
-          <step>B</step>
+          <step>G</step>
           <octave>4</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <notations>
+          <slur number="3" type="stop" />
+        </notations>
       </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
+      <note id="d1e395">
+        <rest />
+        <duration>10080</duration>
+        <type>quarter</type>
+      </note>
     </measure>
     <!--========================= Measure 5 ==========================-->
     <measure number="5">
-      <attributes>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e516">
+      <note id="d1e414">
         <pitch>
           <step>B</step>
           <octave>4</octave>
         </pitch>
-        <duration>20160</duration>
-        <type>half</type>
+        <duration>5040</duration>
+        <type>eighth</type>
       </note>
-      <note id="d1e530">
+      <note id="d1e428">
         <pitch>
-          <step>A</step>
+          <step>B</step>
           <octave>4</octave>
         </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
+      <note id="d1e442">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+      </note>
+      <note id="d1e456">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+      </note>
+      <note id="d1e470">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">begin</beam>
+      </note>
+      <note id="d1e486">
+        <pitch>
+          <step>B</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">end</beam>
+      </note>
     </measure>
     <!--========================= Measure 6 ==========================-->
     <measure number="6">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e555">
+      <note id="d1e504">
         <pitch>
-          <step>G</step>
-          <octave>4</octave>
+          <step>C</step>
+          <octave>5</octave>
         </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
+        <duration>15120</duration>
+        <type>quarter</type>
+        <dot />
+        <notations>
+          <slur number="4" type="start" />
+        </notations>
       </note>
-      <note id="d1e580">
+      <note id="d1e521">
         <pitch>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e603">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e626">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e653">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
+        <duration>5040</duration>
+        <type>eighth</type>
         <notations>
-          <tuplet number="1" type="stop" />
+          <slur number="4" type="stop" />
         </notations>
       </note>
-      <note id="d1e678">
+      <note id="d1e537">
         <pitch>
           <step>F</step>
           <alter>1</alter>
@@ -464,37 +327,20 @@
         </pitch>
         <duration>20160</duration>
         <type>half</type>
-        <accidental>sharp</accidental>
       </note>
-      <note id="d1e694">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
     </measure>
     <!--========================= Measure 7 ==========================-->
     <measure number="7">
-      <attributes>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e719">
+      <note id="d1e556">
         <pitch>
-          <step>A</step>
+          <step>F</step>
+          <alter>1</alter>
           <octave>4</octave>
         </pitch>
-        <duration>20160</duration>
-        <type>half</type>
+        <duration>5040</duration>
+        <type>eighth</type>
       </note>
-      <note id="d1e733">
+      <note id="d1e572">
         <pitch>
           <step>G</step>
           <octave>4</octave>
@@ -502,825 +348,57 @@
         <duration>10080</duration>
         <type>quarter</type>
       </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
+      <note id="d1e586">
+        <pitch>
+          <step>G</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+      </note>
+      <note id="d1e600">
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>10080</duration>
+        <type>quarter</type>
+      </note>
+      <note id="d1e614">
+        <pitch>
+          <step>G</step>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">begin</beam>
+      </note>
+      <note id="d1e630">
+        <pitch>
+          <step>F</step>
+          <alter>1</alter>
+          <octave>4</octave>
+        </pitch>
+        <duration>5040</duration>
+        <type>eighth</type>
+        <beam number="1">end</beam>
+      </note>
     </measure>
     <!--========================= Measure 8 ==========================-->
     <measure number="8">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e768">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
-      </note>
-      <note id="d1e797">
+      <note id="d1e650">
         <pitch>
           <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e820">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e845">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e868">
-        <pitch>
-          <step>D</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
-        <notations>
-          <tuplet number="1" type="stop" />
-        </notations>
-      </note>
-      <note id="d1e897">
-        <pitch>
-          <step>E</step>
           <octave>4</octave>
         </pitch>
         <duration>30240</duration>
         <type>half</type>
         <dot />
       </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 9 ==========================-->
-    <measure number="9">
-      <attributes>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e925">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
+      <note id="d1e665">
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
-      </note>
-      <note id="d1e939">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note id="d1e953">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 10 =========================-->
-    <measure number="10">
-      <note id="d1e969">
-        <pitch>
-          <step>D</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note id="d1e983">
-        <pitch>
-          <step>D</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note id="d1e997">
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 11 =========================-->
-    <measure number="11">
-      <note id="d1e1013">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e1027">
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <tie type="start" />
-        <type>quarter</type>
-        <notations>
-          <tied type="start" />
-        </notations>
-      </note>
-    </measure>
-    <!--========================= Measure 12 =========================-->
-    <measure number="12">
-      <note id="d1e1046">
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>30240</duration>
-        <tie type="stop" />
-        <type>half</type>
-        <dot />
-        <notations>
-          <tied type="stop" />
-        </notations>
-      </note>
-    </measure>
-    <!--========================= Measure 13 =========================-->
-    <measure number="13">
-      <note id="d1e1066">
-        <pitch>
-          <step>E</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note id="d1e1080">
-        <pitch>
-          <step>E</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note id="d1e1094">
-        <pitch>
-          <step>D</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 14 =========================-->
-    <measure number="14">
-      <note id="d1e1110">
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note id="d1e1124">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note id="d1e1138">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 15 =========================-->
-    <measure number="15">
-      <note id="d1e1154">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e1168">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 16 =========================-->
-    <measure number="16">
-      <note id="d1e1184">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e1198">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 17 =========================-->
-    <measure number="17">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e1223">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
-      </note>
-      <note id="d1e1248">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1271">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1294">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1321">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
-        <notations>
-          <tuplet number="1" type="stop" />
-        </notations>
-      </note>
-      <note id="d1e1346">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-        <accidental>sharp</accidental>
-      </note>
-      <note id="d1e1362">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 18 =========================-->
-    <measure number="18">
-      <attributes>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e1396">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e1410">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 19 =========================-->
-    <measure number="19">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e1436">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
-      </note>
-      <note id="d1e1465">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1488">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1513">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1536">
-        <pitch>
-          <step>D</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
-        <notations>
-          <tuplet number="1" type="stop" />
-        </notations>
-      </note>
-      <note id="d1e1565">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e1579">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 20 =========================-->
-    <measure number="20">
-      <attributes>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e1604">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e1618">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 21 =========================-->
-    <measure number="21">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e1643">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
-      </note>
-      <note id="d1e1668">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1691">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1714">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1741">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
-        <notations>
-          <tuplet number="1" type="stop" />
-        </notations>
-      </note>
-      <note id="d1e1766">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-        <accidental>sharp</accidental>
-      </note>
-      <note id="d1e1782">
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 22 =========================-->
-    <measure number="22">
-      <attributes>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e1807">
-        <pitch>
-          <step>B</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note id="d1e1821">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-light</bar-style>
-      </barline>
-    </measure>
-    <!--========================= Measure 23 =========================-->
-    <measure number="23">
-      <attributes>
-        <time>
-          <beats>4</beats>
-          <beat-type>4</beat-type>
-        </time>
-      </attributes>
-      <note id="d1e1846">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">begin</beam>
-        <beam number="2">begin</beam>
-      </note>
-      <note id="d1e1875">
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1898">
-        <pitch>
-          <step>F</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1923">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">continue</beam>
-        <beam number="2">continue</beam>
-      </note>
-      <note id="d1e1946">
-        <pitch>
-          <step>D</step>
-          <alter>1</alter>
-          <octave>4</octave>
-        </pitch>
-        <duration>2016</duration>
-        <type>16th</type>
-        <accidental>sharp</accidental>
-        <time-modification>
-          <actual-notes>5</actual-notes>
-          <normal-notes>4</normal-notes>
-          <normal-type>16th</normal-type>
-        </time-modification>
-        <beam number="1">end</beam>
-        <beam number="2">end</beam>
-        <notations>
-          <tuplet number="1" type="stop" />
-        </notations>
-      </note>
-      <note id="d1e1975">
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>30240</duration>
-        <type>half</type>
-        <dot />
       </note>
       <barline location="right">
         <bar-style>light-heavy</bar-style>

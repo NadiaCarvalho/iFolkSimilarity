@@ -97,7 +97,7 @@ def checkChords(s, metadata):
 
     return s
 
-def m21StreamToDS(s, meta):
+def m21StreamToDS(s, meta, originalSong):
     
     filename = meta['name'][67:]
     
@@ -149,7 +149,7 @@ def m21StreamToDS(s, meta):
             mode.append(meta['mode'])
     
     else:
-        tonic, mode = m21TOKey(s)
+        tonic, mode = m21TOKey(s, originalSong['features'])
         trueTonic = tonic[0]
         tonicPitch = note.Note(tonic[0])
         tonicPitch = tonicPitch.pitch
@@ -197,6 +197,7 @@ def m21StreamToDS(s, meta):
     # Feature Calculation
     
     sd = m21TOscaledegrees(s, tonicPitch)
+    
     sdspec = m21TOscaleSpecifiers(s, tonicPitch)
     diatonicPitches = m21TOdiatonicPitches(s, tonicPitch)
     diatonicinterval = toDiatonicIntervals(s)
@@ -215,7 +216,8 @@ def m21StreamToDS(s, meta):
     duration_fullname = m21TODuration_fullname(s)
     duration_frac = m21TODuration_frac(s)
     durationcontour = getDurationcontour(duration_frac)
-    onsettick = m21TOOnsetTick(duration_frac)
+    offsets, offToPrint = m21TOOffsets(s) 
+    onsettick = m21TOOnsetTick(offsets)
     ima = imaWeight(onsettick)
     ic = getIMAcontour(ima)
     
@@ -236,13 +238,20 @@ def m21StreamToDS(s, meta):
     
     gpr2a_Frankland = getFranklandGPR2a(restduration_frac)
     
-    print(duration)
-    print(restduration_frac)
+    #print(duration)
+    #print(restduration_frac)
     
     gpr2b_Frankland = getFranklandGPR2b(duration, restduration_frac) #or use IOI and no rest check!!!
     gpr3a_Frankland = getFranklandGPR3a(midipitch)
     gpr3d_Frankland = getFranklandGPR3d(ioi)
-    gpr_Frankland_sum = [sum(filter(None, x)) for x in zip(gpr2a_Frankland, gpr2b_Frankland, gpr3a_Frankland, gpr3d_Frankland)]
+    
+    if gpr2b_Frankland == None:
+        print("TOO SMALL FOR FRANKLAND 2B")
+        auxFrankland = zip(gpr2a_Frankland, gpr3a_Frankland, gpr3d_Frankland)
+    else:
+        auxFrankland = zip(gpr2a_Frankland, gpr2b_Frankland, gpr3a_Frankland, gpr3d_Frankland)
+    
+    gpr_Frankland_sum = [sum(filter(None, x)) for x in auxFrankland]
     lbdm_rpitch = getDegreeChangeLBDMpitch(chromaticinterval)
     lbdm_spitch = getBoundaryStrengthPitch(lbdm_rpitch, chromaticinterval)
     lbdm_rioi = getDegreeChangeLBDMioi(ioi)
@@ -302,6 +311,7 @@ def m21StreamToDS(s, meta):
                                     'duration_frac': duration_frac,
                                     'duration_fullname': duration_fullname,
                                     'durationcontour': durationcontour,
+                                    'offsets': offToPrint,
                                     'onsettick': onsettick,
                                     'beatfraction': beatfraction,
                                     'phrasepos': phrasepos,

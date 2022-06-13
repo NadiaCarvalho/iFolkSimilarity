@@ -10,9 +10,10 @@ sys.path.append('C:/Users/User/Documents/Faculdade/5_Ano/2_Semestre/Python_Works
 import json
 from music21 import *
 import json_generator2 as kranen
+from fractions import Fraction
 
 reducPath = 'reductedSongs.json'
-json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk0606.json'
+json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/test.json'
 
 def loadReductedSongs(filePath):
     songReductions = {}
@@ -40,31 +41,32 @@ def reductByIndex(thisSong, indexes):
     #print(thisSong['name'][67:])
     
     s = stream.Stream()
-    s.timeSignature = meter.TimeSignature(thisSong['time_signature'])
-    m = stream.Measure(number=0)
-    mNumber = 0
+    
+    if 'time_change' in thisSong:
+        for ts in thisSong['time_change']:
+            newTS = meter.TimeSignature(ts[1])
+            s.append(newTS)
+            s.elements[-1].offset = ts[0]
+    else:
+        s.timeSignature = meter.TimeSignature(thisSong['time_signature'])
     
     indexes = [tup[0] for tup in indexes]
     feat = thisSong['features']
 
+    if feat['offsets'][0] != 0:
+        firstRest = note.Rest(quarterLength = Fraction(feat['offsets'][0]))
+        s.append(firstRest)
+
     for i in range(len(feat['duration'])):
         
-        if feat['beatstrength'][i] == 1:
-            
-            if m.elements:
-                s.append(m)
-            
-            mNumber += 1
-            m = stream.Measure(number=mNumber) 
-        
         if i in indexes:
-            newElement = note.Note(feat['pitch'][i])
-            newElement.duration.quarterLength = feat['duration'][i]
+            newElement = note.Note(feat['pitch'][i], quarterLength = feat['duration'][i])
         else:
-            newElement = note.Rest(feat['duration'][i])
-        
-        m.append(newElement)
-    
+            newElement = note.Rest(quarterLength = feat['duration'][i])
+            
+        s.append(newElement)
+        s.elements[-1].offset = Fraction(feat['offsets'][i])
+
     #Debugging
     #s.show()    
     
@@ -78,6 +80,7 @@ iFolkSongs = loadSongs(json_path)
 m21reduc = {}
 
 for i in range(len(iFolkSongs)):
+    print(i+1)
     
     thisSong = iFolkSongs[i]
     songID = iFolkSongs[i]['name'][67:]
@@ -93,7 +96,14 @@ for i in range(len(iFolkSongs)):
     
     showThis = False
     
-    if 'PT' == songID[0:2]:
+    enter = True
+    
+    #if 'ES-1948-CB-CO-149' in songID:
+    #    enter = True
+    #else:
+    #    enter = False
+    
+    if enter == True:
        # if "Barca" in thisSong['title']:
        #     showThis = False
         
@@ -113,7 +123,7 @@ for i in range(len(iFolkSongs)):
                             print(portion)
                             print()
                             auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
-                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta)
+                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta, thisSong)
                             
                             if showThis == True:
                                 m21reduc[songID][cat][distType][portion].show()
@@ -126,7 +136,7 @@ for i in range(len(iFolkSongs)):
                             print(portion)
                             print()
                             auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
-                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta)
+                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta, thisSong)
                             
                             if showThis == True:
                                 m21reduc[songID][cat][distType][portion].show()
@@ -138,12 +148,13 @@ for i in range(len(iFolkSongs)):
                    print(portion)
                    print()
                    auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
-                   m21reduc[songID][cat][portion] = kranen.m21StreamToDS(auxStream, meta)
+                   m21reduc[songID][cat][portion] = kranen.m21StreamToDS(auxStream, meta, thisSong)
                    
                    if showThis == True:
                        m21reduc[songID][cat][distType][portion].show()
 
-json_string = json.dumps(m21reduc)
+    json_string = json.dumps(m21reduc[songID])
 
-with open('reductedSongsDataStructure.json', 'w', encoding='utf8') as outfile:
-    outfile.write(json_string)
+    with open('reductedSongsDataStructure.json', 'a', encoding='utf8') as outfile:
+        outfile.write(json_string)
+        outfile.write('\n')

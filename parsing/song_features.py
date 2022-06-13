@@ -361,18 +361,18 @@ def fraction_gcd(duration_list):
     
     return Fraction(gcd_list(num_dur), lcm_list(den_dur))
 
-def m21TOOnsetTick(duration_list):
+def m21TOOffsets(s):
+    offsets = [n.offset for n in s.notes]
+    offToPrint = [str(o) for o in offsets]
+    return offsets, offToPrint
+
+def m21TOOnsetTick(offsets):
     
-    gcd = fraction_gcd(duration_list)
-    onset = []
-    curr_pos = 0
+    gcd = fraction_gcd(offsets)
+    onset = [int(o//gcd) for o in offsets]
     
-    for dur in duration_list:
-        onset.append(curr_pos)
-        curr_pos += Fraction(dur) // gcd
     return onset
-
-
+    
 #Song Position
 
 def getSongPos(onsettick):
@@ -450,8 +450,8 @@ def getPhrasePos(s, phrases, filename):
     if noPhrases == True:
         for note in notes:
             phrasepos.append(phrase_dur) 
-            phrase_dur += note.duration.quarterLength
-    
+            phrase_dur += float(note.duration.quarterLength)
+            
         for j in range(len(phrasepos)):
             phrasepos[j] = round(phrasepos[j]/phrasepos[-1], 6)
     else:
@@ -480,12 +480,8 @@ def getPhrasePos(s, phrases, filename):
                 for j in range(last0Index, len(phrasepos)):
                     if phrasepos[-1] != 0:
                         phrasepos[j] = round(phrasepos[j]/phrasepos[-1], 6)
-            if isinstance(note.duration.quarterLength, Fraction):
-                den = note.duration.quarterLength.denominator
-                num = note.duration.quarterLength.numerator
-                phrase_dur += num/den
-            else:
-                phrase_dur += note.duration.quarterLength
+            
+            phrase_dur += float(note.duration.quarterLength)
     
     #Debugging
     #print(phrasepos)        

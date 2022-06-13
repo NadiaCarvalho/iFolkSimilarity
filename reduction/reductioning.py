@@ -14,7 +14,7 @@ from scipy import spatial
 from collections import Counter
 import json
 
-jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk2405.json'
+jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/test.json'
 
 # Help Functions
 

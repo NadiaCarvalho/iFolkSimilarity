@@ -103,11 +103,27 @@ def checkChords(s, metadata):
                         
                 newStream.append(newNote)                                
             else:
-                newStream.append(element)
+                if not (element in newStream): 
+                    newStream.append(element)
         
         s = newStream
 
     return s
+
+# Function for checking the Time Changes
+def checkTimeChanges(s, metadata):
+    
+    if len(metadata['time_signature']) > 3:
+        
+        exTs = meter.TimeSignature()
+        metadata['time_change'] = []
+        
+        for t in s:
+            if type(exTs) == type(t):
+                tup = (t.offset, t.ratioString)
+                metadata['time_change'].append(tup)
+
+    return metadata
 
 # New parse melody method using co-poem's methods:
 
@@ -123,28 +139,38 @@ def parseMelody(path):
     
     # If there are various instruments it is needed only the first one
     s = instrument.partitionByInstrument(musicXML[3])
-    
+    #s.show()
     
     # If there are various voices for the same instrument takes the upper voice
     # Solving of the "Stream == None" type of Error
     # TO DO: SOLVE THIS
+    
     if s == None:    
         s = musicXML[3]
-        s = noStreamErrorSolver(s)
+        s = noStreamErrorSolver(s)                
         #s.show()
+    
     #s.show()  
     #add padding to partial measure caused by repeat bar in middle of measure
-    s = padSplittedBars(s)
     
+    s = padSplittedBars(s)
+    #s.show()
+                                  
     s = s.flat
     
-    s = checkChords(s, metadata)
+    metadata = checkTimeChanges(s, metadata)
     
-    s_noties = s.stripTies()
+    #s.show()
+    
+    s = checkChords(s, metadata)
+    #s.show()
+    
+    s = s.stripTies()
+    #s.show()
     
     #melody = s_noties.flat
-    melody = removeGrace(s)
     
+    melody = removeGrace(s)
     #melody.show()
     
     return melody, metadata, musicXML[0]
@@ -176,7 +202,7 @@ def mei_to_mtc(path, filename, score=False):
     f.write(xml)
     f.close()
     
-    #s.show()
+    s.show()
     
     # Time Signature
     
@@ -293,7 +319,8 @@ def mei_to_mtc(path, filename, score=False):
     duration_frac = m21TODuration_frac(s)
     durationcontour = getDurationcontour(duration_frac)
     
-    onsettick = m21TOOnsetTick(duration_frac)
+    offsets, offToPrint = m21TOOffsets(s)
+    onsettick = m21TOOnsetTick(offsets)
     ima = imaWeight(onsettick)
     ic = getIMAcontour(ima)
     
@@ -376,6 +403,7 @@ def mei_to_mtc(path, filename, score=False):
                                     'duration_frac': duration_frac,
                                     'duration_fullname': duration_fullname,
                                     'durationcontour': durationcontour,
+                                    'offsets': offToPrint,
                                     'onsettick': onsettick,
                                     'beatfraction': beatfraction,
                                     'phrasepos': phrasepos,

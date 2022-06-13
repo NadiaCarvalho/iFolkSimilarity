@@ -361,6 +361,10 @@ def musicXMLFromMEI(song, identification):
             else:
                 fmeasure.insertAndShift(0, music21.note.Rest(quarterLength=qt))
             fmeasure.padAsAnacrusis(useInitialRests=True)
+            # fazer shifts de cada measure de qt
+            mArray = list(score.recurse().getElementsByClass(music21.stream.Measure))[1:]
+            for m in mArray:
+                m.offset += qt
 
         GEX = music21.musicxml.m21ToXml.GeneralObjectExporter(score)
         mxScore = GEX.parse()

@@ -110,9 +110,16 @@ def toDiatonicIntervals(s):
 
 #Tonic and Mode
 
-def m21TOKey(s):
-    keys =  [(k.tonic.name, k.mode) for k in [n.getContextByClass('Key') for n in s.notes]]
-    return list(zip(*keys))
+def m21TOKey(s, features):
+    keys = [n.getContextByClass('Key') for n in s.notes]
+    
+    for i in range(len(keys)):
+        if keys[i] == None:
+            keys[i] = m21.key.Key(features['tonic'][0], features['mode'][0])
+
+    realKeys =  [(k.tonic.name, k.mode) for k in keys]
+    
+    return list(zip(*realKeys))
 
 #Scale Degree
 def m21TOscaledegrees(s, tonic):
@@ -362,15 +369,16 @@ def fraction_gcd(duration_list):
     
     return Fraction(gcd_list(num_dur), lcm_list(den_dur))
 
-def m21TOOnsetTick(duration_list):
+def m21TOOffsets(s):
+    offsets = [n.offset for n in s.notes]
+    offToPrint = [str(o) for o in offsets]
+    return offsets, offToPrint
+
+def m21TOOnsetTick(offsets):
     
-    gcd = fraction_gcd(duration_list)
-    onset = []
-    curr_pos = 0
+    gcd = fraction_gcd(offsets)
+    onset = [int(o//gcd) for o in offsets]
     
-    for dur in duration_list:
-        onset.append(curr_pos)
-        curr_pos += Fraction(dur) // gcd
     return onset
 
 
@@ -450,8 +458,8 @@ def getPhrasePos(s, phrases, filename):
         #print(endID)
     if noPhrases == True:
         for note in notes:
-            phrasepos.append(phrase_dur) 
-            phrase_dur += note.duration.quarterLength
+            phrasepos.append(phrase_dur)
+            phrase_dur += float(note.duration.quarterLength)
     
         for j in range(len(phrasepos)):
             phrasepos[j] = round(phrasepos[j]/phrasepos[-1], 6)
@@ -481,12 +489,8 @@ def getPhrasePos(s, phrases, filename):
                 for j in range(last0Index, len(phrasepos)):
                     if phrasepos[-1] != 0:
                         phrasepos[j] = round(phrasepos[j]/phrasepos[-1], 6)
-            if isinstance(note.duration.quarterLength, Fraction):
-                den = note.duration.quarterLength.denominator
-                num = note.duration.quarterLength.numerator
-                phrase_dur += num/den
-            else:
-                phrase_dur += note.duration.quarterLength
+                        
+            phrase_dur += float(note.duration.quarterLength)
     
     #Debugging
     #print(phrasepos)        
@@ -559,6 +563,10 @@ def getOneFranklandGPR2b(n1,n2,n3,n4):
     return ( 1.0 - (float(n1+n3)/(2.0*n2)) ) if (n2>n3) and (n2>n1) else None
 
 def getFranklandGPR2b(lengths, restdurations):
+    
+    if (len(lengths) < 4):
+        return None
+    
     quads = zip(lengths,lengths[1:],lengths[2:],lengths[3:])
     res =  [None] + [getOneFranklandGPR2b(n1, n2, n3, n4) for n1, n2, n3, n4 in quads] + [None, None]
     
@@ -568,7 +576,6 @@ def getFranklandGPR2b(lengths, restdurations):
     rest_present = [Fraction(r)>Fraction(0) if r is not None else False for r in restdurations]
     triple_rest_present = zip(rest_present,rest_present[1:],rest_present[2:])
     rest_mask = [False] + [not (r1 or r2 or r3) for r1, r2, r3 in triple_rest_present] + [False]
-    
     #now set all values in res to None if False in mask
     res = [res[ix] if rest_mask[ix] else None for ix in range(len(res))]    
     return res

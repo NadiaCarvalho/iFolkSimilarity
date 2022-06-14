@@ -12,8 +12,8 @@ from music21 import *
 import json_generator2 as kranen
 from fractions import Fraction
 
-reducPath = 'reductedSongs.json'
-json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/test.json'
+reducPath = 'reductedSongs1406.json'
+json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk1406.json'
 
 def loadReductedSongs(filePath):
     songReductions = {}
@@ -48,12 +48,13 @@ def reductByIndex(thisSong, indexes):
             s.append(newTS)
             s.elements[-1].offset = ts[0]
     else:
-        s.timeSignature = meter.TimeSignature(thisSong['time_signature'])
+        if thisSong['freemeter'] == False:
+            s.timeSignature = meter.TimeSignature(thisSong['time_signature'])
     
     indexes = [tup[0] for tup in indexes]
     feat = thisSong['features']
 
-    if feat['offsets'][0] != 0:
+    if (float(feat['offsets'][0]) != 0.0):
         firstRest = note.Rest(quarterLength = Fraction(feat['offsets'][0]))
         s.append(firstRest)
 
@@ -155,6 +156,6 @@ for i in range(len(iFolkSongs)):
 
     json_string = json.dumps(m21reduc[songID])
 
-    with open('reductedSongsDataStructure.json', 'a', encoding='utf8') as outfile:
+    with open('reductedSongsDataStructure1406_test.json', 'w', encoding='utf8') as outfile:
         outfile.write(json_string)
         outfile.write('\n')

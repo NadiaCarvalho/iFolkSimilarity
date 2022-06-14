@@ -279,7 +279,7 @@ def m21StreamToDS(s, meta, originalSong):
         beatinphrase_end = getBeatinphrase_end(beatinphrase, phrase_ix, beat_float)
         
     except NoMeterError:
-        print(path, "has no time signature")
+        print("Has no time signature")
         timesignature = [None]*len(sd)
         beat_str, beat_fraction_str = bsArray, bsArray
         beat_float = bsArray

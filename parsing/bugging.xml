@@ -8,7 +8,7 @@
   <identification>
     <creator type="composer">Anonymous</creator>
     <encoding>
-      <encoding-date>2022-06-13</encoding-date>
+      <encoding-date>2022-06-14</encoding-date>
       <software>music21 v.7.1.0</software>
     </encoding>
   </identification>
@@ -22,11 +22,11 @@
     <score-part id="1">
       <part-name>Voice</part-name>
       <part-abbreviation>V</part-abbreviation>
-      <score-instrument id="I56d467adbb2d18103fa5879321c7e6db">
+      <score-instrument id="Ia93bb6ac96e2497d131c68bfff6d03f1">
         <instrument-name>Voice</instrument-name>
         <instrument-abbreviation>V</instrument-abbreviation>
       </score-instrument>
-      <midi-instrument id="I56d467adbb2d18103fa5879321c7e6db">
+      <midi-instrument id="Ia93bb6ac96e2497d131c68bfff6d03f1">
         <midi-channel>1</midi-channel>
         <midi-program>54</midi-program>
       </midi-instrument>

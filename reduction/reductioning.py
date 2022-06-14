@@ -14,7 +14,7 @@ from scipy import spatial
 from collections import Counter
 import json
 
-jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk1306night.json'
+jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk1406.json'
 
 # Help Functions
 
@@ -240,6 +240,6 @@ for song in songs:
 
 json_string = json.dumps(reducted)
 
-with open('reductedSongs1306.json', 'w', encoding='utf8') as outfile:
+with open('reductedSongs1406.json', 'w', encoding='utf8') as outfile:
     outfile.write(json_string)
     

@@ -377,7 +377,10 @@ def m21TOOffsets(s):
 def m21TOOnsetTick(offsets):
     
     gcd = fraction_gcd(offsets)
-    onset = [int(o//gcd) for o in offsets]
+    if gcd != 0:    
+        onset = [int(o//gcd) for o in offsets]
+    else:
+        onset = [int(o) for o in offsets]
     
     return onset
 

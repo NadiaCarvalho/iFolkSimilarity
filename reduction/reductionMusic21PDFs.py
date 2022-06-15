@@ -35,12 +35,15 @@ def loadSongs(filePath):
     
     return songFeatures
 
-def reductByIndex(thisSong, indexes):
+def reductByIndex(thisSong, indexes, partName):
     
     #Debugging
     #print(thisSong['name'][67:])
     
-    s = stream.Part()
+    s = stream.PartStaff()
+    s.partAbbreviation = partName
+    s.partName = partName
+    
     
     if 'time_change' in thisSong:
         for ts in thisSong['time_change']:
@@ -51,7 +54,11 @@ def reductByIndex(thisSong, indexes):
         if thisSong['freemeter'] == False:
             s.timeSignature = meter.TimeSignature(thisSong['time_signature'])
     
-    indexes = [tup[0] for tup in indexes]
+    if indexes == []:
+        indexes = [i for i in range(len(thisSong['features']['pitch']))]
+    else:    
+        indexes = [tup[0] for tup in indexes]
+    
     feat = thisSong['features']
 
     if (float(feat['offsets'][0]) != 0.0):
@@ -69,9 +76,9 @@ def reductByIndex(thisSong, indexes):
         s.elements[-1].offset = Fraction(feat['offsets'][i])
 
     #Debugging
-    s.show()    
+    #s.show()    
     
-    return s.flat
+    return s
 
 
 """ MAIN STARTS HERE """
@@ -99,19 +106,19 @@ for i in range(len(iFolkSongs)):
     
     enter = True
     
-    if ("Barca" in thisSong['title']) or ("Rolinha" in thisSong['title']):
-        if "PT" == songID[:2]:
-            enter = True
-        else:
-            enter = False
+    if "PT" == songID[:2]:
+        enter = True
     else:
         enter = False
-    
+  
     if enter == True:
        # if "Barca" in thisSong['title']:
        #     showThis = False
         
         print(thisSong['title'])
+        
+        songStream = stream.Score()
+        
         
         for cat in reductedSongs[songID]:
             m21reduc[songID][cat] = {}
@@ -121,46 +128,52 @@ for i in range(len(iFolkSongs)):
                     m21reduc[songID][cat][distType] = {}
                     
                     if cat == 'All':
-                            
+                        
+                        auxPS = stream.PartStaff()
+                        
                         for portion in reductedSongs[songID][cat][distType]:
                             print(songID)
                             print(cat)
                             print(distType)
                             print(portion)
                             print()
-                            auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
-                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta, thisSong)
-                            
-                            if showThis == True:
-                                m21reduc[songID][cat][distType][portion].show()
+                            auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion], str(cat+' '+distType+' '+portion))
+                            songStream.append(auxStream)
+           
+                        auxStream = reductByIndex(thisSong, [], 'Original')
+                        songStream.append(auxStream)
     
                     if cat == 'TIV':
+                        
+                      
+                        
                         for portion in reductedSongs[songID][cat][distType]:
                             print(songID)
                             print(cat)
                             print(distType)
                             print(portion)
                             print()
-                            auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion])
-                            m21reduc[songID][cat][distType][portion] = kranen.m21StreamToDS(auxStream, meta, thisSong)
-                            
-                            if showThis == True:
-                                m21reduc[songID][cat][distType][portion].show()
+                            auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][distType][portion], str(cat+' '+distType+' '+portion))
+                            songStream.append(auxStream)
+                        
+                        auxStream = reductByIndex(thisSong, [], 'Original')
+                        songStream.append(auxStream)
     
             else:
-               for portion in reductedSongs[songID][cat]:
+                
+                for portion in reductedSongs[songID][cat]:
                    print(songID)
                    print(cat)
                    print(portion)
                    print()
-                   auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][portion])
-                   m21reduc[songID][cat][portion] = kranen.m21StreamToDS(auxStream, meta, thisSong)
-                   
-                   if showThis == True:
-                       m21reduc[songID][cat][distType][portion].show()
-
-    json_string = json.dumps(m21reduc[songID])
-
-    with open('reductedSongsDataStructure1506_print.json', 'w', encoding='utf8') as outfile:
-        outfile.write(json_string)
-        outfile.write('\n')
+                  
+                   auxStream = reductByIndex(thisSong, reductedSongs[songID][cat][portion], str(cat+' '+portion))
+                   songStream.append(auxStream)
+                       
+                auxStream = reductByIndex(thisSong, [], 'Original')
+                songStream.append(auxStream)
+                
+                
+        songStream.metadata = metadata.Metadata()
+        songStream.metadata.title = thisSong['title']
+        songStream.show()

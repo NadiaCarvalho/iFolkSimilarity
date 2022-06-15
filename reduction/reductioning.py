@@ -148,6 +148,7 @@ def getIntervallicReduc(song, level):
     songLength = len(intervals)
     
     intervals.sort(key=sortByDist)
+    intervals.reverse()
     portion = round(songLength * level)
     
     reducted = intervals[:portion]
@@ -227,7 +228,7 @@ for song in songs:
         
         portion = portion/100
         
-        reducted[songID]['Metric'][portion] = getBeatReduction(song, portion)
+        reducted[songID]['Metric'][portion] = getBeatReduction(song, 1-portion)
         
         reducted[songID]['Intervallic'][portion] = getIntervallicReduc(song, portion)
         

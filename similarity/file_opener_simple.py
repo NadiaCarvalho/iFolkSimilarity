@@ -12,7 +12,7 @@ import similarity_metrics as sim
 
 #jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/jsons/ifolk2604.json'
 #jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/jsons/ifolk0205.json'
-jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk0505.json'
+jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk1406.json'
 
 
 def loadFeatures(filePath):
@@ -140,8 +140,8 @@ for seq1 in songs:
         simValues[seq2Id]['Euclidean'] = similar(seq1, seq2, "MIDIPITCH", sim.euclidean_distance)
         simValues[seq2Id]['Hamming'] = similar(seq1, seq2, "MIDIPITCH", sim.hamming_distance)
         
-        simValues[seq2Id]['Correlation'] = similar(seq1, seq2, "DUR MIDIPITCH", sim.correlation)
-        simValues[seq2Id]['Cardinality'] = similar(seq1, seq2, "DUR MIDIPITCH", sim.cardinality_score)
+        simValues[seq2Id]['Correlation'] = similar(seq1, seq2, "MIDIPITCH", sim.correlation)
+        simValues[seq2Id]['Cardinality'] = similar(seq1, seq2, "MIDIPITCH", sim.cardinality_score)
         
         # PITCHxCosine
         

@@ -17,8 +17,8 @@ import json
 from music21 import *
 from fractions import Fraction
 
-reducPath = 'reductedSongs1406.json'
-json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk1406.json'
+reducPath = 'reductedSongsPTAnnotTool.json'
+json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ptParsingAnnotToolRight.json'
 
 def loadReductedSongs(filePath):
     songReductions = {}
@@ -41,7 +41,9 @@ def loadSongs(filePath):
     return songFeatures
 
 def reductByIndex(thisSong, indexes, partName):
-
+    if "Intervallic" in partName:
+        partName.replace("lic","")
+        
     s = stream.Part()
     s.partAbbreviation = partName
     s.partName = partName
@@ -97,6 +99,10 @@ for i in range(len(iFolkSongs)):
 
     thisSong = iFolkSongs[i]
     songID = iFolkSongs[i]['name'][67:]
+    
+    if thisSong['alt_title'] == 'Voz 2':
+        songID = songID + '-vox2'
+    
     m21reduc[songID] = {}
 
     meta = {}

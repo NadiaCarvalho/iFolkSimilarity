@@ -75,6 +75,8 @@ def label_diff(seq1, seq2) :
 def cardinality_score(seq1, seq2):
     """ calculates the cardinality score between two sequences """
     """ Pitch sequence and onset """
+    seq1 = [(s[0], s[1]) for s in seq1]
+    seq2 = [(s[0], s[1]) for s in seq2]
     rset = set(seq1)
     qset = set(seq2)
     cSc = len(rset.intersection(qset))

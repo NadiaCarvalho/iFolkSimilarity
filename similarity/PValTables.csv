@@ -1,0 +1,26 @@
+1;Original;Metric25;Metric50;Metric75;Interval25;Interval50;Interval75;TIVCos25;TIVCos50;TIVCos75;TIVEuc25;TIVEuc50;TIVEuc75;AllCos25;AllCos50;AllCos75;AllEuc25;AllEuc50;AllEuc75
+SIAM;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns
+Local Alignment;****;***;***;****;***;***;****;ns;ns;**;**;ns;**;*;**;***;ns;**;***
+City Block;ns;ns;ns;ns;ns;ns;ns;ns;*;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns
+Euclidean;*;ns;*;*;ns;*;*;ns;ns;ns;ns;ns;ns;ns;*;ns;ns;ns;*
+Hamming;ns;ns;ns;ns;ns;ns;ns;ns;ns;**;ns;ns;ns;*;*;ns;ns;ns;**
+Correlation;***;***;**;***;***;**;***;ns;ns;*;*;***;ns;ns;**;**;ns;ns;***
+Cardinality;***;*;**;**;*;**;**;**;**;***;**;**;***;****;***;***;***;***;***
+;;;;;;;;;;;;;;;;;;;
+2;Original;Metric25;Metric50;Metric75;Interval25;Interval50;Interval75;TIVCos25;TIVCos50;TIVCos75;TIVEuc25;TIVEuc50;TIVEuc75;AllCos25;AllCos50;AllCos75;AllEuc25;AllEuc50;AllEuc75
+SIAM;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns
+Local Alignment;****;**;****;****;**;****;****;ns;ns;***;**;*;**;*;**;****;ns;**;****
+City Block;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns
+Euclidean;**;ns;**;**;ns;**;**;ns;ns;ns;ns;*;ns;ns;ns;*;ns;ns;*
+Hamming;ns;ns;ns;ns;ns;ns;ns;ns;ns;**;ns;ns;*;*;ns;ns;ns;ns;**
+Correlation;****;***;****;****;***;****;****;ns;ns;ns;ns;**;*;ns;**;***;*;**;****
+Cardinality;***;ns;**;***;ns;**;***;***;***;****;****;**;****;****;****;****;****;****;****
+;;;;;;;;;;;;;;;;;;;
+3;Original;Metric25;Metric50;Metric75;Interval25;Interval50;Interval75;TIVCos25;TIVCos50;TIVCos75;TIVEuc25;TIVEuc50;TIVEuc75;AllCos25;AllCos50;AllCos75;AllEuc25;AllEuc50;AllEuc75
+SIAM;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns
+Local Alignment;****;*;****;****;*;****;****;ns;ns;***;**;*;**;*;**;****;ns;***;****
+City Block;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns;ns
+Euclidean;**;ns;**;**;ns;**;**;ns;ns;ns;ns;ns;ns;ns;ns;*;ns;ns;**
+Hamming;*;ns;ns;*;ns;ns;*;ns;ns;**;ns;ns;ns;ns;ns;ns;*;ns;***
+Correlation;****;**;****;****;**;****;****;ns;ns;*;*;*;*;ns;ns;***;*;*;****
+Cardinality;***;ns;**;***;ns;**;***;***;***;***;***;**;***;****;***;***;****;****;****

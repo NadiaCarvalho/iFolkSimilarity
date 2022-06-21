@@ -12,8 +12,8 @@ from music21 import *
 import json_generator2 as kranen
 from fractions import Fraction
 
-reducPath = 'reductedSongs1406.json'
-json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk1406.json'
+reducPath = 'reductedSongsPTAnnotTool.json'
+json_path = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ptParsingAnnotToolRight.json'
 
 def loadReductedSongs(filePath):
     songReductions = {}
@@ -69,7 +69,7 @@ def reductByIndex(thisSong, indexes):
         s.elements[-1].offset = Fraction(feat['offsets'][i])
 
     #Debugging
-    s.show()    
+    #s.show()    
     
     return s.flat
 
@@ -85,6 +85,10 @@ for i in range(len(iFolkSongs)):
     
     thisSong = iFolkSongs[i]
     songID = iFolkSongs[i]['name'][67:]
+    
+    if thisSong['alt_title'] == 'Voz 2':
+        songID = songID + '-vox2'
+    
     m21reduc[songID] = {}
     
     meta = {}
@@ -98,7 +102,7 @@ for i in range(len(iFolkSongs)):
     showThis = False
     
     enter = True
-    
+    """
     if ("Barca" in thisSong['title']) or ("Rolinha" in thisSong['title']):
         if "PT" == songID[:2]:
             enter = True
@@ -106,7 +110,7 @@ for i in range(len(iFolkSongs)):
             enter = False
     else:
         enter = False
-    
+    """
     if enter == True:
        # if "Barca" in thisSong['title']:
        #     showThis = False
@@ -161,6 +165,6 @@ for i in range(len(iFolkSongs)):
 
     json_string = json.dumps(m21reduc[songID])
 
-    with open('reductedSongsDataStructure1506_print.json', 'w', encoding='utf8') as outfile:
+    with open('reductedSongs-AT-PT-m21.json', 'a', encoding='utf8') as outfile:
         outfile.write(json_string)
         outfile.write('\n')

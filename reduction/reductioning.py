@@ -14,7 +14,7 @@ from scipy import spatial
 from collections import Counter
 import json
 
-jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ifolk1406.json'
+jsonPath = 'C:/Users/User/Documents/Faculdade/5_ano/2_Semestre/Python_Workstation/iFolkSimilarity/jsons/ptParsingAnnotToolRight.json'
 
 # Help Functions
 
@@ -200,7 +200,12 @@ for song in songs:
         
 for song in songs:
     songID = song['name'][67:]
+    
+    if song['alt_title'] == 'Voz 2':
+        songID = songID + '-vox2'
+    
     reducted[songID] = {}
+    
     
     
     print(songs.index(song)+1)
@@ -224,7 +229,7 @@ for song in songs:
     auxBeat = getBeatArray(song)
     auxInter = getIntervals(song)
     
-    for portion in range(25,100,25):
+    for portion in range(75,0,-25):
         
         portion = portion/100
         
@@ -241,6 +246,6 @@ for song in songs:
 
 json_string = json.dumps(reducted)
 
-with open('reductedSongs1406.json', 'w', encoding='utf8') as outfile:
+with open('reductedSongsPTAnnotTool.json', 'w', encoding='utf8') as outfile:
     outfile.write(json_string)
     

@@ -188,7 +188,7 @@ def get_tunefamily(file_name):
     return "No Tune Family"
 """
 
-def mei_to_mtc(path, filename, score=False):
+def mei_to_mtc(path, filename, score=False, check_country=False, country=[]):
 
     #Correct Path Checking
     
@@ -197,6 +197,10 @@ def mei_to_mtc(path, filename, score=False):
     except ParseError:
         print(path, "does not exist")
         return None
+    
+    if check_country == True:
+        if country != meta['name'][67:69]:
+            return None
     
     f = open('bugging' + '.xml', "w")
     f.write(xml)

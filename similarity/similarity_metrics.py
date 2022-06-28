@@ -8,6 +8,8 @@ Created on Mon May  2 15:32:06 2022
 based on:
     https://github.com/BeritJanssen/MelodicOccurrences/blob/master/similarity.py
 """
+import itertools
+import pandas as pd
 import numpy as np
 from scipy import spatial
 #from collections import Counter
@@ -33,16 +35,44 @@ def check_same_size(seq1, seq2):
 def create_vector_table(datapoints_1, datapoints_2):
     vector_table = np.empty(
         (len(datapoints_1), len(datapoints_2), len(datapoints_1[0])))
-
     for i, vec_1 in enumerate(datapoints_1):
         for j, vec_2 in enumerate(datapoints_2):
             vector_table[i][j] = vec_1 - vec_2
-
     return vector_table
 
+def MTPs(vector_table):
+    set_tuples = set(tuple(i) for i in list(itertools.chain(*vector_table)))
+    sorted_translations = sorted([np.array(tp) for tp in set_tuples], key=lambda x: x[0])
+    mtps = []
+    #i=1
+    for st in sorted_translations:
+        str_vector_table = np.array([[str(vt) for vt in vt_c] for vt_c in vector_table])
+        indexes = np.where(str_vector_table[::] == str(st))[1]
+        mtps.append(len(indexes))
+        #print(i)
+        #i+=1
+    return mtps
+
+def MTPnew(vector_table):
+    str_vector_table = np.array([[str(vt) for vt in vt_c] for vt_c in vector_table]).flatten()
+    return np.unique(str_vector_table, return_counts=True)[1]
 
 def MTP(vector_table, trans_vector):
     return np.count_nonzero(np.all(vector_table == trans_vector, axis=2))
+
+def print_vector_table(vector_table, seq_1, seq_2):
+    str_vector_table = [[str(vt) for vt in vt_c] for vt_c in vector_table]
+    df = pd.DataFrame(str_vector_table, index=[str(s) for s in seq_1], columns=[str(s) for s in seq_2])
+    print(df)
+
+def print_lexicographical_table(vector_table, seq_2):
+    set_tuples = set(tuple(i) for i in list(itertools.chain(*vector_table)))
+    sorted_translations = sorted([np.array(tp) for tp in set_tuples], key=lambda x: x[0])
+
+    for st in sorted_translations:
+        str_vector_table = np.array([[str(vt) for vt in vt_c] for vt_c in vector_table])
+        indexes = np.where(str_vector_table[::] == str(st))[1]
+        print(f'{st} -> ' + ', '.join([f"{np.array(seq_2[i])}" for i in indexes]))
 
 
 """ For Local Alignment: """
@@ -80,7 +110,10 @@ def cardinality_score(seq1, seq2):
     rset = set(seq1)
     qset = set(seq2)
     cSc = len(rset.intersection(qset))
-    return cSc
+    if len(rset) < len(qset):    
+        return cSc/len(rset)
+    else:
+        return cSc/len(qset)
 
 def city_block_distance(seq1, seq2):
     """ calculates the city-block distance between two sequences"""
@@ -195,10 +228,22 @@ def SIAM(seq_1, seq_2):
     """
     seq_1 = np.array(seq_1)
     seq_2 = np.array(seq_2)
+
     vector_table = create_vector_table(seq_1, seq_2)
-    return max([MTP(vector_table, T) for T in vector_table[::]]) / len(seq_1)
+    #print_vector_table(vector_table, seq_1, seq_2)
+    #print_lexicographical_table(vector_table, seq_2)
 
+    mtps_1 = MTPnew(vector_table)
+    return max(mtps_1) / max(len(seq_1), len(seq_2))
 
+""" Version 1.0
+def SIAM(seq_1, seq_2):
+    Structure induction algorithms's pattern matching algorithm
+    seq_1 = np.array(seq_1)
+    seq_2 = np.array(seq_2)
+    vector_table = create_vector_table(seq_1, seq_2)
+    return max([MTP(vector_table, T) for T in vector_table[::]])/len(seq_1)
+"""
 """ SIAM as coded by Berit Janssen:
     
 def SIAM(melody_list,segment_list,music_representation,

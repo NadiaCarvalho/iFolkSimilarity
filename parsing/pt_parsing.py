@@ -32,12 +32,12 @@ i=0
 n_files = 5
 songs = []
 
-ATSongs = ['A Barca Virou'x, 'Lá Vai Uma Lá Vão Duas'x, 'Senhora D. Anica'x, 'Pantaleão'x,
-           'Passa, Passa, Gabriel'x, 'Ó Terrá, Tá, Tá'x, 'Que Linda Falua'x,
-           'Fui Ao Jardim Da Celeste'x, 'Marcha Soldado'x, 'Rosa Branca Ao Peito'x,
-           'A Rolinha, Andou, Andou'x, 'Disse O Galo Prá Galinha'x, 'Teresinha de Jesus'x,
-           'Os Passarinhos'x, 'Lá Vai O Comboio, Lá Vai'x, "Sant'Antóino Se Levantou"x,
-           'Senhores Donos da Casa'x]
+ATSongs = ['A Barca Virou', 'Lá Vai Uma Lá Vão Duas', 'Senhora D. Anica', 'Pantaleão',
+           'Passa, Passa, Gabriel', 'Ó Terrá, Tá, Tá', 'Que Linda Falua',
+           'Fui Ao Jardim Da Celeste', 'Marcha Soldado', 'Rosa Branca Ao Peito',
+           'A Rolinha, Andou, Andou', 'Disse O Galo Prá Galinha', 'Teresinha de Jesus',
+           'Os Passarinhos', 'Lá Vai O Comboio, Lá Vai', "Sant'Antóino Se Levantou",
+           'Senhores Donos da Casa']
 
 #   Iteration through all the MEI files
 

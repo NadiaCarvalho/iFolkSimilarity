@@ -13,12 +13,6 @@ from scipy.stats import pearsonr
 
 def makeTable(stat, evaluator, simValues, corrValues):
     
-    if stat == 'Pearson':
-        statIndex = 0
-    if stat == 'P-Value':
-        stat = 'Pearson'
-        statIndex = 1
-    
     table = [[' '],[],[],[],[],[],[],[]]
     table[0].extend([redLev for redLev in simValues])
     firstColumn = [simMetric for simMetric in corrValues]
@@ -34,20 +28,22 @@ def makeTable(stat, evaluator, simValues, corrValues):
                     toAppend = corrValues[simMetric][redLevel][stat][evaluator-1]
                     
                     if type(toAppend) is tuple:
-                        toAppend = toAppend[statIndex]
-                        if statIndex == 1:
-                            
-                            if toAppend > 0.05:
+
+                            if toAppend[1] > 0.05:
                                 strToAppend = 'ns'
-                            if toAppend <= 0.05:
+                            if toAppend[1] <= 0.05:
                                 strToAppend = '*'
-                            if toAppend <= 0.01:
+                            if toAppend[1] <= 0.01:
                                 strToAppend = '**'
-                            if toAppend <= 0.001:
+                            if toAppend[1] <= 0.001:
                                 strToAppend = '***'
-                            if toAppend <= 0.0001:
+                            if toAppend[1] <= 0.0001:
                                 strToAppend = '****'
-                            toAppend = strToAppend
+                                
+                            toAppend = (round(toAppend[0], 3), strToAppend)
+                        
+                    else:
+                        toAppend = round(toAppend,3)
                         
                     table[i].append(toAppend)
     
@@ -75,7 +71,7 @@ songs = simF.loadFeatures(jsonPath)
 reducSongs = simF.loadFeatures(jsonReduc)
 
 metric = {'25':[], '50':[], '75':[]}
-interval = {'25':[], '50':[], '75':[]}
+intervallic = {'25':[], '50':[], '75':[]}
 tiv = {'Cos':{'25':[], '50':[], '75':[]}, 'Euc':{'25':[], '50':[], '75':[]}}
 All = {'Cos':{'25':[], '50':[], '75':[]}, 'Euc':{'25':[], '50':[], '75':[]}}
 
@@ -84,9 +80,9 @@ for r in reducSongs:
     metric['50'].append(r['Metric']['0.5'])
     metric['75'].append(r['Metric']['0.75'])
     
-    interval['25'].append(r['Intervallic']['0.25'])
-    interval['50'].append(r['Intervallic']['0.5'])
-    interval['75'].append(r['Intervallic']['0.75'])
+    intervallic['25'].append(r['Intervallic']['0.25'])
+    intervallic['50'].append(r['Intervallic']['0.5'])
+    intervallic['75'].append(r['Intervallic']['0.75'])
     
     tiv['Cos']['25'].append(r['TIV']['Cosine']['0.25'])
     tiv['Cos']['50'].append(r['TIV']['Cosine']['0.5'])
@@ -109,8 +105,8 @@ songs = adjustOrder(songs)
 for i in metric:
     metric[i] = adjustOrder(metric[i])
 
-for i in interval:
-    interval[i] = adjustOrder(interval[i])
+for i in intervallic:
+    intervallic[i] = adjustOrder(intervallic[i])
 
 for dist in tiv:
     for i in tiv[dist]:
@@ -126,8 +122,8 @@ songSet['Original'] = songs
 for i in metric:
     songSet['Metric' + i] = metric[i]
 
-for i in interval:
-    songSet['Interval' + i] = metric[i]
+for i in intervallic:
+    songSet['Intervallic' + i] = intervallic[i]
 
 for dist in tiv:
     for i in tiv[dist]:
@@ -138,20 +134,25 @@ for dist in All:
         songSet['All' + dist + i] = All[dist][i]
 
 simValues = {}
-
+counter = 0
 for redLev in songSet:
     
     simValues[redLev] = []
-    
+    aux = False
     for compSet in comparisons:
         for i in compSet: 
-            
             seq1 = songSet[redLev][i[0]]['features']
             seq2 = songSet[redLev][i[1]]['features']
             
+            if aux == True:
+                print(redLev)
+                print(seq1['midipitch'])
+                print(seq2['midipitch'])
+                aux = False
+                
             newSimValue = {}
             
-            newSimValue['SIAM'] = simF.similar(seq1, seq2, "MIDIPITCH BEATSTR DUR ONSET IMAWEIGHT", sim.SIAM)
+            newSimValue['SIAM'] = simF.similar(seq1, seq2, "MIDIPITCH OFFSET DUR BSTR INT", sim.SIAM)
             
             newSimValue['Local Alignment'] = simF.similar(seq1, seq2, "MIDIPITCH DUR", sim.local_alignment)
             
@@ -163,6 +164,8 @@ for redLev in songSet:
             newSimValue['Cardinality'] = simF.similar(seq1, seq2, "MIDIPITCH ONSET", sim.cardinality_score)
             
             simValues[redLev].append(newSimValue)
+            counter +=1
+            print(counter)
  
 rows = []
 globalArr = [[],[],[]]
@@ -214,20 +217,13 @@ PearsonTables[0] = makeTable('Pearson', 1, simValues, corrValues)
 PearsonTables[1] = makeTable('Pearson', 2, simValues, corrValues)
 PearsonTables[2] = makeTable('Pearson', 3, simValues, corrValues)
 
-PValTables = [0,0,0]
-PValTables[0] = makeTable('P-Value', 1, simValues, corrValues)
-PValTables[1] = makeTable('P-Value', 2, simValues, corrValues)
-PValTables[2] = makeTable('P-Value', 3, simValues, corrValues)
 for i in range(0,3):    
-    with open("R2tables.csv","a") as my_csv:
+    with open("R2tables2806feat5.csv","a") as my_csv:
         csvWriter = csv.writer(my_csv,delimiter=',')
         csvWriter.writerows(R2tables[i])
         
-    with open("PearsonTables.csv","a") as my_csv:
+    with open("PearsonTables2806feat5.csv","a") as my_csv:
         csvWriter = csv.writer(my_csv,delimiter=',')
         csvWriter.writerows(PearsonTables[i])
-        
-    with open("PValTables.csv","a") as my_csv:
-        csvWriter = csv.writer(my_csv,delimiter=',')
-        csvWriter.writerows(PValTables[i])
+
 

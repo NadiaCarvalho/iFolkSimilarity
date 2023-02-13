@@ -25,7 +25,7 @@
                 </availability>
             </pubStmt>
             <sourceDesc>
-                <source xml:id="to_add">
+                <source xml:id="Morais1998PT">
                     <biblStruct>
                         <monogr>
                             <imprint>
@@ -174,7 +174,7 @@
                         </ambitus>
                     </scoreDef>
                     <section xml:id="ss99dvb">
-                        <supplied type="rythymn pattern"></supplied>
+                        <supplied type="rhythm pattern"></supplied>
                         <supplied type="phrases">
                             <phrase
                             n="1" startid="#n152zuz6" endid="#n14kheqb" type="A"/>

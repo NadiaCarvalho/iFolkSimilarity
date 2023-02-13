@@ -6,8 +6,7 @@
         <fileDesc>
             <titleStmt>
                 <title type="main" xml:id="PT-1981-BR-MG-004">Ó, Ó, Menino, Ó</title>
-                <title type="subtitle">Canção de Embalar
-                </title>
+                <title type="subtitle">Canção de Embalar</title>
                 <respStmt>
                     <persName role="compiler">K. Schindler</persName>
                     <persName role="informer">
@@ -116,7 +115,7 @@
                         </ambitus>
                     </scoreDef>
                     <section xml:id="s1yhphx6">
-                        <supplied type="rythymn pattern">
+                        <supplied type="rhythm pattern">
                             <note dur="2"/>
                             <note dur="4"/>
                             <note dur="4"/>

@@ -115,7 +115,7 @@
                         </ambitus>
                     </scoreDef>
                     <section xml:id="s19l393w">
-                        <supplied type="rythymn pattern">
+                        <supplied type="rhythm pattern">
                             <note dur="8"/>
                             <note dur="4" dots="1"/>
                             <note dur="8"/>

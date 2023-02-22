@@ -51,7 +51,7 @@ class MTCExtractor():
             features.update(MetricExtractor(self.music_stream,
                             self.metadata).get_all_features())
 
-            # Phrasic Features -> only missing beatinsong, beatinphrase and beatinphrasend
+            # Phrasic Features
             features.update(PhraseExtractor(self.music_stream,
                             self.metadata).get_all_features())
 

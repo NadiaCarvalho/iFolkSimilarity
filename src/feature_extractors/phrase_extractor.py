@@ -5,6 +5,7 @@ Created on Mon Feb 22 16:20:06 2023
 @author: Nádia Carvalho
 """
 
+from collections import defaultdict
 from fractions import Fraction
 
 import numpy as np
@@ -40,6 +41,7 @@ class PhraseExtractor():
     def get_all_features(self):
         """Get all features phrase related features from the stream"""
         phrases, phrase_ix = self.get_phrases()
+
         features = {
             'phrasepos': self.get_phrase_position(phrases),
             'phrase_ix': phrase_ix,
@@ -48,6 +50,10 @@ class PhraseExtractor():
 
         features['beatinsong'], features['beatinphrase'], features['beatfractioninphrase'] = self.get_beat_in_song_and_phrase(
             phrases)
+
+        features['beatinphrase_end'] = self.get_beat_in_phrase_end(
+            features['beatinphrase'], phrase_ix)
+
         return features
 
     def get_phrases(self):
@@ -131,3 +137,14 @@ class PhraseExtractor():
                 beatfraction.append(get_beat_fraction(next_note))
 
         return [str(f) for f in beatinsong], [str(f) for f in beatinphrase], [str(f) for f in beatfraction]
+
+    def get_beat_in_phrase_end(self, beatinphrase, phrase_ix, epsilon=1e-4):
+        """Get beat in phrase end for each note"""
+        origin = defaultdict(lambda: 0.0)
+        for ix, btp_ix in enumerate(beatinphrase):
+            if abs(float(self.music_stream.recurse().notes[ix].beat) - 1.0) < epsilon:
+                origin[phrase_ix[ix]] = Fraction(btp_ix)  # type: ignore
+
+        beatinphrase_end = [Fraction(btp_ix) - Fraction(origin[phrase_ix[ix]])
+                            for ix, btp_ix in enumerate(beatinphrase)]
+        return [str(f) for f in beatinphrase_end]

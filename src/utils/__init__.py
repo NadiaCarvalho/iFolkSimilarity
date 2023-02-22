@@ -4,6 +4,9 @@ Created on Mon Feb 13 15:05:28 2023
 
 @author: Nádia Carvalho
 """
+from .error_classes import NoMeterError, ParseError
+
+signs = {2: '++', 1: '+', 0: '=', -1: '-', -2: '--'}
 
 
 def isDigit(x):

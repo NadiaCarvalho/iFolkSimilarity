@@ -7,7 +7,7 @@ Created on Mon Feb 13 17:02:10 2023
 
 import music21 as m21
 
-from src.utils import sign_thresh
+from src.utils import sign_thresh, signs
 
 
 def pitch_degree(pitch):
@@ -176,8 +176,6 @@ class PitchExtractor():
         (level 3 <=> thresh=0)
         (level 5 <=> thresh>0)
         """
-        signs = {2: '++', 1: '+', 0: '=', -1: '-', -2: '--'}
-
         if thresh == 0:
             return [None] + [signs[sign_thresh(c)] for c in chromatic_intervals[1:]]
         else:

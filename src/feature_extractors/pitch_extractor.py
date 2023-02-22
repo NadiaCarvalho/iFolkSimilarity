@@ -44,6 +44,7 @@ class PitchExtractor():
 
     def __init__(self, stream, musical_metadata=None):
         """
+        Initialize PitchExtractor
         """
         self.music_stream = stream
 

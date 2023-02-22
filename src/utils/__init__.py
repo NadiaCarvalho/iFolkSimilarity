@@ -34,3 +34,12 @@ def sign_thresh(x, thresh=0):
         return 1
     else:
         return 0
+
+def get_one_degree_change(x1, x2, const_add=0.0):
+    res = None
+    x1 += const_add
+    x2 += const_add
+    if x1 == x2: return 0.0
+    if (x1+x2) != 0 and x1 >= 0 and x2 >= 0:
+        res = float(abs(x1-x2)) / float (x1 + x2)
+    return res

@@ -20,6 +20,7 @@ class MetricExtractor():
 
     def __init__(self, stream, musical_metadata=None):
         """
+        Initialize MetricExtractor
         """
         self.music_stream = stream
 
@@ -38,29 +39,31 @@ class MetricExtractor():
             'restduration_frac': self.get_rest_duration_fraction(),
         }
 
+        features['onsettick'] = self.get_onsetticks(features['offsets'])
+        features['durationcontour'] = self.get_contour(features['duration'])
+        features['songpos'] = self.get_song_position(features['onsettick'])
+        features['ima'] = self.get_IMA(features['onsettick'])
+        features['ima_contour'] = self.get_IMA_contour(features['ima'])
+
         try:
             features['timesignature'] = self.get_time_signature()
             features['beat'] = self.get_beat_float()
-            # features['beat_str'] = self.get_beat_strength()
-            # features['beat_fraction_str'] = self.get_beat_fraction(features['beatstrength'])
+            features['beat_str'], features['beat_fraction_str'] = self.get_beat_string_fraction()
             features['beatstrength'] = self.get_beat_strength()
-
+            features['metriccontour'] = self.get_metric_contour(
+                features['beatstrength'])
         except NoMeterError:
             features['timesignature'] = [None] * \
                 len(self.music_stream.recurse().notes)
             features['beat'] = [None]*len(self.music_stream.recurse().notes)
             features['beat_str'] = [None] * \
                 len(self.music_stream.recurse().notes)
-            features['beatstrength'] = [None] * \
-                len(self.music_stream.recurse().notes)
             features['beat_fraction_str'] = [None] * \
                 len(self.music_stream.recurse().notes)
-
-        features['onsettick'] = self.get_onsetticks(features['offsets'])
-        features['durationcontour'] = self.get_contour(features['duration'])
-        # features['songpos'] = self.get_contour(features['onsettick'])
-        features['ima'] = self.get_IMA(features['onsettick'])
-        features['ima_contour'] = self.get_IMA_contour(features['ima'])
+            features['beatstrength'] = [None] * \
+                len(self.music_stream.recurse().notes)
+            features['metriccontour'] = [None] * \
+                len(self.music_stream.recurse().notes)
 
         return features
 
@@ -148,6 +151,22 @@ class MetricExtractor():
         """Get the beat strength of all notes in the stream"""
         return [note.beatStrength for note in self.music_stream.recurse().notes]
 
+    def get_beat_string_fraction(self):
+        """Get the beat string and fraction of all notes in the stream"""
+
+        def beat_str_to_tuple(beat_str):
+            """Convert a beat string to a tuple"""
+            split = beat_str.split(' ')
+            return split[0], split[1] if len(split) > 1 else '0'
+
+        tuple_beat_str = [beat_str_to_tuple(
+            note.beatStr) for note in self.music_stream.recurse().notes]
+        return [tps[0] for tps in tuple_beat_str], [tps[1] for tps in tuple_beat_str]
+
+    def get_metric_contour(self, beat_strengths, thresh=0):
+        """Get the metric contour of all notes in the stream"""
+        return [None] + [signs[sign_thresh(d2-d1, thresh=thresh)] for d1, d2 in zip(beat_strengths, beat_strengths[1:])]
+
     def get_contour(self, values, thresh=0):
         """
         Get the contour of a list of values
@@ -179,6 +198,10 @@ class MetricExtractor():
 
         gcd = gcd_reduction([Fraction(offset) for offset in offsets])
         return [int(offset//gcd) for offset in offsets]
+
+    def get_song_position(self, onsetticks):
+        """Get the song position of all notes in the stream"""
+        return [float(onsettick)/onsetticks[-1] for onsettick in onsetticks]
 
     def get_IMA(self, onsetticks):
         """

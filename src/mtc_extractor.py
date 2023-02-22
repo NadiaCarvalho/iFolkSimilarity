@@ -12,7 +12,7 @@ import verovio
 from collections import defaultdict
 
 
-from src.feature_extractors import PitchExtractor, MetricExtractor
+from src.feature_extractors import PitchExtractor, MetricExtractor, PhraseExtractor, DerivationsExtractor
 
 
 class MTCExtractor():
@@ -26,7 +26,10 @@ class MTCExtractor():
         # self.tk = verovio.toolkit()
         # self.tk.setOptions({"xmlIdChecksum": False, "xmlIdSeed": 0})
         # self.tk.loadFile(path)
-        self.music_stream = c21.MEIConverter().parseFile(path, verbose=False)
+
+        # m21.environment.Environment('converter21.mei.base')['warnings'] = 0 # type: ignore
+        converter = c21.MEIConverter()
+        self.music_stream = converter.parseFile(path, verbose=False)
 
         self.metadata = {}
         if musical_metadata:
@@ -46,6 +49,14 @@ class MTCExtractor():
             # Metric Features
             features.update(MetricExtractor(self.music_stream,
                             self.metadata).get_all_features())
+
+            # Phrasic Features
+            features.update(PhraseExtractor(self.music_stream,
+                            self.metadata).get_all_features())
+
+            # Mixed Features
+            features.update(DerivationsExtractor(self.music_stream,
+                            self.metadata, features).get_all_features())
 
             return features
         except Exception as e:

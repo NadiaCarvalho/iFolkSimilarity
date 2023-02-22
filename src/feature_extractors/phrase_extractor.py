@@ -10,6 +10,21 @@ from fractions import Fraction
 import numpy as np
 
 
+def get_start_beat(first_note):
+    """Get the beat of the first note in the measure"""
+    start_beat = Fraction(first_note.beat)
+    if start_beat != Fraction(1):  # upbeat
+        start_beat = Fraction(-1 * first_note.getContextByClass(
+            'TimeSignature').beatCount) + start_beat
+    start_beat -= Fraction(1)  # shift origin to first "first beat" in measure
+    return start_beat
+
+
+def get_beat_fraction(note):
+    """Get the beat fraction of a note"""
+    return Fraction(note.duration.quarterLength) / Fraction(note.beatDuration.quarterLength)
+
+
 class PhraseExtractor():
 
     def __init__(self, stream, musical_metadata=None):
@@ -31,9 +46,8 @@ class PhraseExtractor():
             'phrase_end': self.get_phrase_end(),
         }
 
-        features['beatinsong'] = self.get_beat_in_song()
-        # features['beatinphrase'], features['beatfractioninphrase'] = self.get_beat_in_phrase()
-
+        features['beatinsong'], features['beatinphrase'], features['beatfractioninphrase'] = self.get_beat_in_song_and_phrase(
+            phrases)
         return features
 
     def get_phrases(self):
@@ -85,12 +99,35 @@ class PhraseExtractor():
         phrase_ends = [phrase[2] for phrase in self.metadata_phrases]
         return [True if f"#{note.id}" in phrase_ends else False for note in self.music_stream.recurse().notes]
 
-    def get_beat_in_song(self):
+    def get_beat_in_song_and_phrase(self, phrases):
         """Get beat in phrase for each note"""
-        start_beat = Fraction(self.music_stream.recurse().notesAndRests[0].beat)
-        print(start_beat)
+        notes = self.music_stream.recurse().notesAndRests
+        start_phrases = [i for i, x in enumerate(phrases) if x == 1 and i != 0]
 
-    def get_beat_in_phrase(self, ):
-        """Get beat in phrase for each note"""
-        pass
+        start_beat = get_start_beat(notes[0])
 
+        beatinsong, beatinphrase, beatfraction = [], [], []
+        if notes[0].isNote:
+            beatinsong = [start_beat]
+            beatinphrase = [start_beat]
+            beatfraction = [get_beat_fraction(notes[0])]
+
+        cumulative_beat_song = start_beat
+        cumulative_beat_phrase = start_beat
+
+        note_ix = 0
+        for note, next_note in zip(notes, notes[1:]):
+            cumulative_beat_song += get_beat_fraction(note)
+            if note.isNote:
+                if note_ix in start_phrases:
+                    cumulative_beat_phrase = get_start_beat(note)
+                    beatinphrase[-1] = cumulative_beat_phrase
+                note_ix += 1
+            cumulative_beat_phrase += get_beat_fraction(note)
+
+            if next_note.isNote:
+                beatinsong.append(cumulative_beat_song)
+                beatinphrase.append(cumulative_beat_phrase)
+                beatfraction.append(get_beat_fraction(next_note))
+
+        return [str(f) for f in beatinsong], [str(f) for f in beatinphrase], [str(f) for f in beatfraction]

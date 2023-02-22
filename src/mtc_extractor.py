@@ -5,14 +5,15 @@ Created on Mon Feb 13 15:45:52 2023
 @author: Nádia Carvalho
 """
 
-import music21 as m21
-import converter21 as c21
-import verovio
-
 from collections import defaultdict
 
+import converter21 as c21
+import music21 as m21
+import verovio
 
-from src.feature_extractors import PitchExtractor, MetricExtractor, PhraseExtractor, DerivationsExtractor
+from src.feature_extractors import (GPRExtractor, IOIExtractor, LBDMExtractor,
+                                    MetricExtractor, PhraseExtractor,
+                                    PitchExtractor)
 
 
 class MTCExtractor():
@@ -50,17 +51,20 @@ class MTCExtractor():
             features.update(MetricExtractor(self.music_stream,
                             self.metadata).get_all_features())
 
-            # Phrasic Features
+            # Phrasic Features -> only missing beatinsong, beatinphrase and beatinphrasend
             features.update(PhraseExtractor(self.music_stream,
                             self.metadata).get_all_features())
 
-            # Mixed Features
-            features.update(DerivationsExtractor(self.music_stream,
-                            self.metadata, features).get_all_features())
+            # Derived Features
+            features.update(IOIExtractor(self.music_stream,
+                            features).get_all_features())
+            features.update(GPRExtractor(self.music_stream,
+                            features).get_all_features())
+            features.update(LBDMExtractor(
+                self.music_stream, features).get_all_features())
 
             return features
         except Exception as e:
             print("Error processing stream")
             print(e)
             return None
-

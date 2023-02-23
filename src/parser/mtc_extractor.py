@@ -67,7 +67,14 @@ class MTCExtractor():
             return features
         except Exception as e:
             print("Error processing stream")
-            print(e)
+
+            import os
+            import sys
+
+            exc_type, exc_obj, exc_tb = sys.exc_info()
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1] # type: ignore
+            print(exc_type, fname, exc_tb.tb_lineno) # type: ignore
+
             return None
 
     def has_meter(self):

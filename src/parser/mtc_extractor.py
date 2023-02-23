@@ -12,8 +12,8 @@ import music21 as m21
 import verovio
 
 from .feature_extractors import (GPRExtractor, IOIExtractor, LBDMExtractor,
-                                    MetricExtractor, PhraseExtractor,
-                                    PitchExtractor)
+                                 MetricExtractor, PhraseExtractor,
+                                 PitchExtractor)
 from .utils import has_meter
 
 
@@ -21,7 +21,7 @@ class MTCExtractor():
     """
     """
 
-    def __init__(self, path, musical_metadata=None):
+    def __init__(self, path, mei_tree, musical_metadata=None):
         """
         Parse MEI file and extract features
         """
@@ -34,13 +34,36 @@ class MTCExtractor():
         converter = c21.MEIConverter()
         self.music_stream = converter.parseFile(path, verbose=False)
 
-        # self.music_stream.show()
-
         try:
             self.music_stream = self.music_stream.expandRepeats()
         except:
-            print('Error expanding repeats in: ' + path)
-            return None
+            for repeat_bracket in self.music_stream.recurse().getElementsByClass('RepeatBracket'):
+                spanner_measures = repeat_bracket.getSpannedElements()
+
+                if len(spanner_measures) > 0:
+                    number_to_get = spanner_measures[0].number
+                    ending = mei_tree.find(f'.//mei:measure[@n="{number_to_get}"]...', namespaces={
+                                           'mei': 'http://www.music-encoding.org/ns/mei'})
+                    if ending is not None:
+                        ending_markings = [
+                            int(i) for i in ending.attrib['n'].split(', ')]
+                        if len(ending_markings) == 1:
+                            repeat_bracket.number = ending_markings[0]
+                        elif list(range(ending_markings[0], ending_markings[-1])) == ending_markings:
+                            repeat_bracket.number = f'{ending_markings[0]}-{ending_markings[-1]}'
+                        else:
+                            repeat_bracket.number = ', '.join(
+                                [str(i) for i in ending_markings])
+
+                        if isinstance(spanner_measures[-1].rightBarline, m21.bar.Repeat) and len(ending_markings) > 1:
+                            spanner_measures[-1].rightBarline.times = len(
+                                ending_markings)
+
+            try:
+                self.music_stream = self.music_stream.expandRepeats()
+            except:
+                print('Error expanding repeats in: ' + path)
+                return None
 
         self.metadata = {}
         if musical_metadata:
@@ -81,8 +104,9 @@ class MTCExtractor():
             import sys
 
             exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1] # type: ignore
-            print(exc_type, fname, exc_tb.tb_lineno) # type: ignore
+            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[
+                1]  # type: ignore
+            print(exc_type, fname, exc_tb.tb_lineno)  # type: ignore
 
             print()
 

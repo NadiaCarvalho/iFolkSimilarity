@@ -32,7 +32,7 @@ class GPRExtractor:
 
     def get_gpr_2b(self):
         """Get gpr2b_Frankland"""
-        durations = self.base_features['duration']
+        durations = [Fraction(f) for f in self.base_features['duration']]
         restduration_frac = self.base_features['restduration_frac']
 
         def get_one_Frankland_GPR2b(quad):
@@ -40,6 +40,7 @@ class GPRExtractor:
             return (1.0 - (float(n1+n3)/float(2.0*n2))) if (n2>n3) > 0 and (n2>n1) else None
 
         quads = zip(durations, durations[1:], durations[2:], durations[3:])
+
         frankland_one =  [None] + [get_one_Frankland_GPR2b(quad) for quad in quads] + [None, None]
 
         #check conditions (Frankland 2004, p.505): no rests in between, n2>n1 and n2>n3 (in getOneFranklandGPR2b())

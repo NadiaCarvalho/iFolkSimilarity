@@ -100,7 +100,7 @@ class MeiParser():
 
         print(f'Parsing {metadata["title_stmt"]["id"]}')
 
-        self.mtc_extractor = MTCExtractor(path, music_metadata)
+        self.mtc_extractor = MTCExtractor(path, root, music_metadata)
         features = self.mtc_extractor.process_stream()
         if features:
             music_dict = defaultdict(list)

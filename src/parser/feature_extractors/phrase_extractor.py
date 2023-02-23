@@ -76,9 +76,10 @@ class PhraseExtractor():
                 last_phrase += 1
             elif f"#{note.id}" in phrase_ends:
                 phrase_pos[i] = -1
+                if phrase_pos[i-1] == -1:
+                    phrase_pos[i-1] = 0
 
             phrase_ix.append(last_phrase)
-
         return list(phrase_pos), phrase_ix
 
     def get_phrase_position(self, phrases):
@@ -94,11 +95,13 @@ class PhraseExtractor():
 
         phrase_pos = []
         for i, end_ind in enumerate(end_indexes):
+
             start_offset = all_notes[start_indexes[i]].offset
 
             total_phrase_duration = all_notes[end_ind].offset - start_offset
             phrase_pos.extend([(note.offset - start_offset) /
                               total_phrase_duration for note in all_notes[start_indexes[i]:end_ind+1]])
+
         return phrase_pos
 
     def get_phrase_end(self):

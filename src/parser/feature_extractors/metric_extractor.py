@@ -25,8 +25,10 @@ class MetricExtractor():
 
     def get_all_features(self):
 
+        offsets = self.get_offsets()
+
         features = {
-            'offsets': self.get_offsets(),
+            'offsets': [str(off) for off in offsets],
             'duration': self.get_durations(),
             'duration_frac': self.get_duration_fraction(),
             'duration_fullname': self.get_duration_fullname(),
@@ -34,7 +36,7 @@ class MetricExtractor():
             'restduration_frac': self.get_rest_duration_fraction(),
         }
 
-        features['onsettick'] = self.get_onsetticks(features['offsets'])
+        features['onsettick'] = self.get_onsetticks(offsets)
         features['durationcontour'] = self.get_contour(features['duration'])
         features['songpos'] = self.get_song_position(features['onsettick'])
         features['ima'] = self.get_IMA(features['onsettick'])
@@ -74,7 +76,7 @@ class MetricExtractor():
         """
         Get the durations of all notes in the stream
         """
-        return [note.duration.quarterLength for note in self.music_stream.flat.notes]
+        return [str(note.duration.quarterLength) for note in self.music_stream.flat.notes]
 
     def get_duration_fraction(self):
         """

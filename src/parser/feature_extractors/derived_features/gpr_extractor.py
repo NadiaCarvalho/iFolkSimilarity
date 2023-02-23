@@ -16,6 +16,7 @@ class GPRExtractor:
 
     def get_all_features(self):
         """Get all features phrase related features from the stream"""
+
         features = {
             'gpr2a_Frankland': self.get_gpr_2a(),
             'gpr2b_Frankland': self.get_gpr_2b(),

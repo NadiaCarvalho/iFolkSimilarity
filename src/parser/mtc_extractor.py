@@ -25,13 +25,22 @@ class MTCExtractor():
         """
         Parse MEI file and extract features
         """
-        # self.tk = verovio.toolkit()
-        # self.tk.setOptions({"xmlIdChecksum": False, "xmlIdSeed": 0})
-        # self.tk.loadFile(path)
+        self.tk = verovio.toolkit()
+        self.tk.setOptions({"xmlIdChecksum": False, "xmlIdSeed": 0})
+        self.tk.loadFile(path)
+        # self.tk.renderToSVGFile('data/temp.svg')
 
         # m21.environment.Environment('converter21.mei.base')['warnings'] = 0 # type: ignore
         converter = c21.MEIConverter()
         self.music_stream = converter.parseFile(path, verbose=False)
+
+        # self.music_stream.show()
+
+        try:
+            self.music_stream = self.music_stream.expandRepeats()
+        except:
+            print('Error expanding repeats in: ' + path)
+            return None
 
         self.metadata = {}
         if musical_metadata:
@@ -74,6 +83,8 @@ class MTCExtractor():
             exc_type, exc_obj, exc_tb = sys.exc_info()
             fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1] # type: ignore
             print(exc_type, fname, exc_tb.tb_lineno) # type: ignore
+
+            print()
 
             return None
 

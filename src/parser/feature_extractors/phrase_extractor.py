@@ -85,16 +85,17 @@ class PhraseExtractor():
         """Get phrase position for each note"""
         total_duration = self.music_stream.duration.quarterLength
         if all(x == 0 for x in phrases):
-            print("No phrases found")
             return [note.quarterLength/total_duration for note in self.music_stream.recurse().notes]
 
         start_indexes = [i for i, x in enumerate(phrases) if x == 1]
         end_indexes = [i for i, x in enumerate(phrases) if x == -1]
 
         all_notes = self.music_stream.flat.notes
+
         phrase_pos = []
         for i, end_ind in enumerate(end_indexes):
             start_offset = all_notes[start_indexes[i]].offset
+
             total_phrase_duration = all_notes[end_ind].offset - start_offset
             phrase_pos.extend([(note.offset - start_offset) /
                               total_phrase_duration for note in all_notes[start_indexes[i]:end_ind+1]])
@@ -113,7 +114,7 @@ class PhraseExtractor():
         start_beat = get_start_beat(notes[0])
 
         beatinsong, beatinphrase, beatfraction = [], [], []
-        if notes[0].isNote:
+        if notes[0].isNote or notes[0].isChord:
             beatinsong = [start_beat]
             beatinphrase = [start_beat]
             beatfraction = [get_beat_fraction(notes[0])]
@@ -124,14 +125,14 @@ class PhraseExtractor():
         note_ix = 0
         for note, next_note in zip(notes, notes[1:]):
             cumulative_beat_song += get_beat_fraction(note)
-            if note.isNote:
+            if note.isNote or note.isChord:
                 if note_ix in start_phrases:
                     cumulative_beat_phrase = get_start_beat(note)
                     beatinphrase[-1] = cumulative_beat_phrase
                 note_ix += 1
             cumulative_beat_phrase += get_beat_fraction(note)
 
-            if next_note.isNote:
+            if next_note.isNote or next_note.isChord:
                 beatinsong.append(cumulative_beat_song)
                 beatinphrase.append(cumulative_beat_phrase)
                 beatfraction.append(get_beat_fraction(next_note))

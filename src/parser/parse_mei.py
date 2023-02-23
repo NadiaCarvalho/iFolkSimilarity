@@ -98,6 +98,7 @@ class MeiParser():
         for key in ['key', 'mode', 'meter', 'tempo']:
             music_metadata[key] = work[key]
 
+        print(f'Parsing {metadata["title_stmt"]["id"]}')
 
         self.mtc_extractor = MTCExtractor(path, music_metadata)
         features = self.mtc_extractor.process_stream()

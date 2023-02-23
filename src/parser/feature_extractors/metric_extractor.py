@@ -98,25 +98,28 @@ class MetricExtractor():
         """
         Get the duration fraction of all rests in the stream
         """
-        rest_durations = []
+
         notes_and_rests = list(self.music_stream.recurse().notesAndRests)
-        rest_duration = Fraction(0)
+
+        cum_rest_duration = Fraction(0)
+        rest_durations = []
+
         # this computes length of rests PRECEEDING the note
         for event in notes_and_rests:
+
             if event.isRest:
-                rest_duration += Fraction(event.duration.quarterLength)
-            if event.isNote:
-                if rest_duration == 0:
+                cum_rest_duration += Fraction(event.duration.quarterLength)
+            elif event.isNote or event.isChord:
+                if cum_rest_duration == 0:
                     rest_durations.append(None)
                 else:
-                    rest_durations.append(str(rest_duration))
-                rest_duration = Fraction(0)
+                    rest_durations.append(str(cum_rest_duration))
+                cum_rest_duration = Fraction(0)
+
         # shift list and add last
-        if notes_and_rests[-1].isNote:
-            rest_durations = rest_durations[1:] + [None]
-        else:
-            rest_durations = rest_durations[1:] + [str(rest_duration)]
-        return rest_durations
+        if notes_and_rests[-1].isNote or notes_and_rests[-1].isChord:
+            return rest_durations[1:] + [None]
+        return rest_durations[1:] + [str(cum_rest_duration)]
 
     def get_position_in_song(self, onsets):
         """
@@ -161,8 +164,8 @@ class MetricExtractor():
         """
         notes_and_rests = list(self.music_stream.recurse().notesAndRests)
         next_is_rest = [next_note.isRest for note, next_note in zip(
-            notes_and_rests, notes_and_rests[1:]) if note.isNote]
-        if notes_and_rests[-1].isNote:
+            notes_and_rests, notes_and_rests[1:]) if (note.isNote or note.isChord)]
+        if notes_and_rests[-1].isNote or notes_and_rests[-1].isChord:
             next_is_rest.append(None)
         return next_is_rest
 

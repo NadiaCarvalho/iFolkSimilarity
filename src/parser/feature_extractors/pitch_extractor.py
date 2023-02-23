@@ -52,7 +52,11 @@ class PitchExtractor():
         if musical_metadata:
             self.metadata = musical_metadata
 
-        self.scale = self.get_scale()
+        try:
+            self.scale = self.get_scale()
+        except:
+            print("Couldn't not get scale, substituting by C major")
+            self.scale = m21.key.Key(tonic='c', mode='major')
 
     def get_all_features(self):
         """Get all features pitch related features from the stream"""
@@ -89,6 +93,7 @@ class PitchExtractor():
         """
         key = self.metadata.get('key')
         mode = self.metadata.get('mode')
+
         if key is not None and mode is not None:
             return m21.key.Key(tonic=key, mode=mode)
         return self.music_stream.analyze('key')

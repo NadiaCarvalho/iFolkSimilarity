@@ -64,7 +64,7 @@
                 <incip type="lyrics">
                     <incipText><head/></incipText>
                 </incip>
-                <key mode="eolian">E</key>
+                <key mode="aeolian">E</key>
                 <meter>Binary</meter>
                 <tempo>None</tempo>
                 <incip type="musical">

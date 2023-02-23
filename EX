@@ -1,0 +1,61 @@
+Error parsing song: data/original/PT-1981-FA-MG-002.mei
+<class 'TypeError'> main.py 27
+
+Error parsing song: data/original/PT-1981-VI-MG-005.mei
+<class 'TypeError'> main.py 27
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-002.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-008.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-011.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-014.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-015.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-020.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-024.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-026.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1998-XX-DM-032.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1999-BR-DM-005.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1999-BR-DM-006.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1999-XX-DM-016.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1999-XX-DM-021.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55
+
+Error expanding repeats in: data/original/PT-1999-XX-DM-022.mei
+Error processing stream
+<class 'AttributeError'> mtc_extractor.py 55

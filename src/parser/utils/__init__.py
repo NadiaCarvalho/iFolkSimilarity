@@ -43,3 +43,16 @@ def get_one_degree_change(x1, x2, const_add=0.0):
     if (x1+x2) != 0 and x1 >= 0 and x2 >= 0:
         res = float(abs(x1-x2)) / float (x1 + x2)
     return res
+
+def has_meter(stream):
+    """
+    Get the time signature from a stream
+    """
+    time_signature = stream.recurse().getElementsByClass('TimeSignature')
+    if not time_signature:
+        return False
+    mixedmetercomments = [c.comment for c in stream.getElementsByClass(
+        'GlobalComment') if c.comment.startswith('Mixed meters:')]
+    if len(mixedmetercomments) > 0:
+        return False
+    return True

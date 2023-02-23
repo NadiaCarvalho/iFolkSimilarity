@@ -11,9 +11,10 @@ import converter21 as c21
 import music21 as m21
 import verovio
 
-from src.feature_extractors import (GPRExtractor, IOIExtractor, LBDMExtractor,
+from .feature_extractors import (GPRExtractor, IOIExtractor, LBDMExtractor,
                                     MetricExtractor, PhraseExtractor,
                                     PitchExtractor)
+from .utils import has_meter
 
 
 class MTCExtractor():
@@ -48,8 +49,8 @@ class MTCExtractor():
                             self.metadata).get_all_features())
 
             # Metric Features
-            features.update(MetricExtractor(self.music_stream,
-                            self.metadata).get_all_features())
+            features.update(MetricExtractor(
+                self.music_stream).get_all_features())
 
             # Phrasic Features
             features.update(PhraseExtractor(self.music_stream,
@@ -68,3 +69,16 @@ class MTCExtractor():
             print("Error processing stream")
             print(e)
             return None
+
+    def has_meter(self):
+        """
+        Check if stream has meter
+        """
+        return has_meter(self.music_stream)
+
+    def has_lyrics(self):
+        """
+        Check if stream has lyrics
+        """
+        text = m21.text.assembleLyrics(self.music_stream)
+        return 'Vocal' if text is not None else 'Instrumental'

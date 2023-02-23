@@ -22,7 +22,7 @@ class GPRExtractor:
             'gpr3a_Frankland': self.get_gpr_3a(),
             'gpr3d_Frankland': self.get_gpr_3d(),
         }
-        features['gpr_Frankland_sum'] = self.get_gpr_Frankland_sum(features)
+        features['gpr_Frankland_sum'] = self.get_gpr_Frankland_sum(features) # type: ignore
         return features
 
     def get_gpr_2a(self):

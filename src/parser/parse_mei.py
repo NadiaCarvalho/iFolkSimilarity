@@ -5,11 +5,11 @@ Created on Mon Feb 13 14:07:00 2023
 @author: Nádia Carvalho
 """
 
-# import re
+from collections import defaultdict
 from xml.etree import ElementTree as ET
-from src.mtc_extractor import MTCExtractor
-from src.utils import isDigit
 
+from .mtc_extractor import MTCExtractor
+from .utils import isDigit
 
 NAME_SPACE = {'mei': 'http://www.music-encoding.org/ns/mei'}
 ID_SPACE = '{http://www.w3.org/XML/1998/namespace}id'
@@ -98,7 +98,30 @@ class MeiParser():
         for key in ['key', 'mode', 'meter', 'tempo']:
             music_metadata[key] = work[key]
 
-        return MTCExtractor(path, music_metadata).process_stream()
+
+        self.mtc_extractor = MTCExtractor(path, music_metadata)
+        features = self.mtc_extractor.process_stream()
+        if features:
+            music_dict = defaultdict(list)
+
+            for cat, value in metadata.items():
+                for key in value:
+                    if cat == 'source_desc' and key in music_dict:
+                        music_dict[f'source_{key}'] = value[key]
+                    elif cat == 'title_stmt' and key in music_dict:
+                        music_dict[f'title_{key}'] = value[key]
+                    else:
+                        music_dict[key] = value[key]
+            music_dict.update(music_metadata)
+
+            music_dict['type'] = self.mtc_extractor.has_lyrics() # type: ignore
+            music_dict['freemeter'] = not self.mtc_extractor.has_meter() # type: ignore
+
+            music_dict.update({'features': features}) # type: ignore
+
+            return music_dict
+
+        return None
 
     def get_metadata(self, root):
         """
@@ -197,7 +220,8 @@ class MeiParser():
                 root, extraction_dict[element] + f'[@n="{phr}"]', 'endid')
             phrase_type = self.get_element(
                 root, extraction_dict[element] + f'[@n="{phr}"]', 'type')
-            phrases.append(f'({phr}, {phrase_start}, {phrase_end}, {phrase_type})')
+            phrases.append(
+                f'({phr}, {phrase_start}, {phrase_end}, {phrase_type})')
         return '; '.join(phrases)
 
     def extract_ambitus_note(self, root, extraction_dict, output_dict, element, note='highest'):

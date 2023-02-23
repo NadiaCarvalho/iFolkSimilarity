@@ -7,26 +7,21 @@ Created on Mon Feb 13 18:12:36 2023
 
 import functools
 import math
-
 from fractions import Fraction
 
 import numpy as np
 from imapy_music import IMA
 
-from src.utils import sign_thresh, signs, NoMeterError
+from ..utils import NoMeterError, has_meter, sign_thresh, signs
 
 
 class MetricExtractor():
 
-    def __init__(self, stream, musical_metadata=None):
+    def __init__(self, stream):
         """
         Initialize MetricExtractor
         """
         self.music_stream = stream
-
-        self.metadata = {}
-        if musical_metadata:
-            self.metadata = musical_metadata
 
     def get_all_features(self):
 
@@ -71,19 +66,6 @@ class MetricExtractor():
         """
         Get the time signature of the stream
         """
-        def has_meter(stream):
-            """
-            Get the time signature from a stream
-            """
-            time_signature = stream.recurse().getElementsByClass('TimeSignature')
-            if not time_signature:
-                return False
-            mixedmetercomments = [c.comment for c in self.music_stream.getElementsByClass(
-                'GlobalComment') if c.comment.startswith('Mixed meters:')]
-            if len(mixedmetercomments) > 0:
-                return False
-            return True
-
         if not has_meter(self.music_stream):
             raise NoMeterError('No meter found in stream')
         return [n.getContextByClass('TimeSignature').ratioString for n in self.music_stream.recurse().notes]

@@ -7,7 +7,7 @@ Created on Mon Feb 13 17:02:10 2023
 
 import music21 as m21
 
-from src.utils import sign_thresh, signs
+from ..utils import sign_thresh, signs
 
 
 def pitch_degree(pitch):

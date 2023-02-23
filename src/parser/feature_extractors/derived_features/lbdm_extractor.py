@@ -6,7 +6,7 @@ Created on Mon Feb 22 16:55:47 2023
 """
 from fractions import Fraction
 
-from src.utils import get_one_degree_change
+from ...utils import get_one_degree_change
 
 
 def get_boundary_strength(pitches, intervals):

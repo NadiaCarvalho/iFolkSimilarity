@@ -71,21 +71,17 @@ MEILINKS = {
 }
 
 
-class MeiParser():
+class MeiParser:
+    """
+    MEI PARSER, parse MEI files relative to CoPOEM database's structure
+    """
 
     def parse_mei(self, path):
         """
         Parses a MEI file and returns a list of dictionaries with the following
         information:
-        - id
-        - type
-        - label
-        - staff
-        - layer
-        - start
-        - end
-        - text
-        - notes
+        - metadata
+        - features
         """
         tree = ET.parse(path)
         root = tree.getroot()

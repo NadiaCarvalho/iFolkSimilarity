@@ -1,2 +1,4 @@
 # Igonore all files in the old_code directory
 old_code/*
+data/combined_graphs*/*
+data/reduced/*

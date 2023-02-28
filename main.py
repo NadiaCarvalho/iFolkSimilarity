@@ -82,22 +82,44 @@ def reduce_songs():
             song_id = song.split('/')[-1].split('.')[0]
             song_features = json.load(open(song, 'r'))
 
+            os.makedirs(f'data/reduced/{song_id}/', exist_ok=True)
+
+            import music21 as m21
+
             reductions[song_id] = {}
             for cat in ['intervallic', 'tonal', 'metrical', 'combined']:
+
+                # all_reduction_score = m21.stream.Score()  # type: ignore
+                # all_reduction_score.metadata = m21.metadata.Metadata(
+                #     title=f'{song_id} - {cat}')
+
                 reductions[song_id][cat] = {}
                 cat_degrees = [1.0, 0.75, 0.5, 0.25, 0.1]
                 if cat == 'metrical':
                     cat_degrees = [d/100 for d in range(0, 100, 25)]
+
                 for deg in cat_degrees:
                     if cat in ['tonal', 'combined']:
                         reductions[song_id][cat][str(deg)] = {}
                         for distance in ['euclidean', 'cosine']:
-                            reductions[song_id][cat][str(deg)][distance] = reduction.reduce(
+                            red = reduction.reduce(
                                 song_features, reduction_type=cat, degree=deg, distance=distance)
-                    else:
-                        reductions[song_id][cat][str(deg)] = reduction.reduce(
-                            song_features, reduction_type=cat, degree=deg)
+                            reductions[song_id][cat][str(deg)][distance] = red
 
+                            # reduced_song = reduction.show_reduced_song(
+                            #     song_features, red, name=f'D{deg*100}% - {distance}')
+                            # all_reduction_score.insert(0.0, reduced_song)
+                    else:
+                        red = reduction.reduce(
+                            song_features, reduction_type=cat, degree=deg)
+                        reductions[song_id][cat][str(deg)] = red
+
+                        # reduced_song = reduction.show_reduced_song(
+                        #     song_features, red, name=f'D{f"{deg*100}%" if cat != "metrical" else f"{deg}"}')
+                        # all_reduction_score.insert(0.0, reduced_song)
+
+                # type: ignore
+                # all_reduction_score.write('musicxml', f'data/reduced/{song_id}/{cat.replace(" ", "-")}.musicxml')
             p_bar.update(i)
             time.sleep(0.01)
 
@@ -138,7 +160,7 @@ def test_compute_similarity_values(song1, song2, cat='intervallic', degree=1.0, 
 if __name__ == '__main__':
 
     # parse_mei_songs() # DONE for the Portuguese songs :D
-    # reduce_songs()
+    reduce_songs()
 
     # test_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine')
-    test_compute_similarity_values(song1='data/parsed/PT-1998-BR-DM-021.json', song2='data/parsed/PT-1998-BR-DM-022.json')
+    # test_compute_similarity_values(song1='data/parsed/PT-1998-BR-DM-021.json', song2='data/parsed/PT-1998-BR-DM-022.json')

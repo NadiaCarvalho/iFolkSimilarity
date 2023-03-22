@@ -65,7 +65,7 @@ class Reduction:
     def __init__(self) -> None:
         pass
 
-    def reduce(self, song_features, reduction_type='intervallic', degree=0.75, distance='euclidean'):
+    def reduce(self, song_features, reduction_type='intervallic', degree=0.75, distance='euclidean', normalization='minmax', graphs=False):
         """
         Reduce Song Features according to specific type of reduction
 
@@ -88,7 +88,7 @@ class Reduction:
         elif reduction_type == 'intervallic':
             return self.reduce_intervallic(song_features, degree=degree)
         elif reduction_type == 'combined':
-            return self.reduce_combined(song_features, degree=degree)
+            return self.reduce_combined(song_features, degree=degree, distance=distance, normalization=normalization, graphs=graphs)
         else:
             raise ValueError('Reduction type not recognized')
 
@@ -162,37 +162,39 @@ class Reduction:
             song_features['features']['chromaticinterval'])], key=lambda x: x[1], reverse=True)
         return sorted([i for (i, _) in intervals[:int(len(intervals) * degree)]])
 
-    def reduce_combined(self, song_features, degree=0.75, distance='euclidean', graphs=False):
+    def reduce_combined(self, song_features, degree=0.75, distance='euclidean', normalization='minmax', graphs=False):
         """
         Reduce Song Features according to Combined Reduction
 
         @param song_features: Song Features
         @param degree: percentage of notes to be removed
         @param distance: distance function to be used ('euclidean' or 'cosine')
+        @param normalization: normalization function to be used ('minmax', 'linalg', 'zscore')
+        @param graphs: plot the graphs of the tonal, metrical and intervallic distances
 
         @return indexes_to_retrieve: Indexes of the notes to be retrieved
         """
         tonal_distances = get_tonal_distance(
             song_features['features']['midipitch'], distance)
-        normalized_tonal_distances = normalize(tonal_distances, alg="zscore")
+        normalized_tonal_distances = normalize(tonal_distances, alg=normalization)
 
         metrical_beats = np.asarray(song_features['features']['beatstrength'])
-        normalized_beats = normalize(metrical_beats, alg="zscore")
+        normalized_beats = normalize(metrical_beats, alg=normalization)
 
         intervals = np.asarray(song_features['features']['chromaticinterval'])
         intervals[intervals == None] = 0
-        normalized_intervals = normalize(list(np.abs(intervals)), alg="zscore")
+        normalized_intervals = normalize(list(np.abs(intervals)), alg=normalization)
 
         combined_weights = [(i, sum(values)/3.0) for i, values in enumerate(
             zip(normalized_tonal_distances, normalized_beats, normalized_intervals))]
 
         if graphs:
             self.plot_combined(song_features, normalized_tonal_distances,
-                               normalized_beats, normalized_intervals, combined_weights)
+                               normalized_beats, normalized_intervals, combined_weights, graphs)
 
         return sorted([i for (i, _) in sorted(combined_weights, key=lambda x: x[1], reverse=True)[:int(len(combined_weights) * degree)]])
 
-    def plot_combined(self, song_features, normalized_tonal_distances, normalized_beats, normalized_intervals, combined_weights):
+    def plot_combined(self, song_features, normalized_tonal_distances, normalized_beats, normalized_intervals, combined_weights, comb_name):
         """Plot the combined reduction values to verify best combined reduction weights"""
 
         with plt.style.context('Solarize_Light2'):  # type: ignore
@@ -224,6 +226,5 @@ class Reduction:
             for ax in axs.flat:  # type: ignore
                 ax.label_outer()
 
-            fig.savefig(
-                f'data/combined_graphs/{song_features["id"]}.png', dpi=300)
+            fig.savefig(comb_name, dpi=300)
             plt.close()

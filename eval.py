@@ -80,7 +80,7 @@ def parse_files(category='binary'):
                 dump_json_features(category, f'{song}-{key}', song_features)
 
 
-def make_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine'):
+def make_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine', normalization='minmax', name=False):
     """Test Reduction for song"""
 
     from src.reduction import Reduction
@@ -97,46 +97,61 @@ def make_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', di
 
     all_reduction_score = m21.stream.Score()  # type: ignore
     all_reduction_score.metadata = m21.metadata.Metadata(
-        title=f'{cat.capitalize()} Reduction {f"({distance} distance)" if cat in ["tonal", "combined"]  else ""} \n song {song_id}')
+        title=f'{cat.capitalize()} Reduc. {f"({distance} distance)," if cat in ["tonal", "combined"]  else ""} {f" Norm. {normalization}," if cat == "combined" else ""} \n song {song_id}')
+
+    indexes = {}
 
     for deg in cat_degrees:
         indexes_reduction = reduction.reduce(
-            song_features, reduction_type=cat, degree=deg, distance=distance)
+            song_features, reduction_type=cat, degree=deg, distance=distance, normalization=normalization, graphs=name)
         reduced_song = reduction.show_reduced_song(
             song_features, indexes_reduction, name=f'Degree: {f"{str(int(deg*100))}%" if cat != "metrical" else f"{str(deg)}"}')
         all_reduction_score.insert(0.0, reduced_song)
+
+        indexes[deg] = indexes_reduction
 
     path = song[:-5].replace('parsed', 'reductions')
     os.makedirs(path, exist_ok=True)
 
     all_reduction_score.write(
-        'musicxml', f'{path}/{song_id}-{cat}-{distance}.xml')
+        'musicxml', f'{path}/{song_id}-{cat}{f"-{distance}" if cat in ["tonal", "combined"] else ""}{f"-{normalization}" if cat == "combined" else ""}.xml')
+
+    return indexes
 
 
 def reduce_all_songs(category='binary'):
     """
     Reduce all songs in data/{category}/parsed
     """
+    all_indexes = {}
+
     for song in sorted(SONGS_TO_EVAL[category.upper()]):
         if song[-3:] != '-v1' and song[-3:] != '-v2':
             song = song + '-v1'
 
+        all_indexes[song] = {}
+
         for cat in ['metrical', 'intervallic']:
-            make_reduction(
+            all_indexes[song][cat] = make_reduction(
                 song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat)
 
-        for cat in ['tonal', 'combined']:
-            for distance in ['cosine', 'euclidean']:
-                make_reduction(
-                    song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat, distance=distance)
+        os.makedirs(f'eval_data/{category.lower()}/combined_graphs/{song}', exist_ok=True)
 
+        for cat in ['tonal', 'combined']:
+            all_indexes[song][cat] = {}
+            for distance in ['cosine', 'euclidean']:
+                if cat == 'tonal':
+                    all_indexes[song][cat][distance] = make_reduction(
+                        song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat, distance=distance)
+                else:
+                    all_indexes[song][cat][distance] = {}
+                    for norm in ['minmax', 'zscore']:
+                        all_indexes[song][cat][distance][norm] = make_reduction(
+                            song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat, distance=distance, normalization=norm, name=f'eval_data/{category.lower()}/combined_graphs/{song}/{song}-{distance}-{norm}.png')
+
+    json.dump(all_indexes, open(
+        f'eval_data/{category.lower()}/reductions.json', 'w'), ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
-
-    # parse_files('binary')
     # parse_files('ternary')
-
-    make_reduction(song='eval_data/binary/parsed/PT-1998-XX-DM-001-v1.json',
-                   cat='metrical', distance='cosine')
-
     reduce_all_songs('ternary')

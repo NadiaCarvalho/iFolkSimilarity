@@ -2,10 +2,10 @@
 <!DOCTYPE score-partwise  PUBLIC "-//Recordare//DTD MusicXML 3.1 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="3.1">
   <work>
-    <work-title>Tonal Reduction (euclidean distance) 
+    <work-title>Tonal Reduc. (euclidean distance),  
  song PT-1999-XX-DM-011-v1</work-title>
   </work>
-  <movement-title>Tonal Reduction (euclidean distance) 
+  <movement-title>Tonal Reduc. (euclidean distance),  
  song PT-1999-XX-DM-011-v1</movement-title>
   <identification>
     <creator type="composer">Music21</creator>
@@ -21,24 +21,24 @@
     </scaling>
   </defaults>
   <part-list>
-    <score-part id="Pb488bf07c4b60bd3d3290d535584e978">
+    <score-part id="Pa41c4d80820fca847888049e831e606c">
       <part-name>Degree: 100%</part-name>
     </score-part>
-    <score-part id="P90504170cd3ba3beaf64de3f363c7943">
+    <score-part id="P59272cbe1ca41a97fc33909a3b033242">
       <part-name>Degree: 75%</part-name>
     </score-part>
-    <score-part id="P97665ec40bd10d29d6174e2be4ae8fd5">
+    <score-part id="Pea33f8287f520202021cf2255f447c1e">
       <part-name>Degree: 50%</part-name>
     </score-part>
-    <score-part id="P8c79e2814fc1e6c0971566ab1c0f594d">
+    <score-part id="Pf79c2872ef2aabd033f908eb78ebda0c">
       <part-name>Degree: 25%</part-name>
     </score-part>
-    <score-part id="P9a08bd43a6bd5a4c89b528e4b9b6137e">
+    <score-part id="Pe0e8ea7d05f711db119c6f74f34eefb6">
       <part-name>Degree: 10%</part-name>
     </score-part>
   </part-list>
   <!--=========================== Part 1 ===========================-->
-  <part id="Pb488bf07c4b60bd3d3290d535584e978">
+  <part id="Pa41c4d80820fca847888049e831e606c">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -757,7 +757,7 @@
     </measure>
   </part>
   <!--=========================== Part 2 ===========================-->
-  <part id="P90504170cd3ba3beaf64de3f363c7943">
+  <part id="P59272cbe1ca41a97fc33909a3b033242">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -1373,7 +1373,7 @@
     </measure>
   </part>
   <!--=========================== Part 3 ===========================-->
-  <part id="P97665ec40bd10d29d6174e2be4ae8fd5">
+  <part id="Pea33f8287f520202021cf2255f447c1e">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -1891,7 +1891,7 @@
     </measure>
   </part>
   <!--=========================== Part 4 ===========================-->
-  <part id="P8c79e2814fc1e6c0971566ab1c0f594d">
+  <part id="Pf79c2872ef2aabd033f908eb78ebda0c">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -2358,7 +2358,7 @@
     </measure>
   </part>
   <!--=========================== Part 5 ===========================-->
-  <part id="P9a08bd43a6bd5a4c89b528e4b9b6137e">
+  <part id="Pe0e8ea7d05f711db119c6f74f34eefb6">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>

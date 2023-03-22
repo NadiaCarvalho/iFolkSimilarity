@@ -2,3 +2,8 @@
 old_code/*
 data/combined_graphs*/*
 data/reduced/*
+
+eval_data/**/*.pdf
+eval_data/**/combined_graphs
+
+eval_data/**/.DS_Store

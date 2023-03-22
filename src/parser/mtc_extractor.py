@@ -6,6 +6,7 @@ Created on Mon Feb 13 15:45:52 2023
 """
 
 from collections import defaultdict
+import copy
 
 import converter21 as c21
 import music21 as m21
@@ -73,42 +74,61 @@ class MTCExtractor():
         """
         Process Music21 stream to extract JSON data
         """
-        try:
-            measure = self.music_stream.recurse().getElementsByClass(m21.stream.Measure)[0]  # type: ignore
-            if measure.barDurationProportion() < 1:
-                duration_to_shift = measure.barDuration.quarterLength * (1 - measure.barDurationProportion())
-                self.music_stream.shiftElements(duration_to_shift)
-        except:
-            print('Error getting measure 0')
+        chords = self.music_stream.recurse().getElementsByClass(m21.chord.Chord)  # type: ignore
+        if len(chords) > 0:
+            voices_to_create = max(len(chord.pitches) for chord in chords)
+            for measure in self.music_stream.recurse().getElementsByClass(m21.stream.Measure): # type: ignore
+                if len(measure.voices) != voices_to_create:
+                    new_voice = copy.deepcopy(measure.voices[-1])
+                    new_voice.id = len(measure.voices) + 1
+                    measure.insert(0, new_voice) # type: ignore
+                for voice in measure.voices:
+                    for chord in voice.recurse().getElementsByClass(m21.chord.Chord): # type: ignore
+                        if len(chord.pitches) > 1:
+                            p = chord.pitches[int(voice.id)-1]
+                            new_chord = m21.note.Note(p, duration=chord.duration) # type: ignore
+                            voice.replace(chord, new_chord) # type: ignore
 
-        return self.process_inside_stream()
+        self.music_stream = self.music_stream.voicesToParts(separateById=True)
+        return [self.process_inside_stream(part) for part in self.music_stream.parts]
 
-    def process_inside_stream(self):
+    def process_inside_stream(self, part=None):
         """
         Process Music21 stream to extract JSON data
         """
+        if part is None:
+            part = self.music_stream
+
+        try:
+            measure = part.recurse().getElementsByClass(m21.stream.Measure)[0]  # type: ignore
+            if measure.barDurationProportion() < 1:
+                duration_to_shift = measure.barDuration.quarterLength * (1 - measure.barDurationProportion())
+                part.shiftElements(duration_to_shift)
+        except:
+            print('Error getting measure 0')
+
         try:
             features = defaultdict(list)
 
             # Scale/Key Features
-            features.update(PitchExtractor(self.music_stream,
+            features.update(PitchExtractor(part,
                             self.metadata).get_all_features())
 
             # Metric Features
             features.update(MetricExtractor(
-                self.music_stream).get_all_features())
+                part).get_all_features())
 
             # Phrasic Features
-            features.update(PhraseExtractor(self.music_stream,
+            features.update(PhraseExtractor(part,
                             self.metadata).get_all_features())
 
             # Derived Features
-            features.update(IOIExtractor(self.music_stream,
+            features.update(IOIExtractor(part,
                             features).get_all_features())
-            features.update(GPRExtractor(self.music_stream,
+            features.update(GPRExtractor(part,
                             features).get_all_features())
             features.update(LBDMExtractor(
-                self.music_stream, features).get_all_features())
+                part, features).get_all_features())
 
             return features
         except Exception as e:

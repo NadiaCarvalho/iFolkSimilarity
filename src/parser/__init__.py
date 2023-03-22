@@ -99,26 +99,35 @@ class MeiParser:
         self.mtc_extractor = MTCExtractor(path, root, music_metadata)
         features = self.mtc_extractor.process_stream()
         if features:
-            music_dict = defaultdict(list)
+            if isinstance(features, dict):
+                return self.get_whole_dict(metadata, music_metadata, features)
 
-            for cat, value in metadata.items():
-                for key in value:
-                    if cat == 'source_desc' and key in music_dict:
-                        music_dict[f'source_{key}'] = value[key]
-                    elif cat == 'title_stmt' and key in music_dict:
-                        music_dict[f'title_{key}'] = value[key]
-                    else:
-                        music_dict[key] = value[key]
-            music_dict.update(music_metadata)
-
-            music_dict['type'] = self.mtc_extractor.has_lyrics() # type: ignore
-            music_dict['freemeter'] = not self.mtc_extractor.has_meter() # type: ignore
-
-            music_dict.update({'features': features}) # type: ignore
-
-            return music_dict
+            voice_features = {}
+            for i, feature_voice in enumerate(features):
+                voice_features[f'v{i+1}'] = self.get_whole_dict(metadata, music_metadata, feature_voice)
+            return voice_features
 
         return None
+
+    def get_whole_dict(self, metadata, music_metadata, features):
+        music_dict = defaultdict(list)
+
+        for cat, value in metadata.items():
+            for key in value:
+                if cat == 'source_desc' and key in music_dict:
+                    music_dict[f'source_{key}'] = value[key]
+                elif cat == 'title_stmt' and key in music_dict:
+                    music_dict[f'title_{key}'] = value[key]
+                else:
+                    music_dict[key] = value[key]
+        music_dict.update(music_metadata)
+
+        music_dict['type'] = self.mtc_extractor.has_lyrics() # type: ignore
+        music_dict['freemeter'] = not self.mtc_extractor.has_meter() # type: ignore
+
+        music_dict.update({'features': features}) # type: ignore
+
+        return music_dict
 
     def get_metadata(self, root):
         """

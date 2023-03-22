@@ -113,6 +113,12 @@ class Reduction:
             duration=dur, offset=off) for note, dur, off in zip(notes, durations, offsets)]
 
         m21_stream = m21.stream.Part(m21_notes)  # type: ignore
+        if offsets[0] != 0.0:
+            m21_stream.shiftElements(offsets[0])
+
+        m21_stream.insert(0, m21.meter.TimeSignature( # type: ignore
+            value=song_features['features']['timesignature'][0]))
+
         if name:
             m21_stream.partName = name
         return m21_stream
@@ -174,8 +180,8 @@ class Reduction:
         normalized_beats = normalize(metrical_beats, alg="zscore")
 
         intervals = np.asarray(song_features['features']['chromaticinterval'])
-        intervals[intervals == None] = 0.0
-        normalized_intervals = normalize(np.abs(intervals), alg="zscore")
+        intervals[intervals == None] = 0
+        normalized_intervals = normalize(list(np.abs(intervals)), alg="zscore")
 
         combined_weights = [(i, sum(values)/3.0) for i, values in enumerate(
             zip(normalized_tonal_distances, normalized_beats, normalized_intervals))]
@@ -196,19 +202,19 @@ class Reduction:
             ((ax1, ax2), (ax3, ax4)) = axs
 
             ax1.scatter(range(len(normalized_tonal_distances)),
-                              normalized_tonal_distances, label='tonal', color='red')  # type: ignore
+                        normalized_tonal_distances, label='tonal', color='red')  # type: ignore
             ax1.set_title('Tonal Distance')  # type: ignore
 
             ax2.scatter(range(len(normalized_beats)), normalized_beats,
-                              label='metrical', color='green')  # type: ignore
+                        label='metrical', color='green')  # type: ignore
             ax2.set_title('Metrical Distance')  # type: ignore
 
             ax3.scatter(range(len(normalized_intervals)), normalized_intervals,
-                              label='intervallic', color='blue')  # type: ignore
+                        label='intervallic', color='blue')  # type: ignore
             ax3.set_title('Intervallic Distance')  # type: ignore
 
             ax4.scatter(range(len(combined_weights)), [
-                              i[1] for i in combined_weights], label='combined', color='black')  # type: ignore
+                i[1] for i in combined_weights], label='combined', color='black')  # type: ignore
             ax4.set_title('Combined Distance')  # type: ignore
 
             for ax in axs.flat:  # type: ignore

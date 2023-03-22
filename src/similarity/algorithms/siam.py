@@ -95,7 +95,7 @@ def print_lexicographical_table(vector_table, seq_2):
               ', '.join([f"{np.array(seq_2[i])}" for i in indexes]))
 
 
-def SIAM(song1, song2):
+def siam_score(song1, song2):
     """
     Structure induction algorithms's pattern matching algorithm
 

@@ -156,11 +156,11 @@ def test_compute_similarity_values(song1, song2, cat='intervallic', degree=1.0, 
 
     print(score)
 
-
 if __name__ == '__main__':
 
     # parse_mei_songs() # DONE for the Portuguese songs :D
-    reduce_songs()
+    #reduce_songs()
 
-    # test_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine')
+    test_reduction(song='data/parsed/PT-1998-XX-DM-002.json', cat='combined', distance='cosine')
     # test_compute_similarity_values(song1='data/parsed/PT-1998-BR-DM-021.json', song2='data/parsed/PT-1998-BR-DM-022.json')
+

@@ -34,7 +34,7 @@ class SimilarityCalculator:
 
         return np.asarray(features).transpose()
 
-    def get_song_features(self, song1, features=['midipitch', 'onsettick']):
+    def get_song_features(self, song1, features=None):
         """
         Get features from song and reduce them
 
@@ -94,14 +94,14 @@ class SimilarityCalculator:
         elif algorithm == 'local_alignment_score':
             return sim_algorithms.local_alignment_score(
                 self.get_song_features(
-                song1, features=['midipitch', 'onsettick']),
+                song1, features=['midipitch', 'offset']),
                 self.get_song_features(
-                song2, features=['midipitch', 'onsettick']))
+                song2, features=['midipitch', 'offset']))
         elif algorithm == 'siam_score':
-            return sim_algorithms.siam(
+            return sim_algorithms.siam_score(
                 self.get_song_features(
-                song1, features=['midipitch', 'onsettick']),
+                song1, features=['midipitch', 'offset', 'duration', 'beatstrength', 'chromaticinterval']),
                 self.get_song_features(
-                song2, features=['midipitch', 'onsettick']))
+                song2, features=['midipitch', 'offset', 'duration', 'beatstrength', 'chromaticinterval']))
         else:
             raise ValueError(f'Invalid algorithm "{algorithm}"')

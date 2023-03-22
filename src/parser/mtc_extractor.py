@@ -74,6 +74,20 @@ class MTCExtractor():
         Process Music21 stream to extract JSON data
         """
         try:
+            measure = self.music_stream.recurse().getElementsByClass(m21.stream.Measure)[0]  # type: ignore
+            if measure.barDurationProportion() < 1:
+                duration_to_shift = measure.barDuration.quarterLength * (1 - measure.barDurationProportion())
+                self.music_stream.shiftElements(duration_to_shift)
+        except:
+            print('Error getting measure 0')
+
+        return self.process_inside_stream()
+
+    def process_inside_stream(self):
+        """
+        Process Music21 stream to extract JSON data
+        """
+        try:
             features = defaultdict(list)
 
             # Scale/Key Features

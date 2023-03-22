@@ -5,7 +5,7 @@ Created on Mon Feb 27 12:57:13 2023
 """
 import numpy as np
 
-from src.similarity.algorithms import cardinality_score
+import src.similarity.algorithms as sim_algorithms
 
 class SimilarityCalculator:
     """
@@ -18,6 +18,11 @@ class SimilarityCalculator:
     def get_features(self, song, feature_list=None):
         """
         Get features from song
+
+        @param song: song
+        @param feature_list: list of features to get
+
+        @return: features
         """
         if feature_list is None or len(feature_list) == 0:
             feature_list = ['pitch', 'duration', 'midipitch', 'chromaticinterval', 'ioi', 'timesignature',
@@ -28,6 +33,17 @@ class SimilarityCalculator:
             features.append(song['features'][feature])
 
         return np.asarray(features).transpose()
+
+    def get_song_features(self, song1, features=['midipitch', 'onsettick']):
+        """
+        Get features from song and reduce them
+
+        @param song1: song (features, reduction)
+        @param features: list of features to get
+        """
+        song_features, song_reduction = song1
+        song_features = self.get_features(song_features, features)
+        return song_features[song_reduction, :]
 
     def similarity_between_two_songs(self, song1, song2, algorithm='cardinality_score'):
         """
@@ -45,28 +61,47 @@ class SimilarityCalculator:
                 - 'local_alignment_score', Local Alignment Algorithm
                 - 'siam_score', Structure Induction Matching Algorithm
         """
-        song1_features, song1_reduction = song1
-        song2_features, song2_reduction = song2
-
         if algorithm == 'cardinality_score':
-            song1_features = self.get_features(song1_features, ['midipitch', 'onsettick'])
-            song1_features = song1_features[song1_reduction, :]
-
-            song2_features = self.get_features(song2_features, ['midipitch', 'onsettick'])
-            song2_features = song2_features[song2_reduction, :]
-
-            return cardinality_score(song1_features, song2_features)
+            return sim_algorithms.correlation_distance(
+                self.get_song_features(
+                song1, features=['midipitch', 'onsettick']),
+                self.get_song_features(
+                song2, features=['midipitch', 'onsettick']))
         elif algorithm == 'correlation_distance':
-            pass
+            return sim_algorithms.correlation_distance(
+                self.get_song_features(
+                song1, features=['midipitch']),
+                self.get_song_features(
+                song2, features=['midipitch']))
         elif algorithm == 'city_block_distance':
-            pass
+            return sim_algorithms.cityblock_distance(
+                self.get_song_features(
+                song1, features=['midipitch']),
+                self.get_song_features(
+                song2, features=['midipitch']))
         elif algorithm == 'euclidean_distance':
-            pass
+            return sim_algorithms.euclidean_distance(
+                self.get_song_features(
+                song1, features=['midipitch']),
+                self.get_song_features(
+                song2, features=['midipitch']))
         elif algorithm == 'hamming_distance':
-            pass
+            return sim_algorithms.hamming_distance(
+                self.get_song_features(
+                song1, features=['midipitch']),
+                self.get_song_features(
+                song2, features=['midipitch']))
         elif algorithm == 'local_alignment_score':
-            pass
+            return sim_algorithms.local_alignment_score(
+                self.get_song_features(
+                song1, features=['midipitch', 'onsettick']),
+                self.get_song_features(
+                song2, features=['midipitch', 'onsettick']))
         elif algorithm == 'siam_score':
-            pass
+            return sim_algorithms.siam(
+                self.get_song_features(
+                song1, features=['midipitch', 'onsettick']),
+                self.get_song_features(
+                song2, features=['midipitch', 'onsettick']))
         else:
             raise ValueError(f'Invalid algorithm "{algorithm}"')

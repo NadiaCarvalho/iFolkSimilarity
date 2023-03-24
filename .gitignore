@@ -6,5 +6,7 @@ data/reduced/*
 eval_data/**/*.pdf
 eval_data/**/combined_graphs
 eval_data/**/similarity
+eval_data/annotations/
 
 eval_data/**/.DS_Store
+eval_data/.DS_Store

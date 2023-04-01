@@ -26,9 +26,13 @@ def cardinality_score(song1, song2):
 
     number_intersections = len(song1_set.intersection(song2_set))
 
-    if len(song1_set) < len(song2_set):
+    if len(song1_set) < len(song2_set) and len(song1_set) != 0:
         return number_intersections / len(song1_set)
-    return number_intersections / len(song2_set)
+
+    if len(song2_set) != 0:
+        return number_intersections / len(song2_set)
+
+    return 0
 
 
 def correlation_distance(song1, song2):

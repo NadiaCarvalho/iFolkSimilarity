@@ -145,6 +145,9 @@ def make_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', di
     song_id = song.split('/')[-1].split('.')[0]
     song_features = json.load(open(song, 'r'))
 
+    return reduce_features(song, cat, distance, normalization, name, reduction, song_id, song_features)
+
+def reduce_features(song, cat, distance, normalization, name, reduction, song_id, song_features):
     cat_degrees = [1.0, 0.75, 0.5, 0.25, 0.1]
     if cat == 'metrical':
         cat_degrees = [d/100 for d in range(0, 100, 25)]

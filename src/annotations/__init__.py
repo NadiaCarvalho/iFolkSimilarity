@@ -9,6 +9,7 @@ import os
 import glob
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 from scipy.stats import pearsonr, linregress
 
@@ -51,6 +52,27 @@ class AnnotationComparer:
         Constructor for AnnotationComparer
         """
         pass
+
+    def create_comparison_graphs(self, path, name='annotator 1'):
+        """
+        Creates graphs comparing an annotator's scores with every algorithm's scores for reduction levels
+        """
+        df = pd.read_excel(path, index_col=0, header=[0, 1, 2])
+        os.makedirs(
+            path[:-5] + '_graphs', exist_ok=True)
+
+        for reduction in df.columns.levels[0]: # type: ignore
+            if reduction != 'original':
+                to_plot = df[reduction].loc[:, (slice(None), "statistic")].T
+                to_plot.index = to_plot.index.droplevel(1)
+
+                to_plot.plot(title=f'{reduction} reduction', figsize=(15, 10))
+                plt.xlabel('Reduction level')
+                plt.ylabel(f'{"Pearson" if "pearson" in path else "R^2"} correlation')
+
+                plt.savefig(
+                    f'{path[:-5]}_graphs/{reduction.replace(" ", "-")}.png')
+                plt.close()
 
     def compare_annotations(self, annotator_scores, name='annotator 1'):
         """
@@ -97,6 +119,8 @@ class AnnotationComparer:
                 annote_values = [annotator_scores.loc[category, '_'.join(
                     song), 'Global'].iloc[0] for song in songs]
                 sim_values = [get_song_df(song, df) for song in songs]
+                if 'distance' in alg:
+                    sim_values = [1 - x for x in sim_values]
 
                 if (alg, cat, deg) not in anotes_all:
                     anotes_all[(alg, cat, deg)] = annote_values
@@ -118,6 +142,18 @@ class AnnotationComparer:
                 rsquared_comparison_df.loc[alg,
                                            (cat, deg, 'statistic')] = rsq[0]
                 rsquared_comparison_df.loc[alg, (cat, deg, 'p-value')] = rsq[1]
+
+            pearson_comparison_df.loc[:, ('original', '', 'statistic')
+                                      ] = pearson_comparison_df.loc[:, ('metrical', '0.0', 'statistic')]
+            pearson_comparison_df.loc[:, ('original', '', 'p-value')
+                                      ] = pearson_comparison_df.loc[:, ('metrical', '0.0', 'p-value')]
+            rsquared_comparison_df.loc[:, ('original', '', 'statistic')
+                                       ] = rsquared_comparison_df.loc[:, ('metrical', '0.0', 'statistic')]
+            rsquared_comparison_df.loc[:, ('original', '', 'p-value')
+                                       ] = rsquared_comparison_df.loc[:, ('metrical', '0.0', 'p-value')]
+
+            pearson_comparison_df.dropna(axis=1, how='all', inplace=True)
+            rsquared_comparison_df.dropna(axis=1, how='all', inplace=True)
 
             pearson_comparison_df.to_excel(
                 f'eval_data/annotations/{name}/{category.lower()}_pearson.xlsx')
@@ -144,6 +180,18 @@ class AnnotationComparer:
             pearson_comparison_df.loc[alg, (cat, deg, 'p-value')] = pearson[1]
             rsquared_comparison_df.loc[alg, (cat, deg, 'statistic')] = rsq[0]
             rsquared_comparison_df.loc[alg, (cat, deg, 'p-value')] = rsq[1]
+
+        pearson_comparison_df.loc[:, ('original', '', 'statistic')] = pearson_comparison_df.loc[:, (
+            'metrical', '0.0', 'statistic')]  # type: ignore
+        pearson_comparison_df.loc[:, ('original', '', 'p-value')] = pearson_comparison_df.loc[:,
+                                                                                              ('metrical', '0.0', 'p-value')]  # type: ignore
+        rsquared_comparison_df.loc[:, ('original', '', 'statistic')] = rsquared_comparison_df.loc[:, (
+            'metrical', '0.0', 'statistic')]  # type: ignore
+        rsquared_comparison_df.loc[:, ('original', '', 'p-value')] = rsquared_comparison_df.loc[:,
+                                                                                                ('metrical', '0.0', 'p-value')]  # type: ignore
+
+        pearson_comparison_df.dropna(axis=1, how='all', inplace=True)
+        rsquared_comparison_df.dropna(axis=1, how='all', inplace=True)
 
         pearson_comparison_df.to_excel(
             f'eval_data/annotations/{name}/pearson.xlsx')

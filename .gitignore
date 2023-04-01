@@ -10,3 +10,7 @@ eval_data/annotations/
 
 eval_data/**/.DS_Store
 eval_data/.DS_Store
+
+eval_data/MTCFeatures/
+
+MelodicOccurrences

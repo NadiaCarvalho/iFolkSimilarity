@@ -24,10 +24,13 @@ def normalize(array, alg='minmax'):
 
     @return: normalized vector
     """
+    if any(x is None for x in array):
+        array = [np.nan if x is None else x for x in array]
+
     if alg == 'minmax':
         return (array-np.min(array))/(np.max(array)-np.min(array))
     elif alg == 'linalg':
-        return array/np.linalg.norm(array)
+        return array/np.linalg.norm(array)  # type: ignore
     elif alg == 'zscore':
         return scipy.stats.zscore(array)
     else:
@@ -106,18 +109,41 @@ class Reduction:
                  feat in enumerate(song_features['features']['pitch'])]
         durations = [m21.duration.Duration(quarterLength=float(Fraction(dur))) if dur != '0.0' else m21.duration.GraceDuration(
             0.25) for dur in song_features['features']['duration']]
-        offsets = [float(Fraction(offset))
-                   for offset in song_features['features']['offsets']]
+
+        last_ts = song_features['features']['timesignature'][0]
+        time_signature = m21.meter.TimeSignature(  # type: ignore
+            last_ts)
+
+        if 'offsets' in song_features['features']:
+            offsets = [float(Fraction(offset))
+                       for offset in song_features['features']['offsets']]
+        elif 'beatinsong' in song_features['features'] and all(song_features['features']['beatinsong']):
+            offsets = [float(Fraction(offset)) for offset in song_features['features']['beatinsong']]
+            if offsets[0] != 0.0:
+                offsets = [offset + time_signature.barDuration.quarterLength for offset in offsets]
+        else:
+            offsets = []
+            for i, _ in enumerate(durations):
+                if i == 0:
+                    offsets = [0.0]
+                else:
+                    offsets.append(offsets[i-1] + durations[i-1].quarterLength)
 
         m21_notes = [m21.note.Note(pitch=note, duration=dur, offset=off) if note != 'REMOVED' else m21.note.Rest(
             duration=dur, offset=off) for note, dur, off in zip(notes, durations, offsets)]
 
         m21_stream = m21.stream.Part(m21_notes)  # type: ignore
+
         if offsets[0] != 0.0:
             m21_stream.shiftElements(offsets[0])
 
-        m21_stream.insert(0, m21.meter.TimeSignature( # type: ignore
-            value=song_features['features']['timesignature'][0]))
+        m21_stream.insert(0, time_signature)
+
+        for i, ts in enumerate(song_features['features']['timesignature'][1:]):
+            if ts != last_ts:
+                m21_stream.insert(offsets[i+1], m21.meter.TimeSignature(  # type: ignore
+                    ts))
+                last_ts = ts
 
         if name:
             m21_stream.partName = name
@@ -146,7 +172,7 @@ class Reduction:
 
         @return indexes_to_retrieve: Indexes of the notes to be retrieved
         """
-        return [i for i, beat_strength in enumerate(song_features['features']['beatstrength']) if beat_strength >= degree]
+        return [i for i, beat_strength in enumerate(song_features['features']['beatstrength']) if beat_strength is not None and beat_strength >= degree]
 
     def reduce_intervallic(self, song_features, degree=0.75):
         """
@@ -176,25 +202,27 @@ class Reduction:
         """
         tonal_distances = get_tonal_distance(
             song_features['features']['midipitch'], distance)
-        normalized_tonal_distances = normalize(tonal_distances, alg=normalization)
+        normalized_tonal_distances = normalize(
+            tonal_distances, alg=normalization)
 
         metrical_beats = np.asarray(song_features['features']['beatstrength'])
         normalized_beats = normalize(metrical_beats, alg=normalization)
 
         intervals = np.asarray(song_features['features']['chromaticinterval'])
         intervals[intervals == None] = 0
-        normalized_intervals = normalize(list(np.abs(intervals)), alg=normalization)
+        normalized_intervals = normalize(
+            list(np.abs(intervals)), alg=normalization)
 
         combined_weights = [(i, sum(values)/3.0) for i, values in enumerate(
             zip(normalized_tonal_distances, normalized_beats, normalized_intervals))]
 
         if graphs:
-            self.plot_combined(song_features, normalized_tonal_distances,
+            self.plot_combined(normalized_tonal_distances,
                                normalized_beats, normalized_intervals, combined_weights, graphs)
 
         return sorted([i for (i, _) in sorted(combined_weights, key=lambda x: x[1], reverse=True)[:int(len(combined_weights) * degree)]])
 
-    def plot_combined(self, song_features, normalized_tonal_distances, normalized_beats, normalized_intervals, combined_weights, comb_name):
+    def plot_combined(self, normalized_tonal_distances, normalized_beats, normalized_intervals, combined_weights, comb_name):
         """Plot the combined reduction values to verify best combined reduction weights"""
 
         with plt.style.context('Solarize_Light2'):  # type: ignore

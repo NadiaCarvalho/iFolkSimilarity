@@ -10,7 +10,7 @@
   <identification>
     <creator type="composer">Music21</creator>
     <encoding>
-      <encoding-date>2023-03-22</encoding-date>
+      <encoding-date>2023-04-12</encoding-date>
       <software>music21 v.8.1.0</software>
     </encoding>
   </identification>
@@ -21,24 +21,21 @@
     </scaling>
   </defaults>
   <part-list>
-    <score-part id="P90e16ffc53f57a1c4f6311fa76c0ce5f">
+    <score-part id="P66f274a8b2b9e61311ca9e1cba67062c">
       <part-name>Degree: 100%</part-name>
     </score-part>
-    <score-part id="P2a64af02295c77b55da5f18c20ea2254">
+    <score-part id="Pc0471770f20a616bbea24d36de8229da">
       <part-name>Degree: 75%</part-name>
     </score-part>
-    <score-part id="P12b0d28bb1d9556929589fc16c5bdaba">
+    <score-part id="Pca1d15c912bd7de471252d00fc589751">
       <part-name>Degree: 50%</part-name>
     </score-part>
-    <score-part id="P9000518d0ee5625404156b2937b472fb">
+    <score-part id="P5544e4961e932ecb8ff4cb537dc21996">
       <part-name>Degree: 25%</part-name>
-    </score-part>
-    <score-part id="Pd33510a162140e5a6d3083e998f9dbff">
-      <part-name>Degree: 10%</part-name>
     </score-part>
   </part-list>
   <!--=========================== Part 1 ===========================-->
-  <part id="P90e16ffc53f57a1c4f6311fa76c0ce5f">
+  <part id="P66f274a8b2b9e61311ca9e1cba67062c">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -3737,7 +3734,7 @@
     </measure>
   </part>
   <!--=========================== Part 2 ===========================-->
-  <part id="P2a64af02295c77b55da5f18c20ea2254">
+  <part id="Pc0471770f20a616bbea24d36de8229da">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -3776,9 +3773,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 3 ==========================-->
@@ -3800,10 +3802,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -3823,10 +3822,7 @@
     <!--========================= Measure 5 ==========================-->
     <measure number="5">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -3842,9 +3838,14 @@
     <!--========================= Measure 6 ==========================-->
     <measure number="6">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -3858,10 +3859,7 @@
     <!--========================= Measure 7 ==========================-->
     <measure number="7">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -3874,9 +3872,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 8 ==========================-->
@@ -3928,9 +3931,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 11 =========================-->
@@ -3952,10 +3960,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -3975,10 +3980,7 @@
     <!--========================= Measure 13 =========================-->
     <measure number="13">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -3994,9 +3996,14 @@
     <!--========================= Measure 14 =========================-->
     <measure number="14">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -4010,10 +4017,7 @@
     <!--========================= Measure 15 =========================-->
     <measure number="15">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4026,9 +4030,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 16 =========================-->
@@ -4080,9 +4089,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 19 =========================-->
@@ -4104,10 +4118,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4127,10 +4138,7 @@
     <!--========================= Measure 21 =========================-->
     <measure number="21">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -4146,9 +4154,14 @@
     <!--========================= Measure 22 =========================-->
     <measure number="22">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -4162,10 +4175,7 @@
     <!--========================= Measure 23 =========================-->
     <measure number="23">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4178,9 +4188,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 24 =========================-->
@@ -4232,9 +4247,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 27 =========================-->
@@ -4256,10 +4276,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4279,10 +4296,7 @@
     <!--========================= Measure 29 =========================-->
     <measure number="29">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -4298,9 +4312,14 @@
     <!--========================= Measure 30 =========================-->
     <measure number="30">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -4314,10 +4333,7 @@
     <!--========================= Measure 31 =========================-->
     <measure number="31">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4330,9 +4346,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 32 =========================-->
@@ -4384,9 +4405,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 35 =========================-->
@@ -4408,10 +4434,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4431,10 +4454,7 @@
     <!--========================= Measure 37 =========================-->
     <measure number="37">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -4450,9 +4470,14 @@
     <!--========================= Measure 38 =========================-->
     <measure number="38">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -4466,10 +4491,7 @@
     <!--========================= Measure 39 =========================-->
     <measure number="39">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4482,9 +4504,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 40 =========================-->
@@ -4536,9 +4563,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 43 =========================-->
@@ -4560,10 +4592,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4583,10 +4612,7 @@
     <!--========================= Measure 45 =========================-->
     <measure number="45">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -4602,9 +4628,14 @@
     <!--========================= Measure 46 =========================-->
     <measure number="46">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -4618,10 +4649,7 @@
     <!--========================= Measure 47 =========================-->
     <measure number="47">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4634,9 +4662,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 48 =========================-->
@@ -4688,9 +4721,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 51 =========================-->
@@ -4712,10 +4750,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4735,10 +4770,7 @@
     <!--========================= Measure 53 =========================-->
     <measure number="53">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -4754,9 +4786,14 @@
     <!--========================= Measure 54 =========================-->
     <measure number="54">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -4770,10 +4807,7 @@
     <!--========================= Measure 55 =========================-->
     <measure number="55">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4786,9 +4820,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 56 =========================-->
@@ -4840,9 +4879,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 59 =========================-->
@@ -4864,10 +4908,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4887,10 +4928,7 @@
     <!--========================= Measure 61 =========================-->
     <measure number="61">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -4906,9 +4944,14 @@
     <!--========================= Measure 62 =========================-->
     <measure number="62">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -4922,10 +4965,7 @@
     <!--========================= Measure 63 =========================-->
     <measure number="63">
       <note>
-        <pitch>
-          <step>G</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -4938,9 +4978,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 64 =========================-->
@@ -4992,9 +5037,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 67 =========================-->
@@ -5036,10 +5086,7 @@
     <!--========================= Measure 69 =========================-->
     <measure number="69">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -5055,9 +5102,14 @@
     <!--========================= Measure 70 =========================-->
     <measure number="70">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -5084,9 +5136,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 72 =========================-->
@@ -5138,9 +5195,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 75 =========================-->
@@ -5182,10 +5244,7 @@
     <!--========================= Measure 77 =========================-->
     <measure number="77">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -5201,9 +5260,14 @@
     <!--========================= Measure 78 =========================-->
     <measure number="78">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -5230,9 +5294,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 80 =========================-->
@@ -5284,9 +5353,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 83 =========================-->
@@ -5328,10 +5402,7 @@
     <!--========================= Measure 85 =========================-->
     <measure number="85">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -5347,9 +5418,14 @@
     <!--========================= Measure 86 =========================-->
     <measure number="86">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -5376,9 +5452,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 88 =========================-->
@@ -5430,9 +5511,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 91 =========================-->
@@ -5474,10 +5560,7 @@
     <!--========================= Measure 93 =========================-->
     <measure number="93">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -5493,9 +5576,14 @@
     <!--========================= Measure 94 =========================-->
     <measure number="94">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -5522,9 +5610,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 96 =========================-->
@@ -5576,9 +5669,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--========================= Measure 99 =========================-->
@@ -5620,10 +5718,7 @@
     <!--======================== Measure 101 =========================-->
     <measure number="101">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -5639,9 +5734,14 @@
     <!--======================== Measure 102 =========================-->
     <measure number="102">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -5668,9 +5768,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 104 =========================-->
@@ -5722,9 +5827,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 107 =========================-->
@@ -5766,10 +5876,7 @@
     <!--======================== Measure 109 =========================-->
     <measure number="109">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -5785,9 +5892,14 @@
     <!--======================== Measure 110 =========================-->
     <measure number="110">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -5814,9 +5926,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 112 =========================-->
@@ -5868,9 +5985,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 115 =========================-->
@@ -5912,10 +6034,7 @@
     <!--======================== Measure 117 =========================-->
     <measure number="117">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -5931,9 +6050,14 @@
     <!--======================== Measure 118 =========================-->
     <measure number="118">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -5960,9 +6084,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 120 =========================-->
@@ -6014,9 +6143,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 123 =========================-->
@@ -6058,10 +6192,7 @@
     <!--======================== Measure 125 =========================-->
     <measure number="125">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -6077,9 +6208,14 @@
     <!--======================== Measure 126 =========================-->
     <measure number="126">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -6106,9 +6242,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 128 =========================-->
@@ -6160,9 +6301,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 131 =========================-->
@@ -6204,10 +6350,7 @@
     <!--======================== Measure 133 =========================-->
     <measure number="133">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -6223,9 +6366,14 @@
     <!--======================== Measure 134 =========================-->
     <measure number="134">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -6252,9 +6400,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 136 =========================-->
@@ -6306,9 +6459,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 139 =========================-->
@@ -6350,10 +6508,7 @@
     <!--======================== Measure 141 =========================-->
     <measure number="141">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -6369,9 +6524,14 @@
     <!--======================== Measure 142 =========================-->
     <measure number="142">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -6398,9 +6558,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 144 =========================-->
@@ -6452,9 +6617,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 147 =========================-->
@@ -6496,10 +6666,7 @@
     <!--======================== Measure 149 =========================-->
     <measure number="149">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -6515,9 +6682,14 @@
     <!--======================== Measure 150 =========================-->
     <measure number="150">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -6544,9 +6716,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 152 =========================-->
@@ -6598,9 +6775,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 155 =========================-->
@@ -6642,10 +6824,7 @@
     <!--======================== Measure 157 =========================-->
     <measure number="157">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -6661,9 +6840,14 @@
     <!--======================== Measure 158 =========================-->
     <measure number="158">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -6690,9 +6874,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 160 =========================-->
@@ -6744,9 +6933,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 163 =========================-->
@@ -6788,10 +6982,7 @@
     <!--======================== Measure 165 =========================-->
     <measure number="165">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -6807,9 +6998,14 @@
     <!--======================== Measure 166 =========================-->
     <measure number="166">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -6836,9 +7032,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 168 =========================-->
@@ -6890,9 +7091,14 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 171 =========================-->
@@ -6934,10 +7140,7 @@
     <!--======================== Measure 173 =========================-->
     <measure number="173">
       <note>
-        <pitch>
-          <step>E</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -6953,9 +7156,14 @@
     <!--======================== Measure 174 =========================-->
     <measure number="174">
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
+        <accidental>flat</accidental>
       </note>
       <note>
         <pitch>
@@ -6982,9 +7190,14 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>B</step>
+          <alter>-1</alter>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
+        <accidental>flat</accidental>
       </note>
     </measure>
     <!--======================== Measure 176 =========================-->
@@ -7022,7 +7235,7 @@
     </measure>
   </part>
   <!--=========================== Part 3 ===========================-->
-  <part id="P12b0d28bb1d9556929589fc16c5bdaba">
+  <part id="Pca1d15c912bd7de471252d00fc589751">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -7053,10 +7266,7 @@
     <!--========================= Measure 2 ==========================-->
     <measure number="2">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7093,8 +7303,13 @@
     <!--========================= Measure 4 ==========================-->
     <measure number="4">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 5 ==========================-->
@@ -7153,10 +7368,7 @@
     <!--========================= Measure 8 ==========================-->
     <measure number="8">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7172,7 +7384,10 @@
     <!--========================= Measure 9 ==========================-->
     <measure number="9">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7188,10 +7403,7 @@
     <!--========================= Measure 10 =========================-->
     <measure number="10">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7228,8 +7440,13 @@
     <!--========================= Measure 12 =========================-->
     <measure number="12">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 13 =========================-->
@@ -7288,10 +7505,7 @@
     <!--========================= Measure 16 =========================-->
     <measure number="16">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7307,7 +7521,10 @@
     <!--========================= Measure 17 =========================-->
     <measure number="17">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7323,10 +7540,7 @@
     <!--========================= Measure 18 =========================-->
     <measure number="18">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7363,8 +7577,13 @@
     <!--========================= Measure 20 =========================-->
     <measure number="20">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 21 =========================-->
@@ -7423,10 +7642,7 @@
     <!--========================= Measure 24 =========================-->
     <measure number="24">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7442,7 +7658,10 @@
     <!--========================= Measure 25 =========================-->
     <measure number="25">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7458,10 +7677,7 @@
     <!--========================= Measure 26 =========================-->
     <measure number="26">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7498,8 +7714,13 @@
     <!--========================= Measure 28 =========================-->
     <measure number="28">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 29 =========================-->
@@ -7558,10 +7779,7 @@
     <!--========================= Measure 32 =========================-->
     <measure number="32">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7577,7 +7795,10 @@
     <!--========================= Measure 33 =========================-->
     <measure number="33">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7593,10 +7814,7 @@
     <!--========================= Measure 34 =========================-->
     <measure number="34">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7633,8 +7851,13 @@
     <!--========================= Measure 36 =========================-->
     <measure number="36">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 37 =========================-->
@@ -7693,10 +7916,7 @@
     <!--========================= Measure 40 =========================-->
     <measure number="40">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7712,7 +7932,10 @@
     <!--========================= Measure 41 =========================-->
     <measure number="41">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7728,10 +7951,7 @@
     <!--========================= Measure 42 =========================-->
     <measure number="42">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7768,8 +7988,13 @@
     <!--========================= Measure 44 =========================-->
     <measure number="44">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 45 =========================-->
@@ -7828,10 +8053,7 @@
     <!--========================= Measure 48 =========================-->
     <measure number="48">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7847,7 +8069,10 @@
     <!--========================= Measure 49 =========================-->
     <measure number="49">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7863,10 +8088,7 @@
     <!--========================= Measure 50 =========================-->
     <measure number="50">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7903,8 +8125,13 @@
     <!--========================= Measure 52 =========================-->
     <measure number="52">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 53 =========================-->
@@ -7963,10 +8190,7 @@
     <!--========================= Measure 56 =========================-->
     <measure number="56">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7982,7 +8206,10 @@
     <!--========================= Measure 57 =========================-->
     <measure number="57">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -7998,10 +8225,7 @@
     <!--========================= Measure 58 =========================-->
     <measure number="58">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8038,8 +8262,13 @@
     <!--========================= Measure 60 =========================-->
     <measure number="60">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 61 =========================-->
@@ -8098,10 +8327,7 @@
     <!--========================= Measure 64 =========================-->
     <measure number="64">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8117,7 +8343,10 @@
     <!--========================= Measure 65 =========================-->
     <measure number="65">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8133,10 +8362,7 @@
     <!--========================= Measure 66 =========================-->
     <measure number="66">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8173,8 +8399,13 @@
     <!--========================= Measure 68 =========================-->
     <measure number="68">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 69 =========================-->
@@ -8233,10 +8464,7 @@
     <!--========================= Measure 72 =========================-->
     <measure number="72">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8252,7 +8480,10 @@
     <!--========================= Measure 73 =========================-->
     <measure number="73">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8268,10 +8499,7 @@
     <!--========================= Measure 74 =========================-->
     <measure number="74">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8308,8 +8536,13 @@
     <!--========================= Measure 76 =========================-->
     <measure number="76">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 77 =========================-->
@@ -8368,10 +8601,7 @@
     <!--========================= Measure 80 =========================-->
     <measure number="80">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8387,7 +8617,10 @@
     <!--========================= Measure 81 =========================-->
     <measure number="81">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8403,10 +8636,7 @@
     <!--========================= Measure 82 =========================-->
     <measure number="82">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8443,8 +8673,13 @@
     <!--========================= Measure 84 =========================-->
     <measure number="84">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 85 =========================-->
@@ -8503,10 +8738,7 @@
     <!--========================= Measure 88 =========================-->
     <measure number="88">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8522,7 +8754,10 @@
     <!--========================= Measure 89 =========================-->
     <measure number="89">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8538,10 +8773,7 @@
     <!--========================= Measure 90 =========================-->
     <measure number="90">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8578,8 +8810,13 @@
     <!--========================= Measure 92 =========================-->
     <measure number="92">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--========================= Measure 93 =========================-->
@@ -8638,10 +8875,7 @@
     <!--========================= Measure 96 =========================-->
     <measure number="96">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8657,7 +8891,10 @@
     <!--========================= Measure 97 =========================-->
     <measure number="97">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8673,10 +8910,7 @@
     <!--========================= Measure 98 =========================-->
     <measure number="98">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8713,8 +8947,13 @@
     <!--======================== Measure 100 =========================-->
     <measure number="100">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 101 =========================-->
@@ -8773,10 +9012,7 @@
     <!--======================== Measure 104 =========================-->
     <measure number="104">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8792,7 +9028,10 @@
     <!--======================== Measure 105 =========================-->
     <measure number="105">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8808,10 +9047,7 @@
     <!--======================== Measure 106 =========================-->
     <measure number="106">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8848,8 +9084,13 @@
     <!--======================== Measure 108 =========================-->
     <measure number="108">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 109 =========================-->
@@ -8908,10 +9149,7 @@
     <!--======================== Measure 112 =========================-->
     <measure number="112">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8927,7 +9165,10 @@
     <!--======================== Measure 113 =========================-->
     <measure number="113">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8943,10 +9184,7 @@
     <!--======================== Measure 114 =========================-->
     <measure number="114">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -8983,8 +9221,13 @@
     <!--======================== Measure 116 =========================-->
     <measure number="116">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 117 =========================-->
@@ -9043,10 +9286,7 @@
     <!--======================== Measure 120 =========================-->
     <measure number="120">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9062,7 +9302,10 @@
     <!--======================== Measure 121 =========================-->
     <measure number="121">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9078,10 +9321,7 @@
     <!--======================== Measure 122 =========================-->
     <measure number="122">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9118,8 +9358,13 @@
     <!--======================== Measure 124 =========================-->
     <measure number="124">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 125 =========================-->
@@ -9178,10 +9423,7 @@
     <!--======================== Measure 128 =========================-->
     <measure number="128">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9197,7 +9439,10 @@
     <!--======================== Measure 129 =========================-->
     <measure number="129">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9213,10 +9458,7 @@
     <!--======================== Measure 130 =========================-->
     <measure number="130">
       <note>
-        <pitch>
-          <step>C</step>
-          <octave>5</octave>
-        </pitch>
+        <rest />
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9253,8 +9495,13 @@
     <!--======================== Measure 132 =========================-->
     <measure number="132">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 133 =========================-->
@@ -9329,7 +9576,10 @@
     <!--======================== Measure 137 =========================-->
     <measure number="137">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9382,8 +9632,13 @@
     <!--======================== Measure 140 =========================-->
     <measure number="140">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 141 =========================-->
@@ -9458,7 +9713,10 @@
     <!--======================== Measure 145 =========================-->
     <measure number="145">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9511,8 +9769,13 @@
     <!--======================== Measure 148 =========================-->
     <measure number="148">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 149 =========================-->
@@ -9587,7 +9850,10 @@
     <!--======================== Measure 153 =========================-->
     <measure number="153">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9640,8 +9906,13 @@
     <!--======================== Measure 156 =========================-->
     <measure number="156">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 157 =========================-->
@@ -9716,7 +9987,10 @@
     <!--======================== Measure 161 =========================-->
     <measure number="161">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9769,8 +10043,13 @@
     <!--======================== Measure 164 =========================-->
     <measure number="164">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 165 =========================-->
@@ -9845,7 +10124,10 @@
     <!--======================== Measure 169 =========================-->
     <measure number="169">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9898,8 +10180,13 @@
     <!--======================== Measure 172 =========================-->
     <measure number="172">
       <note>
-        <rest measure="yes" />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>30240</duration>
+        <type>half</type>
+        <dot />
       </note>
     </measure>
     <!--======================== Measure 173 =========================-->
@@ -9974,7 +10261,10 @@
     <!--======================== Measure 177 =========================-->
     <measure number="177">
       <note>
-        <rest />
+        <pitch>
+          <step>F</step>
+          <octave>4</octave>
+        </pitch>
         <duration>20160</duration>
         <type>half</type>
       </note>
@@ -9984,7 +10274,7 @@
     </measure>
   </part>
   <!--=========================== Part 4 ===========================-->
-  <part id="P9000518d0ee5625404156b2937b472fb">
+  <part id="P5544e4961e932ecb8ff4cb537dc21996">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -11713,7 +12003,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11738,7 +12031,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11751,7 +12047,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11764,7 +12063,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11782,7 +12084,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11795,7 +12100,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11816,12 +12124,18 @@
     <!--======================== Measure 115 =========================-->
     <measure number="115">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11846,7 +12160,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11859,7 +12176,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11872,7 +12192,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11890,7 +12213,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11903,7 +12229,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11924,12 +12253,18 @@
     <!--======================== Measure 123 =========================-->
     <measure number="123">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11954,7 +12289,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11967,7 +12305,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11980,7 +12321,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -11998,7 +12342,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12011,7 +12358,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12032,12 +12382,18 @@
     <!--======================== Measure 131 =========================-->
     <measure number="131">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12062,7 +12418,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12075,7 +12434,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12088,7 +12450,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12106,7 +12471,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12119,7 +12487,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12140,12 +12511,18 @@
     <!--======================== Measure 139 =========================-->
     <measure number="139">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12170,7 +12547,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12183,7 +12563,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12196,7 +12579,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12214,7 +12600,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12227,7 +12616,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12248,12 +12640,18 @@
     <!--======================== Measure 147 =========================-->
     <measure number="147">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12278,7 +12676,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12291,7 +12692,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12304,7 +12708,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12322,7 +12729,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12335,7 +12745,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12356,12 +12769,18 @@
     <!--======================== Measure 155 =========================-->
     <measure number="155">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12386,7 +12805,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12399,7 +12821,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12412,7 +12837,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12430,7 +12858,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12443,7 +12874,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12464,12 +12898,18 @@
     <!--======================== Measure 163 =========================-->
     <measure number="163">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12494,7 +12934,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12507,7 +12950,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12520,7 +12966,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12538,7 +12987,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12551,7 +13003,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12572,12 +13027,18 @@
     <!--======================== Measure 171 =========================-->
     <measure number="171">
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12602,7 +13063,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12615,7 +13079,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12628,7 +13095,10 @@
         <type>quarter</type>
       </note>
       <note>
-        <rest />
+        <pitch>
+          <step>A</step>
+          <octave>4</octave>
+        </pitch>
         <duration>10080</duration>
         <type>quarter</type>
       </note>
@@ -12646,2519 +13116,10 @@
         <type>half</type>
       </note>
       <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 177 =========================-->
-    <measure number="177">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <barline location="right">
-        <bar-style>light-heavy</bar-style>
-      </barline>
-    </measure>
-  </part>
-  <!--=========================== Part 5 ===========================-->
-  <part id="Pd33510a162140e5a6d3083e998f9dbff">
-    <!--========================= Measure 1 ==========================-->
-    <measure number="1">
-      <attributes>
-        <divisions>10080</divisions>
-        <time>
-          <beats>3</beats>
-          <beat-type>4</beat-type>
-        </time>
-        <clef>
-          <sign>G</sign>
-          <line>2</line>
-        </clef>
-      </attributes>
-      <note print-object="no" print-spacing="yes">
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
         <pitch>
           <step>A</step>
           <octave>4</octave>
         </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 2 ==========================-->
-    <measure number="2">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 3 ==========================-->
-    <measure number="3">
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 4 ==========================-->
-    <measure number="4">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 5 ==========================-->
-    <measure number="5">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 6 ==========================-->
-    <measure number="6">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 7 ==========================-->
-    <measure number="7">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 8 ==========================-->
-    <measure number="8">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 9 ==========================-->
-    <measure number="9">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 10 =========================-->
-    <measure number="10">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 11 =========================-->
-    <measure number="11">
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 12 =========================-->
-    <measure number="12">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 13 =========================-->
-    <measure number="13">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 14 =========================-->
-    <measure number="14">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 15 =========================-->
-    <measure number="15">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 16 =========================-->
-    <measure number="16">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 17 =========================-->
-    <measure number="17">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 18 =========================-->
-    <measure number="18">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 19 =========================-->
-    <measure number="19">
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 20 =========================-->
-    <measure number="20">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 21 =========================-->
-    <measure number="21">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 22 =========================-->
-    <measure number="22">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 23 =========================-->
-    <measure number="23">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 24 =========================-->
-    <measure number="24">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 25 =========================-->
-    <measure number="25">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 26 =========================-->
-    <measure number="26">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 27 =========================-->
-    <measure number="27">
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 28 =========================-->
-    <measure number="28">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 29 =========================-->
-    <measure number="29">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 30 =========================-->
-    <measure number="30">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 31 =========================-->
-    <measure number="31">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 32 =========================-->
-    <measure number="32">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 33 =========================-->
-    <measure number="33">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 34 =========================-->
-    <measure number="34">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 35 =========================-->
-    <measure number="35">
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 36 =========================-->
-    <measure number="36">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 37 =========================-->
-    <measure number="37">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 38 =========================-->
-    <measure number="38">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 39 =========================-->
-    <measure number="39">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 40 =========================-->
-    <measure number="40">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 41 =========================-->
-    <measure number="41">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 42 =========================-->
-    <measure number="42">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 43 =========================-->
-    <measure number="43">
-      <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 44 =========================-->
-    <measure number="44">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 45 =========================-->
-    <measure number="45">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 46 =========================-->
-    <measure number="46">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 47 =========================-->
-    <measure number="47">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 48 =========================-->
-    <measure number="48">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 49 =========================-->
-    <measure number="49">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 50 =========================-->
-    <measure number="50">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 51 =========================-->
-    <measure number="51">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 52 =========================-->
-    <measure number="52">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 53 =========================-->
-    <measure number="53">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 54 =========================-->
-    <measure number="54">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 55 =========================-->
-    <measure number="55">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 56 =========================-->
-    <measure number="56">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 57 =========================-->
-    <measure number="57">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 58 =========================-->
-    <measure number="58">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 59 =========================-->
-    <measure number="59">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 60 =========================-->
-    <measure number="60">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 61 =========================-->
-    <measure number="61">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 62 =========================-->
-    <measure number="62">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 63 =========================-->
-    <measure number="63">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 64 =========================-->
-    <measure number="64">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 65 =========================-->
-    <measure number="65">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 66 =========================-->
-    <measure number="66">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 67 =========================-->
-    <measure number="67">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 68 =========================-->
-    <measure number="68">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 69 =========================-->
-    <measure number="69">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 70 =========================-->
-    <measure number="70">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 71 =========================-->
-    <measure number="71">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 72 =========================-->
-    <measure number="72">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 73 =========================-->
-    <measure number="73">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 74 =========================-->
-    <measure number="74">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 75 =========================-->
-    <measure number="75">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 76 =========================-->
-    <measure number="76">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 77 =========================-->
-    <measure number="77">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 78 =========================-->
-    <measure number="78">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 79 =========================-->
-    <measure number="79">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 80 =========================-->
-    <measure number="80">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 81 =========================-->
-    <measure number="81">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 82 =========================-->
-    <measure number="82">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 83 =========================-->
-    <measure number="83">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 84 =========================-->
-    <measure number="84">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 85 =========================-->
-    <measure number="85">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 86 =========================-->
-    <measure number="86">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 87 =========================-->
-    <measure number="87">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 88 =========================-->
-    <measure number="88">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 89 =========================-->
-    <measure number="89">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 90 =========================-->
-    <measure number="90">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 91 =========================-->
-    <measure number="91">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 92 =========================-->
-    <measure number="92">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--========================= Measure 93 =========================-->
-    <measure number="93">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 94 =========================-->
-    <measure number="94">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 95 =========================-->
-    <measure number="95">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 96 =========================-->
-    <measure number="96">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 97 =========================-->
-    <measure number="97">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 98 =========================-->
-    <measure number="98">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--========================= Measure 99 =========================-->
-    <measure number="99">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 100 =========================-->
-    <measure number="100">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 101 =========================-->
-    <measure number="101">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 102 =========================-->
-    <measure number="102">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 103 =========================-->
-    <measure number="103">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 104 =========================-->
-    <measure number="104">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 105 =========================-->
-    <measure number="105">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 106 =========================-->
-    <measure number="106">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 107 =========================-->
-    <measure number="107">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 108 =========================-->
-    <measure number="108">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 109 =========================-->
-    <measure number="109">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 110 =========================-->
-    <measure number="110">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 111 =========================-->
-    <measure number="111">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 112 =========================-->
-    <measure number="112">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 113 =========================-->
-    <measure number="113">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 114 =========================-->
-    <measure number="114">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 115 =========================-->
-    <measure number="115">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 116 =========================-->
-    <measure number="116">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 117 =========================-->
-    <measure number="117">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 118 =========================-->
-    <measure number="118">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 119 =========================-->
-    <measure number="119">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 120 =========================-->
-    <measure number="120">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 121 =========================-->
-    <measure number="121">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 122 =========================-->
-    <measure number="122">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 123 =========================-->
-    <measure number="123">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 124 =========================-->
-    <measure number="124">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 125 =========================-->
-    <measure number="125">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 126 =========================-->
-    <measure number="126">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 127 =========================-->
-    <measure number="127">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 128 =========================-->
-    <measure number="128">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 129 =========================-->
-    <measure number="129">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 130 =========================-->
-    <measure number="130">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 131 =========================-->
-    <measure number="131">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 132 =========================-->
-    <measure number="132">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 133 =========================-->
-    <measure number="133">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 134 =========================-->
-    <measure number="134">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 135 =========================-->
-    <measure number="135">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 136 =========================-->
-    <measure number="136">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 137 =========================-->
-    <measure number="137">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 138 =========================-->
-    <measure number="138">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 139 =========================-->
-    <measure number="139">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 140 =========================-->
-    <measure number="140">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 141 =========================-->
-    <measure number="141">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 142 =========================-->
-    <measure number="142">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 143 =========================-->
-    <measure number="143">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 144 =========================-->
-    <measure number="144">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 145 =========================-->
-    <measure number="145">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 146 =========================-->
-    <measure number="146">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 147 =========================-->
-    <measure number="147">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 148 =========================-->
-    <measure number="148">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 149 =========================-->
-    <measure number="149">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 150 =========================-->
-    <measure number="150">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 151 =========================-->
-    <measure number="151">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 152 =========================-->
-    <measure number="152">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 153 =========================-->
-    <measure number="153">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 154 =========================-->
-    <measure number="154">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 155 =========================-->
-    <measure number="155">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 156 =========================-->
-    <measure number="156">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 157 =========================-->
-    <measure number="157">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 158 =========================-->
-    <measure number="158">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 159 =========================-->
-    <measure number="159">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 160 =========================-->
-    <measure number="160">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 161 =========================-->
-    <measure number="161">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 162 =========================-->
-    <measure number="162">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 163 =========================-->
-    <measure number="163">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 164 =========================-->
-    <measure number="164">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 165 =========================-->
-    <measure number="165">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 166 =========================-->
-    <measure number="166">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 167 =========================-->
-    <measure number="167">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 168 =========================-->
-    <measure number="168">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 169 =========================-->
-    <measure number="169">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 170 =========================-->
-    <measure number="170">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 171 =========================-->
-    <measure number="171">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 172 =========================-->
-    <measure number="172">
-      <note>
-        <rest measure="yes" />
-        <duration>30240</duration>
-      </note>
-    </measure>
-    <!--======================== Measure 173 =========================-->
-    <measure number="173">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 174 =========================-->
-    <measure number="174">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 175 =========================-->
-    <measure number="175">
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-      <note>
-        <rest />
-        <duration>10080</duration>
-        <type>quarter</type>
-      </note>
-    </measure>
-    <!--======================== Measure 176 =========================-->
-    <measure number="176">
-      <note>
-        <rest />
-        <duration>20160</duration>
-        <type>half</type>
-      </note>
-      <note>
-        <rest />
         <duration>10080</duration>
         <type>quarter</type>
       </note>

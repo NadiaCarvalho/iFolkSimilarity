@@ -18,14 +18,15 @@ def parse_mei_songs():
     from src.parser import MeiParser
     mei_parser = MeiParser()
 
-    mei_songs = sorted(glob.glob('data/original/*.mei'))
+    #mei_songs = sorted(glob.glob('data/original/*.mei'))
+    mei_songs = ['eval_data/binary/original/PT-1998-XX-DM-002.mei']
 
     for song in mei_songs:
         song_features = mei_parser.parse_mei(song)
         if song_features:
             try:
-                json.dump(song_features, open('data/parsed/' + song.split('/')
-                                              [-1].split('.')[0] + '.json', 'w'), ensure_ascii=False, indent=4)
+                json.dump(song_features, open(
+                    song.replace('original', 'parsed').replace('mei', 'json'), 'w'), ensure_ascii=False, indent=4)
             except:
                 print('Error parsing song: ' + song)
                 exc_type, exc_obj, exc_tb = sys.exc_info()
@@ -37,7 +38,7 @@ def parse_mei_songs():
             # View ties/ligatures in notes
 
 
-def test_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine'):
+def test_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine', normalization='minmax'):
     """Test Reduction for song"""
 
     from src.reduction import Reduction
@@ -58,12 +59,12 @@ def test_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', di
 
     for deg in cat_degrees:
         indexes_reduction = reduction.reduce(
-            song_features, reduction_type=cat, degree=deg, distance=distance)
+            song_features, reduction_type=cat, degree=deg, distance=distance, normalization=normalization)
         reduced_song = reduction.show_reduced_song(
             song_features, indexes_reduction, name=f'Degree: {f"{str(int(deg*100))}%" if cat != "metrical" else f"{str(deg)}"}')
         all_reduction_score.insert(0.0, reduced_song)
 
-    all_reduction_score.show()
+    # all_reduction_score.show()
 
 
 def reduce_songs():
@@ -158,9 +159,9 @@ def test_compute_similarity_values(song1, song2, cat='intervallic', degree=1.0, 
 
 if __name__ == '__main__':
 
-    # parse_mei_songs() # DONE for the Portuguese songs :D
+    parse_mei_songs() # DONE for the Portuguese songs :D
     #reduce_songs()
 
-    test_reduction(song='data/parsed/PT-1998-XX-DM-002.json', cat='combined', distance='cosine')
+    # test_reduction(song='data/parsed/PT-1998-XX-DM-002.json', cat='combined', distance='cosine', normalization='minmax')
     # test_compute_similarity_values(song1='data/parsed/PT-1998-BR-DM-021.json', song2='data/parsed/PT-1998-BR-DM-022.json')
 

@@ -10,7 +10,7 @@
   <identification>
     <creator type="composer">Music21</creator>
     <encoding>
-      <encoding-date>2023-03-22</encoding-date>
+      <encoding-date>2023-04-12</encoding-date>
       <software>music21 v.8.1.0</software>
     </encoding>
   </identification>
@@ -21,21 +21,21 @@
     </scaling>
   </defaults>
   <part-list>
-    <score-part id="Pebb21a5b15228017ca76d1555dc425d3">
-      <part-name>Degree: 0.0</part-name>
+    <score-part id="P86880043562346fc74e6cb2eb96cc443">
+      <part-name>Degree: 100%</part-name>
     </score-part>
-    <score-part id="P88c2d7dc09c3c771e46a928ae8de4443">
-      <part-name>Degree: 0.25</part-name>
+    <score-part id="P41ac06c15ddc7d0897caacdd52f4eef2">
+      <part-name>Degree: 75%</part-name>
     </score-part>
-    <score-part id="P0fced2d463b7a1c911003e875bf1707e">
-      <part-name>Degree: 0.5</part-name>
+    <score-part id="Pc2583715fe13b0f74183607cb411fcc8">
+      <part-name>Degree: 50%</part-name>
     </score-part>
-    <score-part id="P829cf194bdf0aeb7b9aa88ff39a972bd">
-      <part-name>Degree: 0.75</part-name>
+    <score-part id="P6479a87b6d9c60641253fe09585da2d7">
+      <part-name>Degree: 25%</part-name>
     </score-part>
   </part-list>
   <!--=========================== Part 1 ===========================-->
-  <part id="Pebb21a5b15228017ca76d1555dc425d3">
+  <part id="P86880043562346fc74e6cb2eb96cc443">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -1560,7 +1560,7 @@
     </measure>
   </part>
   <!--=========================== Part 2 ===========================-->
-  <part id="P88c2d7dc09c3c771e46a928ae8de4443">
+  <part id="P41ac06c15ddc7d0897caacdd52f4eef2">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -3085,7 +3085,7 @@
     </measure>
   </part>
   <!--=========================== Part 3 ===========================-->
-  <part id="P0fced2d463b7a1c911003e875bf1707e">
+  <part id="Pc2583715fe13b0f74183607cb411fcc8">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -4190,7 +4190,7 @@
     </measure>
   </part>
   <!--=========================== Part 4 ===========================-->
-  <part id="P829cf194bdf0aeb7b9aa88ff39a972bd">
+  <part id="P6479a87b6d9c60641253fe09585da2d7">
     <!--========================= Measure 1 ==========================-->
     <measure number="1">
       <attributes>
@@ -4210,10 +4210,7 @@
         <type>quarter</type>
       </note>
       <note>
-        <pitch>
-          <step>A</step>
-          <octave>4</octave>
-        </pitch>
+        <rest />
         <duration>5040</duration>
         <type>eighth</type>
       </note>

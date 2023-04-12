@@ -4,7 +4,7 @@ Created on Mon Feb 13 18:12:36 2023
 
 @author: Nádia Carvalho
 """
-
+import copy
 import functools
 import math
 from fractions import Fraction
@@ -136,7 +136,9 @@ class MetricExtractor():
 
     def get_beat_strength(self):
         """Get the beat strength of all notes in the stream"""
-        return [note.beatStrength for note in self.music_stream.recurse().notes]
+        def get_note_accent(note):
+            return note.getContextByClass('TimeSignature').getAccentWeight(note.offset, permitMeterModulus=True)
+        return [get_note_accent(note) for note in self.music_stream.flat.notes]
 
     def get_beat_string_fraction(self):
         """Get the beat string and fraction of all notes in the stream"""

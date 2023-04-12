@@ -53,7 +53,13 @@ class PitchExtractor():
             self.metadata = musical_metadata
 
         try:
+            # print("Getting scale")
             self.scale = self.get_scale()
+            # print("Scale: ", self.scale)
+
+            # anal = self.music_stream.analyze('key')
+            # print("Analysis: ", anal, anal.correlationCoefficient)
+            # _ = [print(a, a.correlationCoefficient) for a in anal.alternateInterpretations]
         except:
             print("Couldn't not get scale, substituting by C major")
             self.scale = m21.key.Key(tonic='c', mode='major')

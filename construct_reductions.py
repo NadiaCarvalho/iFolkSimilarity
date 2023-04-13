@@ -42,6 +42,45 @@ SONGS_TO_EVAL = {
     ]
 }
 
+pairs_songs = {
+    'BINARY': [
+        ('PT-1998-XX-DM-001-v1', 'PT-1998-XX-DM-002-v1'),
+        ('PT-1998-XX-DM-003-v1', 'PT-1998-XX-DM-004-v1'),
+        ('PT-1998-XX-DM-005-v1', 'PT-1998-XX-DM-006-v1'),
+        ('PT-1998-XX-DM-007-v1', 'PT-1998-XX-DM-008-v1'),
+        ('PT-1998-XX-DM-009-v1', 'PT-1998-XX-DM-010-v1'),
+        ('PT-1998-XX-DM-001-v1', 'PT-1998-XX-DM-010-v1'),
+        ('PT-1998-XX-DM-002-v1', 'PT-1998-XX-DM-003-v1'),
+        ('PT-1998-XX-DM-004-v1', 'PT-1998-XX-DM-005-v1'),
+        ('PT-1998-XX-DM-006-v1', 'PT-1998-XX-DM-007-v1'),
+        ('PT-1998-XX-DM-008-v1', 'PT-1998-XX-DM-009-v1'),
+    ],
+    'TERNARY': [
+        ('PT-1998-XX-DM-018-v1', 'PT-1998-XX-DM-018-v2'),
+        ('PT-1998-XX-DM-032-v1', 'PT-1999-BR-DM-005-v1'),
+        ('PT-1999-XX-DM-011-v1', 'PT-1999-XX-DM-011-v2'),
+        ('PT-1999-XX-DM-019-v1', 'PT-1999-XX-DM-019-v2'),
+        ('PT-1999-XX-DM-021-v1', 'PT-1999-XX-DM-022-v1'),
+        ('PT-1998-XX-DM-018-v1', 'PT-1999-XX-DM-022-v1'),
+        ('PT-1998-XX-DM-018-v2', 'PT-1998-XX-DM-032-v1'),
+        ('PT-1999-BR-DM-005-v1', 'PT-1999-XX-DM-011-v1'),
+        ('PT-1999-XX-DM-011-v2', 'PT-1999-XX-DM-019-v1'),
+        ('PT-1999-XX-DM-019-v2', 'PT-1999-XX-DM-021-v1'),
+    ],
+    'INTERCATEGORIES': [
+        ('PT-1998-XX-DM-001-v1', 'PT-1998-XX-DM-018-v1'),
+        ('PT-1998-XX-DM-002-v1', 'PT-1998-XX-DM-018-v2'),
+        ('PT-1998-XX-DM-003-v1', 'PT-1998-XX-DM-032-v1'),
+        ('PT-1998-XX-DM-004-v1', 'PT-1999-BR-DM-005-v1'),
+        ('PT-1998-XX-DM-005-v1', 'PT-1999-XX-DM-011-v1'),
+        ('PT-1998-XX-DM-006-v1', 'PT-1999-XX-DM-011-v2'),
+        ('PT-1998-XX-DM-007-v1', 'PT-1999-XX-DM-019-v1'),
+        ('PT-1998-XX-DM-008-v1', 'PT-1999-XX-DM-019-v2'),
+        ('PT-1998-XX-DM-009-v1', 'PT-1999-XX-DM-021-v1'),
+        ('PT-1998-XX-DM-010-v1', 'PT-1999-XX-DM-022-v1'),
+    ],
+}
+
 
 def flatten(d, parent_key='', sep='_'):
     """
@@ -151,9 +190,10 @@ def make_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', di
 
     return reduce_features(song, cat, distance, normalization, name, reduction, song_id, song_features)
 
+
 def reduce_features(song, cat, distance, normalization, name, reduction, song_id, song_features):
     cat_degrees = [1.0, 0.75, 0.5, 0.25]
-    #cat_degrees = sorted([(i+1)/10 for i in range(0, 10)], reverse=True)
+    # cat_degrees = sorted([(i+1)/10 for i in range(0, 10)], reverse=True)
     # if cat == 'metrical':
     #     cat_degrees = [d/100 for d in range(0, 100, 25)]
 
@@ -169,7 +209,7 @@ def reduce_features(song, cat, distance, normalization, name, reduction, song_id
         indexes_reduction = reduction.reduce(
             song_features, reduction_type=cat, degree=deg, distance=distance, normalization=normalization, graphs=name)
         reduced_song = reduction.show_reduced_song(
-            song_features, indexes_reduction, name=f'Degree: {f"{str(int(deg*100))}%"}') # if cat != "metrical" else f"{str(deg)}"}')
+            song_features, indexes_reduction, name=f'Degree: {f"{str(int(deg*100))}%"}')  # if cat != "metrical" else f"{str(deg)}"}')
         all_reduction_score.insert(0.0, reduced_song)
 
         indexes[deg] = indexes_reduction
@@ -207,7 +247,7 @@ def reduce_all_songs(category='binary'):
             for cat in ['metrical', 'intervallic', 'durational']:
                 all_indexes[song][cat] = make_reduction(
                     song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat)
-                bar.update(bar.value + 1) # type: ignore
+                bar.update(bar.value + 1)  # type: ignore
                 time.sleep(0.001)
 
             os.makedirs(
@@ -219,18 +259,70 @@ def reduce_all_songs(category='binary'):
                     if cat == 'tonal':
                         all_indexes[song][cat][distance] = make_reduction(
                             song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat, distance=distance)
-                        bar.update(bar.value + 1) # type: ignore
+                        bar.update(bar.value + 1)  # type: ignore
                         time.sleep(0.001)
                     else:
                         all_indexes[song][cat][distance] = {}
                         for norm in ['minmax', 'zscore']:
                             all_indexes[song][cat][distance][norm] = make_reduction(
                                 song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat, distance=distance, normalization=norm, name=f'eval_data/{category.lower()}/combined_graphs/{song}/{song}-{distance}-{norm}.png')
-                            bar.update(bar.value + 1) # type: ignore
+                            bar.update(bar.value + 1)  # type: ignore
                             time.sleep(0.001)
 
     json.dump(all_indexes, open(
         f'eval_data/{category.lower()}/reductions.json', 'w'), ensure_ascii=False, indent=4)
+
+
+def similarity_pairs():
+    """
+    Compute the similarity between all pairs of songs
+    """
+    from src.similarity import SimilarityCalculator
+    similarity_calculator = SimilarityCalculator()
+
+    _, reductions_binary = get_songs_category('binary')
+    _, reductions_ternary = get_songs_category('ternary')
+
+    number_of_pairs = len([item for x in pairs_songs.values() for item in x])
+    number_reduction = len(
+        reductions_binary['PT-1998-XX-DM-001-v1']['reductions'].keys())
+    number_algorithms = len(similarity_calculator.get_algorithms())
+
+    number_comparisons = number_of_pairs * number_reduction * number_algorithms
+
+    df = pd.DataFrame(columns=[
+                      'category', 'songs', 'reduction'] + similarity_calculator.get_algorithms())
+
+    with pb.ProgressBar(max_value=number_comparisons) as bar:
+        for cat, pairs in pairs_songs.items():
+
+            if cat.lower() == 'binary':
+                reductions = reductions_binary
+            elif cat.lower() == 'ternary':
+                reductions = reductions_ternary
+            else:
+                reductions = {**reductions_binary, **reductions_ternary}
+
+            for (song1, song2) in pairs:
+                # print('Calculating Similarities for', cat, 'between', song1, 'and', song2)
+
+                for reduction in reductions[song1]['reductions'].keys():
+                    row = {'category': cat, 'songs': f'{song1}-{song2}',
+                           'reduction': reduction}
+                    for algorithm in similarity_calculator.get_algorithms():
+                        row[algorithm] = similarity_calculator.similarity_between_two_songs(
+                            (reductions[song1]['features'],
+                                reductions[song1]['reductions'][reduction]),
+                            (reductions[song2]['features'],
+                                reductions[song2]['reductions'][reduction]),
+                            algorithm=algorithm,)
+                        bar.update(bar.value + 1)  # type: ignore
+
+                    df = pd.concat([df, pd.DataFrame([row])],
+                                   axis=0, ignore_index=True)
+
+    df.set_index(['category', 'songs', 'reduction'], inplace=True)
+    df.to_excel('eval_data/copoem_similarity_pairs.xlsx', index=True)
 
 
 def similarity_intra_category(category='binary'):
@@ -263,7 +355,7 @@ def similarity_intra_category(category='binary'):
                              all_song_2['reductions'][cat]),
                             algorithm=algorithm,
                         )
-                        bar.update(int(bar.value) + 1) # type: ignore
+                        bar.update(int(bar.value) + 1)  # type: ignore
                         time.sleep(0.01)
 
             df.to_excel(f'{fold}/{cat}.xlsx')
@@ -300,7 +392,7 @@ def similarity_inter_category():
                              all_song_2['reductions'][cat]),
                             algorithm=algorithm,
                         )
-                        bar.update(int(bar.value) + 1) # type: ignore
+                        bar.update(int(bar.value) + 1)  # type: ignore
                         time.sleep(0.01)
 
             df.to_excel(f'{fold}/{cat}.xlsx')
@@ -308,9 +400,11 @@ def similarity_inter_category():
 
 if __name__ == '__main__':
     # parse_files('ternary')
-    reduce_all_songs('ternary')
+    # reduce_all_songs('ternary')
     # similarity_intra_category('ternary')
     # similarity_inter_category()
 
     # parse_files('binary', ['PT-1998-XX-DM-010'])
     # make_reduction('eval_data/binary/parsed/PT-1998-XX-DM-010-v1.json', 'tonal', distance='cosine', normalization='zscore')
+
+    similarity_pairs()

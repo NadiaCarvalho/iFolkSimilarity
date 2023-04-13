@@ -68,7 +68,7 @@ def local_alignment_score(song1, song2, insert_score=-0.5, delete_score=-0.5, si
     @return: list of matches (index, length, score) of query match starting in song2 (not yet implemented)
     """
     if len(song1) > len(song2):
-        print("song1 (query) is longer than song2. Exchanging them.")
+        # print("song1 (query) is longer than song2. Exchanging them.")
         return local_alignment_score(song2, song1, insert_score, delete_score, sim_score, variances, return_match)
 
     # initialize dynamic programming matrix

@@ -61,17 +61,21 @@ class AnnotationComparer:
         os.makedirs(
             path[:-5] + '_graphs', exist_ok=True)
 
-        for reduction in df.columns.levels[0]: # type: ignore
+        original_red = df['original'].loc[:, (slice(None), "statistic")].T # type: ignore
+
+        for reduction in df.columns.levels[0]:  # type: ignore
             if reduction != 'original':
                 to_plot = df[reduction].loc[:, (slice(None), "statistic")].T
                 to_plot.index = to_plot.index.droplevel(1)
 
+                to_plot.loc[(1.0, to_plot.columns)] = original_red.unstack().values
                 to_plot.plot(title=f'{reduction} reduction', figsize=(15, 10))
                 plt.xlabel('Reduction level')
-                plt.ylabel(f'{"Pearson" if "pearson" in path else "R^2"} correlation')
+                plt.ylabel(
+                    f'{"Pearson" if "pearson" in path else "R^2"} correlation')
 
                 plt.savefig(
-                    f'{path[:-5]}_graphs/{reduction.replace(" ", "-")}.png')
+                    f'{path[:-5]}_graphs/{reduction.replace(" ", "-")}.jpg')
                 plt.close()
 
     def compare_annotations(self, annotator_scores, name='annotator 1'):
@@ -97,7 +101,6 @@ class AnnotationComparer:
         sims_all = {}
 
         for category in annotator_scores.index.levels[0]:
-            print(category)
 
             songs = [tuple(x.split('_')) for x in list(
                 annotator_scores.loc[category, :, 'Global'].index)]
@@ -197,3 +200,104 @@ class AnnotationComparer:
             f'eval_data/annotations/{name}/pearson.xlsx')
         rsquared_comparison_df.to_excel(
             f'eval_data/annotations/{name}/rsquare.xlsx')
+
+    def compare_annotations_joined(self, annotator_scores, similarity_scores, name='annotator 1'):
+        """Compare annotations, using an excel with all songs comparisons."""
+
+        os.makedirs(
+            f'eval_data/annotations/{name.replace(" ", "-")}', exist_ok=True)
+
+        new_index = list(similarity_scores.columns)
+        new_cols = pd.MultiIndex.from_tuples(
+            [('original', '', 'statistic'), ('original', '', 'p-value')] + pd.MultiIndex.from_product(
+                [set(['_'.join(red.split('_')[:-1]) for red in similarity_scores.index.levels[2]]),
+                    ['0.25', '0.5', '0.75'], ['statistic', 'p-value']]).to_list())
+
+        all_annote_values = {}
+
+        for category in annotator_scores.index.levels[0]:
+
+            song_pairs = [tuple(x.split('_')) for x in list(
+                annotator_scores.loc[category, :, 'Global'].index)]
+
+            pearson_comparison_df = pd.DataFrame(
+                index=new_index, columns=new_cols)
+            rsquared_comparison_df = pd.DataFrame(
+                index=new_index, columns=new_cols)
+
+            category_sim = similarity_scores.loc[category].unstack()
+            notes = [annotator_scores.loc[(category, f'{song1}_{song2}', 'Global')].iloc[0] for (song1, song2) in song_pairs]
+
+            for (algo, red) in category_sim.columns.to_list():
+                deg = red.split('_')[-1]
+                red_name = '_'.join(red.split('_')[:-1])
+                if deg == '1.0':
+                    if red == 'metrical_1.0':
+                        red_name = 'original'
+                    else:
+                        continue
+
+                sim_values = category_sim[(algo, red)].values
+                notes_temp = notes
+                if 'distance' in algo:
+                    sim_values = max(sim_values) - sim_values
+
+                if any(np.isnan(x) for x in notes) or any(np.isnan(x) for x in sim_values):
+                    n_n_nan = [i for i, v in enumerate(notes) if not np.isnan(v)]
+                    s_n_nan = [i for i, v in enumerate(sim_values) if not np.isnan(v)]
+                    index_nan = list(set(n_n_nan) & set(s_n_nan))
+
+                    notes_temp = np.take(notes_temp, index_nan)
+                    sim_values = np.take(sim_values, index_nan)
+
+                if len(notes_temp) == 0 or len(sim_values) == 0:
+                    continue
+
+                if red_name == 'original':
+                    deg = ''
+
+                if (algo, red_name, deg) not in all_annote_values:
+                    all_annote_values[(algo, red_name, deg)] = [notes_temp, sim_values]
+                else:
+                    all_annote_values[(algo, red_name, deg)][0] = np.concatenate((all_annote_values[(algo, red_name, deg)][0], notes_temp))
+                    all_annote_values[(algo, red_name, deg)][1] = np.concatenate((all_annote_values[(algo, red_name, deg)][1], sim_values))
+
+                pearson = pearsonr(notes_temp, sim_values)
+                pearson_comparison_df.loc[algo,
+                                        (red_name, deg, 'statistic')] = pearson[0]
+                pearson_comparison_df.loc[algo,
+                                        (red_name, deg, 'p-value')] = pearson[1]
+
+                rsq = rsquared(notes_temp, sim_values)
+                rsquared_comparison_df.loc[algo,
+                                           (red_name, deg, 'statistic')] = rsq[0]
+                rsquared_comparison_df.loc[algo, (red_name, deg, 'p-value')] = rsq[1]
+
+            pearson_comparison_df.dropna(axis=1, how='all', inplace=True)
+            rsquared_comparison_df.dropna(axis=1, how='all', inplace=True)
+            pearson_comparison_df.to_excel(f'eval_data/annotations/{name}/{category.lower()}_pearson.xlsx')
+            rsquared_comparison_df.to_excel(f'eval_data/annotations/{name}/{category.lower()}_rsquare.xlsx')
+
+
+        pearson_global_df = pd.DataFrame(
+            index=new_index, columns=new_cols)
+        rsquared_global_df = pd.DataFrame(
+            index=new_index, columns=new_cols)
+
+        for (alg, cat, deg) in all_annote_values:
+            notes = all_annote_values[(alg, cat, deg)][0]
+            sim_values = all_annote_values[(alg, cat, deg)][1]
+
+            pearson = pearsonr(notes.flatten(), sim_values.flatten())
+            pearson_global_df.loc[alg,
+                                  (cat, deg, 'statistic')] = pearson[0]
+            pearson_global_df.loc[alg,
+                                  (cat, deg, 'p-value')] = pearson[1]
+
+            rsq = rsquared(notes.flatten(), sim_values.flatten())
+            rsquared_global_df.loc[alg,
+                                   (cat, deg, 'statistic')] = rsq[0]
+            rsquared_global_df.loc[alg, (cat, deg, 'p-value')] = rsq[1]
+
+        pearson_global_df.to_excel(f'eval_data/annotations/{name}/global_pearson.xlsx')
+        rsquared_global_df.to_excel(f'eval_data/annotations/{name}/global_rsquare.xlsx')

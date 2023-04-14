@@ -169,7 +169,7 @@ def parse_files(category='binary', filter=None):
                 dump_json_features(category, f'{song}-{key}', song_features)
 
 
-def make_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine', normalization='minmax', name=False):
+def make_reduction(song='data/parsed/PT-1981-BR-MG-004.json', cat='combined', distance='cosine', normalization='minmax', name: str | bool = False):
     """
     Test Reduction for song
 
@@ -264,8 +264,9 @@ def reduce_all_songs(category='binary'):
                     else:
                         all_indexes[song][cat][distance] = {}
                         for norm in ['minmax', 'zscore']:
+                            name = f'eval_data/{category.lower()}/combined_graphs/{song}/{song}-{distance}-{norm}.png'
                             all_indexes[song][cat][distance][norm] = make_reduction(
-                                song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat, distance=distance, normalization=norm, name=f'eval_data/{category.lower()}/combined_graphs/{song}/{song}-{distance}-{norm}.png')
+                                song=f'eval_data/{category.lower()}/parsed/{song}.json', cat=cat, distance=distance, normalization=norm, name=name)
                             bar.update(bar.value + 1)  # type: ignore
                             time.sleep(0.001)
 
@@ -323,6 +324,22 @@ def similarity_pairs():
 
     df.set_index(['category', 'songs', 'reduction'], inplace=True)
     df.to_excel('eval_data/copoem_similarity_pairs.xlsx', index=True)
+
+
+def test_similarity():
+    song = 'PT-1998-XX-DM-001-v1'
+    features = json.load(open(f'eval_data/binary/parsed/{song}.json', 'r'))
+    reduction = make_reduction(
+        song=f'eval_data/binary/parsed/{song}.json', cat='metrical')
+
+    from src.similarity import SimilarityCalculator
+    similarity_calculator = SimilarityCalculator()
+    algo = similarity_calculator.similarity_between_two_songs(
+        (features, reduction[1.0]),
+        (features, reduction[1.0]),
+        algorithm='siam_score')
+
+    print(algo)
 
 
 def similarity_intra_category(category='binary'):
@@ -398,13 +415,112 @@ def similarity_inter_category():
             df.to_excel(f'{fold}/{cat}.xlsx')
 
 
+def evaluate():
+    from itertools import combinations
+    from src.annotations import AnnotationComparer
+
+    annotations = pd.read_excel(
+        'eval_data/annotations/form-answers.xlsx', header=[0, 1, 2], index_col=0)
+
+    similarities = pd.read_excel(
+        'eval_data/copoem_similarity_pairs.xlsx', index_col=[0, 1, 2], header=0)
+
+    comparer = AnnotationComparer()
+
+    for r in range(1, 4):
+        for p in combinations(range(1, 4), r):
+            if r == 1:
+                comparer.compare_annotations_joined(pd.DataFrame(
+                    annotations.iloc[p[0]-1]), similarities, name=f'Annotator-{p[0]}')
+            else:
+                media = pd.DataFrame(pd.DataFrame(
+                    annotations.iloc[[px-1 for px in p]]).mean(axis=0))
+                comparer.compare_annotations_joined(
+                    media, similarities, name=f"Annotator-{'-'.join([str(i) for i in p])}")
+
+    for r in range(1, 4):
+        for p in combinations(range(1, 4), r):
+            comparer.create_comparison_graphs(
+                f'eval_data/annotations/Annotator-{"-".join([str(i) for i in p])}/global_pearson.xlsx')
+            comparer.create_comparison_graphs(
+                f'eval_data/annotations/Annotator-{"-".join([str(i) for i in p])}/global_rsquare.xlsx')
+
+
+def general_graphs_combined():
+    """Create general graphs"""
+    df_an2 = pd.read_excel(
+        'eval_data/annotations/Annotator-2/global_rsquare.xlsx', header=[0, 1, 2], index_col=0)
+    df_an3 = pd.read_excel(
+        'eval_data/annotations/Annotator-3/global_rsquare.xlsx', header=[0, 1, 2], index_col=0)
+    df_an23 = pd.read_excel(
+        'eval_data/annotations/Annotator-2-3/global_rsquare.xlsx', header=[0, 1, 2], index_col=0)
+
+    # reductions = df_an2.columns.get_level_values(0).unique()
+    # combined_red = sorted([c for c in reductions if 'combined' in c])
+
+    # combined_red_minmax = sorted([c for c in combined_red if 'minmax' in c])
+    # combined_red_zscore = sorted([c for c in combined_red if 'zscore' in c])
+
+    # combined_red_euclidean = sorted([c for c in combined_red if 'euclidean' in c])
+
+    # tonal_red =  sorted([c for c in reductions if 'tonal' in c])
+
+    # ann = df_an3.loc[:, (combined_red_euclidean, slice(None), "statistic")] # type: ignore
+
+    # new_df = pd.DataFrame(columns=['0.25', '0.5', '0.75'], index=ann.index)
+    # for i in new_df.index:
+    #     for j in new_df.columns:
+    #         vals = list(ann.loc[i, (slice(None), j, 'statistic')].unstack().unstack().to_dict().values())[0]
+    #         print(i, j, sorted(list(vals.items()), reverse=True))
+    #         new_df[j][i] = sorted(list(vals.items()), reverse=True)[0][0]
+
+    # print(new_df)#
+
+    reds_to = ['original', 'tonal_euclidean', 'intervallic', 'metrical',
+               'durational', 'combined_with_duration_euclidean_zscore']
+    algos = {'cardinality_score': 'CS', 'correlation_distance': 'CD', 'city_block_distance': 'CBD',
+             'euclidean_distance': 'ED', 'local_alignment_score': 'LA', 'siam_score_all': 'SIAM'}
+
+    df_an3.rename(columns={'Unnamed: 1_level_1': '1.0',
+                  'Unnamed: 2_level_1': '1.0'}, inplace=True)
+    df_an3.rename(index=algos, inplace=True)
+    pd.set_option('display.precision', 3)
+    # df_an2.loc[:, (reds_to, slice(None), 'p-value')].stack().unstack(1).droplevel(2, axis=1)[reds_to].reindex(index=df_an2.index,columns=['1.0', '0.75', '0.5', '0.25'], level=1).apply(lambda x: x < 0.001).to_latex('ann2-r2-sign-it.tex', decimal='.', float_format="{:.3f}".format,)
+    # df_an3.loc[:, (reds_to, slice(None), 'p-value')].stack().unstack(1).droplevel(2, axis=1)[reds_to].reindex(index=df_an2.index,columns=['1.0', '0.75', '0.5', '0.25'], level=1).apply(lambda x: x < 0.001).to_latex('ann3-r2-sign-it.tex', decimal='.', float_format="{:.3f}".format,)
+    # df_an23.loc[:, (reds_to, slice(None), 'p-value')].stack().unstack(1).droplevel(2, axis=1)[reds_to].reindex(index=df_an2.index,columns=['1.0', '0.75', '0.5', '0.25'], level=1).apply(lambda x: x < 0.001).to_latex('ann23-r2-sign-it.tex', decimal='.', float_format="{:.3f}".format,)
+
+    print(df_an3.loc[list(algos.values()), (reds_to, slice(None), 'statistic')].droplevel(2, axis=1)['original'].reindex(
+        index=list(algos.values()), columns=['1.0', '0.75', '0.5', '0.25'], level=1))  # .apply(lambda x: x < .001))
+
+
 if __name__ == '__main__':
-    # parse_files('ternary')
-    # reduce_all_songs('ternary')
-    # similarity_intra_category('ternary')
-    # similarity_inter_category()
 
-    # parse_files('binary', ['PT-1998-XX-DM-010'])
-    # make_reduction('eval_data/binary/parsed/PT-1998-XX-DM-010-v1.json', 'tonal', distance='cosine', normalization='zscore')
+    import sys
 
-    similarity_pairs()
+    try:
+        if sys.argv[1] == 'parse':
+            parse_files(sys.argv[2])
+        elif sys.argv[1] == 'reduce':
+            reduce_all_songs(sys.argv[2])
+        elif sys.argv[1] == 'similarity_intra':
+            similarity_intra_category(sys.argv[2])
+        elif sys.argv[1] == 'similarity_inter':
+            similarity_inter_category()
+        elif sys.argv[1] == 'similarity_pairs':
+            similarity_pairs()
+        elif sys.argv[1] == 'evaluate':
+            evaluate()
+        elif sys.argv[1] == 'graphs':
+            general_graphs_combined()
+        else:
+            print('Invalid command')
+            print('Possible Commands:')
+            print('- parse <binary|ternary>')
+            print('- reduce <binary|ternary>')
+            print('- similarity_intra <binary|ternary>')
+            print('- similarity_inter')
+            print('- similarity_pairs')
+            print('- evaluate')
+            print('- graphs')
+    except Exception as e:
+        print(e)

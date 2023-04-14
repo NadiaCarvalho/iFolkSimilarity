@@ -38,7 +38,9 @@ def multi_dimensional(seq1, seq2, variances):
 
 def pitch_rater(seq1, seq2, variances):
     """ subsitution score for local alignment"""
-    if all(x1 == x2 for (x1, x2) in zip(seq1, seq2)):
+    if isinstance(seq1, np.ndarray) and all(x1 == x2 for (x1, x2) in zip(seq1, seq2)):
+        return 1.0
+    elif not isinstance(seq1, np.ndarray) and seq1 == seq2:
         return 1.0
     else:
         return -1.0

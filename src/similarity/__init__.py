@@ -107,7 +107,7 @@ class SimilarityCalculator:
 
         @return: list of similarity algorithms
         """
-        return ['cardinality_score', 'correlation_distance', 'city_block_distance', 'euclidean_distance', 'hamming_distance', 'local_alignment_score', 'siam_score']
+        return ['cardinality_score', 'correlation_distance', 'city_block_distance', 'euclidean_distance', 'hamming_distance', 'local_alignment_score', 'local_alignment_score_onsets', 'siam_score', 'siam_score_all']
 
     def features_per_algorithm(self, algorithm):
         """
@@ -115,10 +115,10 @@ class SimilarityCalculator:
         """
         if algorithm == 'cardinality_score':
             return ['midipitch', 'onsettick']
-        if algorithm == 'local_alignment_score':
+        if algorithm == 'local_alignment_score' or algorithm == 'siam_score':
             return ['midipitch', 'offsets']
-        if algorithm == 'siam_score':
-            return ['midipitch', 'offsets', 'duration', 'beatstrength', 'chromaticinterval']
+        if algorithm == 'siam_score_all':
+            return ['midipitch', 'offsets', 'duration', 'beatstrength'] #, 'chromaticinterval']
         return ['midipitch']
 
     def similarity_between_two_songs(self, song1, song2, algorithm='cardinality_score'):
@@ -152,9 +152,9 @@ class SimilarityCalculator:
             return sim_algorithms.euclidean_distance(song1_features, song2_features)
         elif algorithm == 'hamming_distance':
             return sim_algorithms.hamming_distance(song1_features, song2_features)
-        elif algorithm == 'local_alignment_score':
+        elif 'local_alignment_score' in  algorithm:
             return sim_algorithms.local_alignment_score(song1_features, song2_features)
-        elif algorithm == 'siam_score':
+        elif 'siam_score' in algorithm:
             return sim_algorithms.siam_score(song1_features, song2_features)
         else:
             raise ValueError(f'Invalid algorithm "{algorithm}"')

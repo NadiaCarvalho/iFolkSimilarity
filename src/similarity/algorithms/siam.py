@@ -80,6 +80,7 @@ def print_vector_table(vector_table, seq_1, seq_2):
     df = pd.DataFrame(str_vector_table, index=[str(
         s) for s in seq_1], columns=[str(s) for s in seq_2])
     print(df)
+    return df
 
 
 def print_lexicographical_table(vector_table, seq_2):
@@ -108,8 +109,9 @@ def siam_score(song1, song2):
     song2 = np.array(song2)
 
     vector_table = create_vector_table(song1, song2)
-    # print_vector_table(vector_table, seq_1, seq_2)
-    # print_lexicographical_table(vector_table, seq_2)
+    #vc = print_vector_table(vector_table, song1, song2)
+    #vc.to_excel('vector_table.xlsx')
+    #print_lexicographical_table(vector_table, song2)
 
     mtps_1 = MTPnew(vector_table)
     return max(mtps_1) / max(len(song1), len(song2))

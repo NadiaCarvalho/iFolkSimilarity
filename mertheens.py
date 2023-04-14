@@ -24,6 +24,13 @@ from src.reduction import Reduction
 
 
 def get_features(song, m21_song):
+
+    def get_note_accent(note):
+        if note.getContextByClass('TimeSignature'):
+            return note.getContextByClass('TimeSignature').getAccentWeight(note.offset, permitMeterModulus=True)
+        else:
+            return note.beatStrength
+
     return {
         'midipitch': song['features']['midipitch'],
         'chromaticinterval': song['features']['chromaticinterval'],
@@ -34,7 +41,7 @@ def get_features(song, m21_song):
         'phrase_id': song['features']['phrase_ix'],
         'scale_degree': song['features']['scaledegree'],
         'metric_weight': song['features']['beatstrength'] if len(m21_song.recurse().getElementsByClass('Measure')) > 1 else [np.nan for _ in song['features']['midipitch']],
-        'beatstrength': song['features']['beatstrength'] if len(m21_song.recurse().getElementsByClass('Measure')) > 1 else [n.beatStrength for n in m21_song.flat.stripTies().notes],
+        'beatstrength': song['features']['beatstrength'] if len(m21_song.recurse().getElementsByClass('Measure')) > 1 else [get_note_accent(n) for n in m21_song.flat.stripTies().notes],
         'note_index': [i for i, _ in enumerate(song['features']['midipitch'])],
         'timesignature': song['features']['timesignature'],
         'phrasePosition': song['features']['phrasepos'],

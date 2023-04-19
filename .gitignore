@@ -1,15 +1,14 @@
 # Igonore all files in the old_code directory
-old_code/*
 data/*
+old_code/*
 scripts/*
 
-eval_data/**/.DS_Store
-eval_data/.DS_Store
 .DS_Store
+eval_data/.DS_Store
+eval_data/**/.DS_Store
 
 eval_data/**/*.pdf
 eval_data/**/combined_graphs
-eval_data/**/similarity
 
 eval_data/old_annotations
 eval_data/MTCFeatures/

@@ -13,7 +13,7 @@ eval_data/MTCFeatures/
 eval_data/**/combined_graphs
 
 MelodicOccurrences
-meertheens.py
+mertheens.py
 
 # Ignore all python cache files
 __pycache__/

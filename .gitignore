@@ -1,4 +1,4 @@
-# Igonore all files in the old_code directory
+# Ignore all not-necessary files in the directory
 data/*
 old_code/*
 scripts/*
@@ -12,3 +12,12 @@ eval_data/MTCFeatures/
 eval_data/**/combined_graphs
 
 MelodicOccurrences
+meertheens.py
+
+# Ignore all python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pyc
+.pyo
+.pyd

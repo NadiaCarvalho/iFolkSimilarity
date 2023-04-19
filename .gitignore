@@ -7,10 +7,8 @@ scripts/*
 eval_data/.DS_Store
 eval_data/**/.DS_Store
 
-eval_data/**/*.pdf
-eval_data/**/combined_graphs
-
 eval_data/old_annotations
 eval_data/MTCFeatures/
+eval_data/**/combined_graphs
 
 MelodicOccurrences

@@ -58,8 +58,12 @@ class PhraseExtractor():
 
     def get_phrases(self):
         """Get phrase position for each note"""
+        if 'phrases' not in self.metadata:
+            phrase_pos = [1] + [0] * (len(self.music_stream.recurse().notes) - 2) + [-1]
+            return phrase_pos, [0] * len(self.music_stream.recurse().notes)
+
         self.metadata_phrases = [tuple(phrase[1:-1].split(', '))
-                                 for phrase in self.metadata['phrases'].split('; ')]
+                                 for phrase in self.metadata['phrases'].split('; ') ]
 
         phrase_starts = [phrase[1] for phrase in self.metadata_phrases]
         phrase_ends = [phrase[2] for phrase in self.metadata_phrases]
@@ -106,6 +110,9 @@ class PhraseExtractor():
 
     def get_phrase_end(self):
         """Get phrase position for each note"""
+        if 'phrases' not in self.metadata:
+            return [False] * (len(self.music_stream.recurse().notes) -1) + [True]
+
         phrase_ends = [phrase[2] for phrase in self.metadata_phrases]
         return [True if f"#{note.id}" in phrase_ends else False for note in self.music_stream.recurse().notes]
 

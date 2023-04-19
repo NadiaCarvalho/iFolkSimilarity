@@ -137,7 +137,7 @@ class MetricExtractor():
     def get_beat_strength(self):
         """Get the beat strength of all notes in the stream"""
         def get_note_accent(note):
-            return note.getContextByClass('TimeSignature').getAccentWeight(note.offset, permitMeterModulus=True)
+            return note.getContextByClass('TimeSignature').getAccentWeight(note.offset, permitMeterModulus=True, forcePositionMatch=True)
         return [get_note_accent(note) for note in self.music_stream.flat.notes]
 
     def get_beat_string_fraction(self):

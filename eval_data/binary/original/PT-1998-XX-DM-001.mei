@@ -134,7 +134,8 @@
                             <phrase n="3" startid="#n9ger20" endid="#nferjlo" type="A"/>
                             <phrase n="4" startid="#n40m0xt" endid="#n1yfna7v" type="B"/>
                         </supplied>
-                        <pb xml:id="p1c0zi3s"/><measure xml:id="m143ewyb" n="0"><mNum xml:id="m1g072t0"/><staff xml:id="sylxwc1" n="1">
+                        <pb xml:id="p1c0zi3s"/>
+                        <measure xml:id="m143ewyb" n="0"><mNum xml:id="m1g072t0"/><staff xml:id="sylxwc1" n="1">
                                 <layer xml:id="l1kxkrsr" n="1">
                                     <note xml:id="n12j0z5a" dur.ppq="1" dur="8" oct="4" pname="a" stem.dir="up">
                                         <verse xml:id="vktum7y" n="1">

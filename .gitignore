@@ -2,6 +2,7 @@
 old_code/*
 data/combined_graphs*/*
 data/reduced/*
+data/*
 
 eval_data/**/*.pdf
 eval_data/**/combined_graphs

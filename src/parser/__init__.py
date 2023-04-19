@@ -91,7 +91,7 @@ class MeiParser:
         music = self.get_music_info(root)
 
         music_metadata = music
-        for key in ['key', 'mode', 'meter', 'tempo']:
+        for key in ['key', 'mode', 'meter', 'tempo', 'genre']:
             music_metadata[key] = work[key]
 
         print(f'Parsing {metadata["title_stmt"]["id"]}')

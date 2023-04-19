@@ -489,9 +489,28 @@ def general_graphs_combined():
     # df_an3.loc[:, (reds_to, slice(None), 'p-value')].stack().unstack(1).droplevel(2, axis=1)[reds_to].reindex(index=df_an2.index,columns=['1.0', '0.75', '0.5', '0.25'], level=1).apply(lambda x: x < 0.001).to_latex('ann3-r2-sign-it.tex', decimal='.', float_format="{:.3f}".format,)
     # df_an23.loc[:, (reds_to, slice(None), 'p-value')].stack().unstack(1).droplevel(2, axis=1)[reds_to].reindex(index=df_an2.index,columns=['1.0', '0.75', '0.5', '0.25'], level=1).apply(lambda x: x < 0.001).to_latex('ann23-r2-sign-it.tex', decimal='.', float_format="{:.3f}".format,)
 
-    print(df_an3.loc[list(algos.values()), (reds_to, slice(None), 'statistic')].droplevel(2, axis=1)['original'].reindex(
+    print(df_an3.loc[list(algos.values()), (reds_to, slice(None), 'statistic')].droplevel(2, axis=1)['original'].reindex( # type: ignore
         index=list(algos.values()), columns=['1.0', '0.75', '0.5', '0.25'], level=1))  # .apply(lambda x: x < .001))
 
+def test_features_for_reduction(song='eval_data/binary/parsed/PT-1998-XX-DM-010-v1.json'):
+    """Test features for reduction"""
+
+    from fractions import Fraction
+    from src.reduction import get_tonal_distance, Reduction
+
+    features = json.load(open(song, 'r'))
+    # print('PITCH: ', [(i, p) for i, p in zip(features['features']['phrase_ix'], features['features']['midipitch'])])
+
+    print('BS: ', [bs for i, bs in zip(features['features']['phrase_ix'], features['features']['beatstrength']) if i == 1 or i == 2])
+    print('DUR: ', [float(Fraction(dur)) for i, dur in zip(features['features']['phrase_ix'], features['features']['duration']) if i == 1 or i == 2])
+    print('INT: ', [ci for i, ci in zip(features['features']['phrase_ix'], features['features']['chromaticinterval']) if i == 1 or i == 2])
+
+    pitch_distances_euc = get_tonal_distance(
+            (features['features']['midipitch'], features['features']['duration']), distance='euclidean')
+    print('TONAL (EUC): ', [round(pd, 2) for i, pd in zip(features['features']['phrase_ix'], pitch_distances_euc) if i == 1 or i == 2])
+
+    _, _, _, combined = Reduction().get_combined(features, 'euclidean', 'zscore', use_duration=True)
+    print('COMBINED (EUC, ZSCORE, DUR): ', [round(pd[1], 2) for i, pd in zip(features['features']['phrase_ix'], combined) if i == 1 or i == 2])
 
 if __name__ == '__main__':
 
@@ -512,6 +531,8 @@ if __name__ == '__main__':
             evaluate()
         elif sys.argv[1] == 'graphs':
             general_graphs_combined()
+        elif sys.argv[1] == 'test':
+            test_features_for_reduction()
         else:
             print('Invalid command')
             print('Possible Commands:')

@@ -225,6 +225,16 @@ class Reduction:
 
         @return indexes_to_retrieve: Indexes of the notes to be retrieved
         """
+        normalized_tonal_distances, normalized_beats, normalized_intervals, combined_weights = self.get_combined(
+            song_features, distance, normalization, use_duration)
+
+        if graphs:
+            self.plot_combined(normalized_tonal_distances,
+                               normalized_beats, normalized_intervals, combined_weights, graphs)
+
+        return sorted([i for (i, val) in combined_weights if val >= np.quantile([x[1] for x in combined_weights], 1 - degree)])
+
+    def get_combined(self, song_features, distance, normalization, use_duration):
         tonal_distances = get_tonal_distance(
             (song_features['features']['midipitch'], song_features['features']['duration']), distance)
         normalized_tonal_distances = normalize(
@@ -255,11 +265,7 @@ class Reduction:
         combined_weights = [(i, sum(values)/len(values) if not np.isnan(values[-1]) else sum(values[:-1])/len(values[:-1]))
                             for i, values in enumerate(zip_vals)]
 
-        if graphs:
-            self.plot_combined(normalized_tonal_distances,
-                               normalized_beats, normalized_intervals, combined_weights, graphs)
-
-        return sorted([i for (i, val) in combined_weights if val >= np.quantile([x[1] for x in combined_weights], 1 - degree)])
+        return normalized_tonal_distances, normalized_beats, normalized_intervals, combined_weights
 
     def plot_combined(self, normalized_tonal_distances, normalized_beats, normalized_intervals, combined_weights, comb_name):
         """Plot the combined reduction values to verify best combined reduction weights"""

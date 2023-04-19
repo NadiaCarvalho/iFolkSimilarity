@@ -2,6 +2,7 @@
 data/*
 old_code/*
 scripts/*
+test.py
 
 .DS_Store
 eval_data/.DS_Store

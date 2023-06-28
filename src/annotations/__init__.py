@@ -9,7 +9,9 @@ import os
 import glob
 import pandas as pd
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 from scipy.stats import pearsonr, linregress
 
@@ -52,6 +54,33 @@ class AnnotationComparer:
         Constructor for AnnotationComparer
         """
         pass
+
+    def create_violin_plots(self, annotator_scores):
+        """Creates violin plots of an annotator's scores by type of song (binary, ternary, etc.)"""
+        fig, ax = plt.subplots(2, 1)
+
+        for ann in annotator_scores.index:
+            annotator = annotator_scores.iloc[ann-1]
+            print('Making plot for annotator', ann)
+
+            df = pd.DataFrame(columns=['pair_songs', 'Feature', 'Category', 'Score'])
+            df['pair_songs'] = annotator.index.get_level_values(1)
+            df['Feature'] = annotator.index.get_level_values(2)
+            df['Category'] = annotator.index.get_level_values(0).str.capitalize()
+            df['Score'] = annotator.values
+
+            sns.set(style="darkgrid")
+            sns.violinplot(data=df, x='Feature', y='Score', hue='Category', palette="Pastel1", ax=ax[ann-1], scale='count')
+            ax[ann-1].get_legend().remove()
+            ax[ann-1].set_title(f'Annotator {ann}')
+
+        handles, labels = plt.gca().get_legend_handles_labels()
+        fig.legend(handles, labels, loc='lower center', ncol=3, title='Category',
+          fancybox=True, shadow=True)
+
+        plt.subplots_adjust(top=0.9, bottom=0.2, hspace=0.7)
+        plt.show()
+
 
     def create_comparison_graphs(self, path, name='annotator 1'):
         """

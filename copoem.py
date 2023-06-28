@@ -415,6 +415,15 @@ def similarity_inter_category():
             df.to_excel(f'{fold}/{cat}.xlsx')
 
 
+def violin_plots_annotator():
+    from src.annotations import AnnotationComparer
+
+    annotations = pd.read_excel(
+        'eval_data/annotations/form-answers.xlsx', header=[0, 1, 2], index_col=0)
+
+    comparer = AnnotationComparer()
+    comparer.create_violin_plots(pd.DataFrame(annotations.iloc[[1, 2]]))
+
 def evaluate():
     from itertools import combinations
     from src.annotations import AnnotationComparer
@@ -517,6 +526,17 @@ if __name__ == '__main__':
     import sys
 
     try:
+        if len(sys.argv) < 2 or sys.argv[1] == 'help':
+            print('Possible Commands:')
+            print('- parse <binary|ternary>')
+            print('- reduce <binary|ternary>')
+            print('- similarity_intra <binary|ternary>')
+            print('- similarity_inter')
+            print('- similarity_pairs')
+            print('- evaluate')
+            print('- graphs')
+            print('- test')
+            print('- violin_plots_annotator')
         if sys.argv[1] == 'parse':
             parse_files(sys.argv[2])
         elif sys.argv[1] == 'reduce':
@@ -533,15 +553,7 @@ if __name__ == '__main__':
             general_graphs_combined()
         elif sys.argv[1] == 'test':
             test_features_for_reduction()
-        else:
-            print('Invalid command')
-            print('Possible Commands:')
-            print('- parse <binary|ternary>')
-            print('- reduce <binary|ternary>')
-            print('- similarity_intra <binary|ternary>')
-            print('- similarity_inter')
-            print('- similarity_pairs')
-            print('- evaluate')
-            print('- graphs')
+        elif sys.argv[1] == 'violin_plots_annotator':
+            violin_plots_annotator()
     except Exception as e:
         print(e)

@@ -512,7 +512,7 @@ def test_features_for_reduction(song='eval_data/binary/parsed/PT-1998-XX-DM-010-
 
     print('BS: ', [bs for i, bs in zip(features['features']['phrase_ix'], features['features']['beatstrength']) if i == 1 or i == 2])
     print('DUR: ', [float(Fraction(dur)) for i, dur in zip(features['features']['phrase_ix'], features['features']['duration']) if i == 1 or i == 2])
-    print('INT: ', [ci for i, ci in zip(features['features']['phrase_ix'], features['features']['chromaticinterval']) if i == 1 or i == 2])
+    print('INT: ', [abs(ci) for i, ci in zip(features['features']['phrase_ix'], features['features']['chromaticinterval']) if i == 1 or i == 2])
 
     pitch_distances_euc = get_tonal_distance(
             (features['features']['midipitch'], features['features']['duration']), distance='euclidean')

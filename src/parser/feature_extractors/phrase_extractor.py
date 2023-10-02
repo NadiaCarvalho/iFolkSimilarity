@@ -28,7 +28,7 @@ def get_beat_fraction(note):
 
 class PhraseExtractor():
 
-    def __init__(self, stream, musical_metadata=None):
+    def __init__(self, stream, musical_metadata=None, features=None):
         """
         Initialize PhraseExtractor
         """
@@ -37,6 +37,8 @@ class PhraseExtractor():
         self.metadata = {}
         if musical_metadata:
             self.metadata = musical_metadata
+        if features:
+            self.features = features
 
     def get_all_features(self):
         """Get all features phrase related features from the stream"""
@@ -95,13 +97,11 @@ class PhraseExtractor():
         start_indexes = [i for i, x in enumerate(phrases) if x == 1]
         end_indexes = [i for i, x in enumerate(phrases) if x == -1]
 
-        all_notes = self.music_stream.flat.notes
+        all_notes = self.music_stream.flatten().notes
 
         phrase_pos = []
         for i, end_ind in enumerate(end_indexes):
-
             start_offset = all_notes[start_indexes[i]].offset
-
             total_phrase_duration = all_notes[end_ind].offset - start_offset
             phrase_pos.extend([(note.offset - start_offset) /
                               total_phrase_duration for note in all_notes[start_indexes[i]:end_ind+1]])

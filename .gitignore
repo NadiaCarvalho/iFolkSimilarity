@@ -12,6 +12,10 @@ eval_data/old_annotations
 eval_data/MTCFeatures/
 eval_data/**/combined_graphs
 
+ES-1943-SA-ASF-123.mei
+phrases.py
+Database/
+
 MelodicOccurrences
 mertheens.py
 
@@ -22,3 +26,4 @@ __pycache__/
 .pyc
 .pyo
 .pyd
+stderr.txt

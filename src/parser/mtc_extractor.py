@@ -17,6 +17,15 @@ from .feature_extractors import (GPRExtractor, IOIExtractor, LBDMExtractor,
                                  PitchExtractor)
 from .utils import has_meter
 
+from contextlib import redirect_stderr
+
+c21.mei.base.environLocal['warnings'] = 0
+c21.shared.m21utilities.DEBUG = False
+c21.shared.m21utilities.BEAMDEBUG = False
+c21.shared.m21utilities.TUPLETDEBUG = False
+
+env = m21.environment.Environment()
+env['warnings'] = 0
 
 class MTCExtractor():
     """
@@ -32,8 +41,10 @@ class MTCExtractor():
         # self.tk.renderToSVGFile('data/temp.svg')
 
         # m21.environment.Environment('converter21.mei.base')['warnings'] = 0 # type: ignore
-        converter = c21.MEIConverter()
-        self.music_stream = converter.parseFile(path, verbose=False)
+        with open('stderr.txt', 'w') as f:
+            with redirect_stderr(f):
+                converter = c21.MEIConverter()
+                self.music_stream = converter.parseFile(path, verbose=False)
 
         try:
             self.music_stream = self.music_stream.expandRepeats()
@@ -87,6 +98,7 @@ class MTCExtractor():
                         if len(chord.pitches) > 1:
                             p = chord.pitches[int(voice.id)-1]
                             new_chord = m21.note.Note(p, duration=chord.duration) # type: ignore
+                            new_chord.id = chord.notes[0].id
                             voice.replace(chord, new_chord) # type: ignore
 
         self.music_stream = self.music_stream.voicesToParts(separateById=True)
@@ -107,44 +119,44 @@ class MTCExtractor():
         except:
             print('Error getting measure 0')
 
-        try:
-            features = defaultdict(list)
+        # try:
+        features = defaultdict(list)
 
-            # Scale/Key Features
-            features.update(PitchExtractor(part,
-                            self.metadata).get_all_features())
+        # Scale/Key Features
+        features.update(PitchExtractor(part,
+                        self.metadata).get_all_features())
 
-            # Metric Features
-            features.update(MetricExtractor(
-                part).get_all_features())
+        # Metric Features
+        features.update(MetricExtractor(
+            part).get_all_features())
 
-            # Phrasic Features
-            features.update(PhraseExtractor(part,
-                            self.metadata).get_all_features())
+        # Phrasic Features
+        features.update(PhraseExtractor(part,
+                        self.metadata, features).get_all_features())
 
-            # Derived Features
-            features.update(IOIExtractor(part,
-                            features).get_all_features())
-            features.update(GPRExtractor(part,
-                            features).get_all_features())
-            features.update(LBDMExtractor(
-                part, features).get_all_features())
+        # Derived Features
+        features.update(IOIExtractor(part,
+                        features).get_all_features())
+        features.update(GPRExtractor(part,
+                        features).get_all_features())
+        features.update(LBDMExtractor(
+            part, features).get_all_features())
 
-            return features
-        except Exception as e:
-            print("Error processing stream")
+        return features
+        # except Exception as e:
+        #     print("Error processing stream")
 
-            import os
-            import sys
+        #     import os
+        #     import sys
 
-            exc_type, exc_obj, exc_tb = sys.exc_info()
-            fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[
-                1]  # type: ignore
-            print(exc_type, fname, exc_tb.tb_lineno)  # type: ignore
+        #     exc_type, exc_obj, exc_tb = sys.exc_info()
+        #     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[
+        #         1]  # type: ignore
+        #     print(exc_type, fname, exc_tb.tb_lineno)  # type: ignore
 
-            print()
+        #     print()
 
-            return None
+        #   return None
 
     def has_meter(self):
         """

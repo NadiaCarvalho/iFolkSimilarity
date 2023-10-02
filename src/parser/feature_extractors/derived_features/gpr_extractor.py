@@ -49,7 +49,7 @@ class GPRExtractor:
         rest_mask = [False] + [not any(x for x in  t_r_p) for t_r_p in zip(rest_present, rest_present[1:], rest_present[2:])] + [False]
 
         #now set all values in res to None if False in mask
-        return [res_ix if rest_mask[ix] else None for ix, res_ix in enumerate(frankland_one)]
+        return [res_ix if (ix < len(rest_mask) and rest_mask[ix]) else None for ix, res_ix in enumerate(frankland_one)]
 
     def get_gpr_3a(self):
         """Get gpr3a_Frankland, Frankland and Cohen 2004, p. 505"""

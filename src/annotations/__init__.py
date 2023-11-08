@@ -90,7 +90,7 @@ class AnnotationComparer:
         return fig
 
 
-    def create_violin_plots_single(self, annotator_scores, feature='Global'):
+    def create_violin_plots_single(self, annotator_scores, feature='Global', palette='Pastel1'):
 
         fig, ax = plt.subplots(1, 1)
 
@@ -112,7 +112,7 @@ class AnnotationComparer:
         sns.set(style="darkgrid")
 
         sns.violinplot(data=new_df, x='Annotator',
-                           y='Score', hue='Category', palette="Pastel1", ax=ax, scale='count')#, inner='quartile', cut=0)
+                           y='Score', hue='Category', palette=palette, ax=ax, scale='count')#, inner='quartile', cut=0)
 
         plt.legend(loc='upper center', ncol=3, title='', fancybox=True, shadow=True, bbox_to_anchor=(0.5, 1.12))
         plt.xlabel('')
@@ -120,12 +120,12 @@ class AnnotationComparer:
 
         return fig
 
-    def create_violin_plots(self, annotator_scores, features=['Global']):
+    def create_violin_plots(self, annotator_scores, features=['Global'], palette='Pastel1'):
         """Creates violin plots of an annotator's scores by type of song (binary, ternary, etc.)"""
         if len(features) > 1:
             fig = self.create_violin_plots_multiple(annotator_scores, features)
         else:
-            fig = self.create_violin_plots_single(annotator_scores, features[0])
+            fig = self.create_violin_plots_single(annotator_scores, features[0], palette)
 
         plt.show()
 

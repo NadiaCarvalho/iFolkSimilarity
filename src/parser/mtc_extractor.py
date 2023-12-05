@@ -19,7 +19,7 @@ from .utils import has_meter
 
 from contextlib import redirect_stderr
 
-c21.mei.base.environLocal['warnings'] = 0
+#c21.mei.base.environLocal['warnings'] = 0
 c21.shared.m21utilities.DEBUG = False
 c21.shared.m21utilities.BEAMDEBUG = False
 c21.shared.m21utilities.TUPLETDEBUG = False

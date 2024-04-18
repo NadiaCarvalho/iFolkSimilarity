@@ -76,7 +76,7 @@ class MeiParser:
     MEI PARSER, parse MEI files relative to CoPOEM database's structure
     """
 
-    def parse_mei(self, path):
+    def parse_mei(self, path, verbose=True):
         """
         Parses a MEI file and returns a list of dictionaries with the following
         information:
@@ -94,7 +94,8 @@ class MeiParser:
         for key in ['key', 'mode', 'meter', 'tempo', 'genre']:
             music_metadata[key] = work[key]
 
-        print(f'Parsing {metadata["title_stmt"]["id"]}')
+        if verbose:
+            print(f'Parsing {metadata["title_stmt"]["id"]}')
 
         self.mtc_extractor = MTCExtractor(path, root, music_metadata)
         features = self.mtc_extractor.process_stream()

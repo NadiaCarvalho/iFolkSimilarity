@@ -108,7 +108,7 @@ class PitchExtractor():
         """
         Get the scale degree of a note
         """
-        return [pitch_degree(self.scale.getScaleDegreeAndAccidentalFromPitch(pitch)) for pitch in self.music_stream.flat.pitches]
+        return [pitch_degree(self.scale.getScaleDegreeAndAccidentalFromPitch(pitch)) for pitch in self.music_stream.flatten().pitches]
 
     def get_m21_scale_degree_specifiers(self):
         """
@@ -116,7 +116,7 @@ class PitchExtractor():
         Specifier of the scaledegree: Perfect, Major, Minor, Augmented, Diminished, … above the tonic
         """
         intervals = [m21.interval.Interval(
-            noteStart=self.scale.tonic, noteEnd=pitch).specifier for pitch in self.music_stream.flat.pitches]
+            noteStart=self.scale.tonic, noteEnd=pitch).specifier for pitch in self.music_stream.flatten().pitches]
 
         return [m21.interval.prefixSpecs[interval] for interval in intervals] # type: ignore
 
@@ -124,50 +124,50 @@ class PitchExtractor():
         """
         Get the tonic of the piece
         """
-        return [self.scale.tonic.name for _ in self.music_stream.flat.pitches], [self.scale.mode.capitalize() for _ in self.music_stream.flat.pitches]
+        return [self.scale.tonic.name for _ in self.music_stream.flatten().pitches], [self.scale.mode.capitalize() for _ in self.music_stream.flatten().pitches]
 
     def get_m21_pitch_names(self):
         """
         Get the pitch name and octave of a note
         """
-        return [pitch.nameWithOctave for pitch in self.music_stream.flat.pitches]
+        return [pitch.nameWithOctave for pitch in self.music_stream.flatten().pitches]
 
     def get_midi_pitch(self):
         """
         Get the MIDI pitch of a note
         """
-        return [pitch.midi for pitch in self.music_stream.flat.pitches]
+        return [pitch.midi for pitch in self.music_stream.flatten().pitches]
 
     def get_base40_pitch(self):
         """
         Get the base40 pitch of a note
         """
-        return [m21.musedata.base40.pitchToBase40(pitch.nameWithOctave) for pitch in self.music_stream.flat.pitches]  # type: ignore
+        return [m21.musedata.base40.pitchToBase40(pitch.nameWithOctave) for pitch in self.music_stream.flatten().pitches]  # type: ignore
 
     def get_m21_diatonic_pitches(self):
         """
         Get the diatonic pitch of a note
         """
-        return [pitch.diatonicNoteNum for pitch in self.music_stream.flat.pitches]
+        return [pitch.diatonicNoteNum for pitch in self.music_stream.flatten().pitches]
 
     def get_m21_pitch_classes(self):
         """
         Get the pitch class of a note
         """
-        return [pitch.pitchClass for pitch in self.music_stream.flat.pitches]
+        return [pitch.pitchClass for pitch in self.music_stream.flatten().pitches]
 
     def get_chromatic_intervals(self):
         """
         Get the chromatic interval between two consecutive notes
         """
-        pitches = self.music_stream.flat.pitches
+        pitches = self.music_stream.flatten().pitches
         return [None] + [pitch.midi - pitches[i-1].midi for i, pitch in enumerate(pitches) if i > 0]
 
     def get_diatonic_intervals(self):
         """
         Get the diatonic interval between two consecutive notes
         """
-        pitches = self.music_stream.flat.pitches
+        pitches = self.music_stream.flatten().pitches
         return [None] + [pitch.diatonicNoteNum - pitches[i-1].diatonicNoteNum for i, pitch in enumerate(pitches) if i > 0]
 
     def get_pitch_proximity(self, chromatic_intervals):

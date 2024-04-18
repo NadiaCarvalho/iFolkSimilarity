@@ -76,25 +76,25 @@ class MetricExtractor():
         """
         Get the durations of all notes in the stream
         """
-        return [str(note.duration.quarterLength) for note in self.music_stream.flat.notes]
+        return [str(note.duration.quarterLength) for note in self.music_stream.flatten().notes]
 
     def get_duration_fraction(self):
         """
         Get the duration fraction of all notes in the stream
         """
-        return [str(Fraction(note.duration.quarterLength)) for note in self.music_stream.flat.notes]
+        return [str(Fraction(note.duration.quarterLength)) for note in self.music_stream.flatten().notes]
 
     def get_duration_fullname(self):
         """
         Get the duration fullname of all notes in the stream
         """
-        return [note.duration.fullName for note in self.music_stream.flat.notes]
+        return [note.duration.fullName for note in self.music_stream.flatten().notes]
 
     def get_offsets(self):
         """
         Get the offsets of all notes in the stream
         """
-        return [note.offset for note in self.music_stream.flat.notes]
+        return [note.offset for note in self.music_stream.flatten().notes]
 
     def get_rest_duration_fraction(self):
         """
@@ -138,7 +138,7 @@ class MetricExtractor():
         """Get the beat strength of all notes in the stream"""
         def get_note_accent(note):
             return note.getContextByClass('TimeSignature').getAccentWeight(note.offset, permitMeterModulus=True, forcePositionMatch=True)
-        return [get_note_accent(note) for note in self.music_stream.flat.notes]
+        return [get_note_accent(note) for note in self.music_stream.flatten().notes]
 
     def get_beat_string_fraction(self):
         """Get the beat string and fraction of all notes in the stream"""

@@ -205,6 +205,7 @@ class MeiParser:
                     root, extraction_dict[element])
 
             if element == 'key':
+                output_dict['key'] =
                 output_dict['mode'] = self.get_element(
                     root, extraction_dict[element], 'mode')
         return output_dict

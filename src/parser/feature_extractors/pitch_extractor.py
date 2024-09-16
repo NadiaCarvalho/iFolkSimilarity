@@ -54,7 +54,8 @@ class PitchExtractor():
 
         try:
             self.scale = self.get_scale()
-        except:
+        except Exception as e:
+            print(e)
             print("Could not get scale, substituting by C major")
             self.scale = m21.key.Key(tonic='c', mode='major')
 
@@ -95,11 +96,15 @@ class PitchExtractor():
         mode = self.metadata.get('mode')
 
         if key is not None and mode is not None:
-          print('HERER')
           if mode in list(m21.key.modeSharpsAlter.keys()):
             return m21.key.Key(tonic=key, mode=mode)
           else:
-            print(f"Can't yet process {key} {mode}")
+            if mode.startswith('aeolian'):
+              return m21.key.Key(tonic=key, mode='aeolian')
+            if mode.startswith('phrygian'):
+              return m21.key.Key(tonic=key, mode='phrygian')       
+
+            print(f"Can't yet process {key} {mode}")       
             return m21.key.Key(tonic=key, mode='major')
               
         return self.music_stream.analyze('key')

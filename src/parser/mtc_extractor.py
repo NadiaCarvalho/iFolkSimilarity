@@ -119,7 +119,6 @@ class MTCExtractor():
         except:
             print('Error getting measure 0')
 
-        # try:
         features = defaultdict(list)
 
         # Scale/Key Features
@@ -130,9 +129,12 @@ class MTCExtractor():
         features.update(MetricExtractor(
             part).get_all_features())
 
-        # Phrasic Features
-        features.update(PhraseExtractor(part,
-                        self.metadata, features).get_all_features())
+        try:
+          # Phrasic Features
+          features.update(PhraseExtractor(part,
+                          self.metadata, features).get_all_features())
+        except:
+          print('Error getting phrase information')
 
         # Derived Features
         features.update(IOIExtractor(part,
@@ -143,20 +145,6 @@ class MTCExtractor():
             part, features).get_all_features())
 
         return features
-        # except Exception as e:
-        #     print("Error processing stream")
-
-        #     import os
-        #     import sys
-
-        #     exc_type, exc_obj, exc_tb = sys.exc_info()
-        #     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[
-        #         1]  # type: ignore
-        #     print(exc_type, fname, exc_tb.tb_lineno)  # type: ignore
-
-        #     print()
-
-        #   return None
 
     def has_meter(self):
         """

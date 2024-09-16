@@ -96,6 +96,8 @@ class PitchExtractor():
         mode = self.metadata.get('mode')
 
         if key is not None and mode is not None:
+          key = key.replace(' Flat', '-').replace(' Sharp', '#')
+
           if mode in list(m21.key.modeSharpsAlter.keys()):
             return m21.key.Key(tonic=key, mode=mode)
           else:

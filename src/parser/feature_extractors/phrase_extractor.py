@@ -86,7 +86,13 @@ class PhraseExtractor():
                     phrase_pos[i-1] = 0
 
             phrase_ix.append(last_phrase)
-        return list(phrase_pos), phrase_ix
+
+        phrase_p = list(phrase_pos)
+        for i, p in enumerate(phrase_p[1:]):
+          if (p == 1 and phrase_p[i-1] == 1) and (phrase_ix[i] == phrase_ix[i-1]):
+            phrase_p[i-1] = 0
+        
+        return phrase_p, phrase_ix
 
     def get_phrase_position(self, phrases):
         """Get phrase position for each note"""

@@ -53,13 +53,7 @@ class PitchExtractor():
             self.metadata = musical_metadata
 
         try:
-            # print("Getting scale")
             self.scale = self.get_scale()
-            # print("Scale: ", self.scale)
-
-            # anal = self.music_stream.analyze('key')
-            # print("Analysis: ", anal, anal.correlationCoefficient)
-            # _ = [print(a, a.correlationCoefficient) for a in anal.alternateInterpretations]
         except:
             print("Couldn't not get scale, substituting by C major")
             self.scale = m21.key.Key(tonic='c', mode='major')
@@ -101,7 +95,11 @@ class PitchExtractor():
         mode = self.metadata.get('mode')
 
         if key is not None and mode is not None:
-            return m21.key.Key(tonic=key, mode=mode)
+            if mode in list(m21.key.modeSharpsAlter.keys()):
+                return m21.key.Key(tonic=key, mode=mode)
+            else:
+                return m21.key.Key(tonic=key, mode='major')
+                
         return self.music_stream.analyze('key')
 
     def get_m21_scale_degrees(self):

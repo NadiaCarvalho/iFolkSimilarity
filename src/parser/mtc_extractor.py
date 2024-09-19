@@ -45,13 +45,20 @@ class MTCExtractor():
             with redirect_stderr(f):
                 converter = c21.MEIConverter()
                 self.music_stream = converter.parseFile(path, verbose=False)
+
+        self.metadata = {}
+        if musical_metadata:
+            self.metadata = musical_metadata
               
         expressions = list(self.music_stream.recurse().getElementsByClass('Expression'))
         for exp in expressions:
           if exp.content == '𝄋':
             exp.content = 'Segno'
+          if exp.content == '𝄌':
+            exp.content = 'Coda'
+          
           rep_exp = exp.getRepeatExpression()
-          print(exp, rep_exp)
+          
           if rep_exp is not None:
             hierch = [e for e in exp.containerHierarchy()]
             hierch[0].insert(exp.offset, rep_exp)
@@ -83,13 +90,11 @@ class MTCExtractor():
 
             try:
                 self.music_stream = self.music_stream.expandRepeats()
-            except:
+            except Exception as e:
                 print('Error expanding repeats in: ' + path)
+                print(e)
                 return None
 
-        self.metadata = {}
-        if musical_metadata:
-            self.metadata = musical_metadata
 
     def process_stream(self):
         """

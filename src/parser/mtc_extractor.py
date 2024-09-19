@@ -45,6 +45,16 @@ class MTCExtractor():
             with redirect_stderr(f):
                 converter = c21.MEIConverter()
                 self.music_stream = converter.parseFile(path, verbose=False)
+              
+        expressions = list(self.music_stream.recurse().getElementsByClass('Expression'))
+        for exp in expressions:
+          if exp.content == '𝄋':
+            exp.content = 'Segno'
+          rep_exp = exp.getRepeatExpression()
+          print(exp, rep_exp)
+          if rep_exp is not None:
+            hierch = [e for e in exp.containerHierarchy()]
+            hierch[0].insert(exp.offset, rep_exp)
 
         try:
             self.music_stream = self.music_stream.expandRepeats()

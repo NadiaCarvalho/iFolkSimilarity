@@ -1,3 +1,4 @@
+#@title Phrase Extractor
 # -*- coding: utf-8 -*-
 """
 Created on Mon Feb 22 16:20:06 2023
@@ -96,6 +97,10 @@ class PhraseExtractor():
 
         start_indexes = [i for i, x in enumerate(phrases) if x == 1]
         end_indexes = [i for i, x in enumerate(phrases) if x == -1]
+
+        if len(start_indexes) != len(end_indexes):
+            raise ValueError(
+                "Number of start indexes must be equal to number of end indexes")
 
         all_notes = self.music_stream.flatten().notes
 

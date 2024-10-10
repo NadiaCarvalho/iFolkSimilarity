@@ -91,7 +91,9 @@ class PhraseExtractor():
 
     def get_phrase_position(self, phrases):
         """Get phrase position for each note"""
+
         total_duration = self.music_stream.duration.quarterLength
+
         if all(x == 0 for x in phrases):
             return [note.quarterLength/total_duration for note in self.music_stream.recurse().notes]
 
@@ -104,14 +106,19 @@ class PhraseExtractor():
 
         all_notes = self.music_stream.flatten().notes
 
-        phrase_pos = []
-        for i, end_ind in enumerate(end_indexes):
-            start_offset = all_notes[start_indexes[i]].offset
-            total_phrase_duration = all_notes[end_ind].offset - start_offset
-            phrase_pos.extend([(note.offset - start_offset) /
-                              total_phrase_duration for note in all_notes[start_indexes[i]:end_ind+1]])
+        phrase_pos = np.zeros(len(phrases), dtype='float')
 
-        return phrase_pos
+        def get_ph_position(all_notes, st, end):
+          phrase_duration = all_notes[end].offset - all_notes[st].offset
+          if phrase_duration == 0:
+            return [0] * (end - st + 1)
+          return [(note.offset - all_notes[st].offset) / phrase_duration
+                                            for note in all_notes[st:end+1]]
+
+        for st, end in zip(start_indexes, end_indexes):
+            phrase_pos[st:end+1] = get_ph_position(all_notes, st, end)
+
+        return phrase_pos.tolist()
 
     def get_phrase_end(self):
         """Get phrase position for each note"""

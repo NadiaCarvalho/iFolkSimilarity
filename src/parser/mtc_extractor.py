@@ -136,6 +136,8 @@ class MTCExtractor():
 
         features = defaultdict(list)
 
+        features.update({'id': [n.id for n in part.flatten().notes]})
+
         # Scale/Key Features
         features.update(PitchExtractor(part,
                         self.metadata).get_all_features())

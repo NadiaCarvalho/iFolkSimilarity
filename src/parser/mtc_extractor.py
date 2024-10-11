@@ -76,10 +76,10 @@ class MTCExtractor():
                     if ending is not None:
                         if '-' in ending.attrib['n']:
                           st, end = ending.attrib['n'].split('-')
-                          ending_markings = list(range(st, end, 1))
+                          ending_markings = list(range(int(st), int(end), 1))
                         else:
                           ending_markings = [
-                              int(i) for i in ending.attrib['n'].split(', ')]
+                              int(i) for i in ending.attrib['n'].split(',')]
                         if len(ending_markings) == 1:
                             repeat_bracket.number = ending_markings[0]
                         elif list(range(ending_markings[0], ending_markings[-1])) == ending_markings:

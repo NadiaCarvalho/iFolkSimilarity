@@ -74,8 +74,12 @@ class MTCExtractor():
                     ending = mei_tree.find(f'.//mei:measure[@n="{number_to_get}"]...', namespaces={
                                            'mei': 'http://www.music-encoding.org/ns/mei'})
                     if ending is not None:
-                        ending_markings = [
-                            int(i) for i in ending.attrib['n'].split(', ')]
+                        if '-' in ending.attrib['n']:
+                          st, end = ending.attrib['n'].split('-')
+                          ending_markings = list(range(st, end, 1))
+                        else:
+                          ending_markings = [
+                              int(i) for i in ending.attrib['n'].split(', ')]
                         if len(ending_markings) == 1:
                             repeat_bracket.number = ending_markings[0]
                         elif list(range(ending_markings[0], ending_markings[-1])) == ending_markings:

@@ -80,8 +80,6 @@ class MTCExtractor():
                         else:
                           ending_markings = [
                               int(i) for i in ending.attrib['n'].split(',')]
-
-                        print(ending_markings)
                       
                         if len(ending_markings) == 1:
                             repeat_bracket.number = ending_markings[0]
